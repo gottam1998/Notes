@@ -1,0 +1,36 @@
+Note:
+Make sure in HCL password don't have @ sign instead have other special characters.
+
+For Angular 
+Cmd  > npm config set http.proxy http://<HCL_user_id>:<HCL_password>@csez-s500:8080
+Cmd > npm config set http.proxy http://jason.d:Mypassword12#@csez-s500:8080
+
+For GIT 
+In case of proxy exception in git push and pull we  get following exception   "time out " port 443
+
+Solution is 
+Syntax > git config --global http.proxy      https://<HCL_SAP>:yourPassword@csez-s500:8080
+
+Ex : one is with Http and other with https
+1)   Cmd > git config --global http.proxy  https://jason.d:MyPassword123@csez-s500:8080
+2)   Cmd > git config --global http.proxy http://jason.d:MyPassword123@csez-s500:8080
+
+git clone https://gitlab.com
+
+3) git push -u origin master
+
+
+Maven 
+Step 1: maven software folder ? conf (folder ) ? settings.xml 
+
+<proxies>
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>jason.d</username> 
+      <password> MyPassword123</password>        
+      <host>csez-s500</host>
+      <port>8080</port>
+    </proxy>
+  </proxies>

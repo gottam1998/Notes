@@ -1,0 +1,610 @@
+
+JDBC Connectivity
+Java DataBase Connectivity is used to connect the Java application to Database, and it is made up of Native C Library.
+JDBC Drivers:
+TYPE I Driver or JDBC-ODBC Drivers:
+The TYPE I Driver translates all JDBC calls into ODBC calls, and sends them to the ODBC Driver.  It is a platform dependent (only windows), since it depends upon the external ODBC source.  It is not a pure Java Driver. Slowest of all.
+            Advantage:
+ü  It allows access to almost any database, since the database is ODBC Driver already available.
+            Limitation:
+ü  It is not portable, since it is not made up of Java.
+ü  A performance is seen as a JDBC call goes through to the bridge the ODBC Driver, then to the database, and vice versa.  They are the slowest of the all database.
+ü  The client system must contain the ODBC Driver.
+ü  It is not suitable for Web applications.
+ 
+ 
+TYPE II or Native API partly Java Driver:
+In a Type 2 driver, JDBC API calls are converted into native C/C++ API calls, which are unique to the database. These drivers are typically provided by the database vendors and used in the same manner as the JDBC-ODBC Bridge. The vendor-specific driver must be installed on each client machine.
+            Advantage:
+The TYPE II Driver typically offers a better performance than TYPE I Driver, since it uses the Native DB API.
+            Limitation:
+ü  Native API must be installed in the client system, and hence TYPE II Drivers cannot be used for internet.
+ü  It is not portable, since it is not made up of Java.
+ü  If we change the, database we have to change the Native API as it is specific to database.
+ü  It is not thread safe.
+The Oracle Call Interface (OCI) driver is an example of a Type 2 driver.
+
+TYPE III or Network Protocol All Java Driver:
+The TYPE II database requests are passed through the network through the middle tier server, and then the middle tier server translates the requests to the database.
+Advantage:
+ü  The driver is server based, so there is no need for any vendor database library to be present on the client machine.
+ü  The driver is fully written in Java and hence portable.
+ü  It is suitable for Web Applications.
+ü  The TYPE III Driver typically provides support for features like logging, load balancing, auditing and catching.
+ü  Driver is very flexible and allows access to multiple databases.
+Limitation:
+ü  It requires another server application to install and maintain, transfering the record set may take longer, since the data comes through the backend server.
+
+TYPE IV or Native Protocol All Java Driver:
+In a Type 4 driver, a pure Java-based driver communicates directly with the vendor's database through socket connection. This is the highest performance driver available for the database and is usually provided by the vendor itself.
+
+Advantage:
+ü  It is made up of Java, so Portable.  It is used for Web application, platform independent.
+ü  It is the fastest among all types of Drivers, since it directly communicates with the database.
+ü  No special software is installed on the client or server.
+How to Set Connectivity:
+Step 1 :
+Establish the connection to the database by specifying the driver, as Class.forName(“JDBCDriver”);
+When you need to use the TYPE I Driver, you have to include the following statement,
+For typeI driver
+ Class.forName(“sun.jdbc.odbc.JdbcOdbcDriver”);//specify the type of drivername
+After specifying the Driver, you have to establish the connection as below,
+Connection con = DriverManager.getConnection(“jdbc:odbc:dsn”,Username,Password);//specify connection url
+Connectionàinterface used to connect application with database provided with vendor id username and password
+DriverManageràclass used to Load your drivers
+Example for TypeIV:
+ ORACLE Driver:
+            The oracle database can be accessed only with Oracle Driver (TYPE II).
+Class.forName(“oracle.jdbc.driver.OracleDriver”);
+Connection con = DriverManager.getConnection(“jdbc:oracle:thin:@machinename/IP:1521:dbname”, “scott”, “tiger”);//1521àportnumber of oracle
+ 
+Type 4 driver:
+MYSQL
+Class.forName("com.mysql.jdbc.Driver");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename","root","root");
+ 
+copy the jar file and put inside the project
+ 
+Step 2:
+            Executing the sql statement.  Three interfaces that are Statement, PreparedStatement, CallableStatement.
+Statement Interface:
+https://ssl.gstatic.com/ui/v1/icons/mail/images/cleardot.gif
+Used for executing static SQL statements and returning the result it produces.
+Syntax: public interface Statement
+            It is used for creating, altering, and dropping the table, that is, it is mainly used for DDL operation.
+            Statement st = con.createStatemen();//invoked using this method
+Methods:
+Ø  void clear()
+Ø  boolean execute(String SQL)  It executes any kind of SQL statements using PreparedStatement object.
+Ø  ResultSet executeQuery(String SQL)  It executes the SELECT query, and returns the ResultSet object generated by the query.
+Ø  int executeUpdate(String SQL)  It executes the DML statements, and returns the number of rows affected.
+ 
+PreparedStatement Interface:
+            It is used to execute both static and dynamic SQL statement.
+The object that represents precompiled Sql statement or the Sql statement that takes the values at run time.
+Syntax: public interface PreparedStatement extends Statement
+            PreparedStatement st = con.prepareStatement(“insert into emp values(1, “Asha”)); 
+The methods present in the
+Ø  ResultSet metadata getMetadata ()
+Ø  void setString(int i, String s)  It sets the designated parameter value as String.
+Ø  void setInt(int i, int s)  It sets the designated parameter value as Int.
+Ø  void setFloat(int i, float s)
+Ø  void setDouble(int i, double s)
+Ø  void setByte(int i, byte s)
+Ø  void setLong(int i, long s)
+Ø  void setBoolean(int i, boolean s)
+Ø  void setShort(int i, short s)
+Ø  void setDate(int i, date d)
+Ø  void setTimeStamp(int i, timestamp t)
+Ø  void setNull(int i, int sqltype)  It sets the designated parameter to SQL Null.
+Ø  void setBlob(int i, blob b)
+Ø  void setClob(int i, clob c)
+ 
+CallableStatement Interface:
+      It is used for accessing PL/SQL statements from Java
+            Syntax : public interface CallableStatement extends PreparedStatement
+CallableStatement st = con.prepareCall(“call <procedurename>(parameters)”);
+It is provided with the following methods
+Ø  void registerOutParameter(int parameterindex, int sqltype)  It register the out parameter using the JDBC SQL data type.
+Ø  void registerOutParameter(String parametername, int sqltype)
+Ø  void registerOutParameter(int parameterindex, int sqltype, int scale)  where scale is the size
+Ø  void setBoolean(String parametername, boolean x) It sets the designated parameter as boolean value.
+Ø  void setInt(String parametername, int x)
+Ø  void setDouble(String parametername, double d)
+Ø  void setLong(String parametername, long l)
+Ø  void setShort(String parametername, short s)
+Ø  void setByte(String parametername, byte b)
+Ø  void setDate(String parametername, date d)
+Ø  void setNull(String parametername, int x)
+Ø  void setObject(String parametername, object obj)
+Ø  void setTime(String parametername, time t)
+Ø  void setTimestamp(String parametername, timestamp t)
+Ø  void setString(String parametername, String x)
+Ø  boolean getBoolean(int parameterindex (or String parametername)
+Ø  int getInt(int parameterindex (or String parametername)
+Ø  long getLong(int parameterindex (or String parametername)
+Ø  short getShort(int parameterindex (or String parametername)
+Ø  int getInt(int parameterindex (or String parametername)
+Ø  void addBatch()
+Ø  int[] executeBatch()
+Step 3: Process the ResultSet
+Syntax: Public interface ResultSet
+A table of data representing a database resultset which is usually generated by executing the statement that queries the database. A resultset object maintains a cursor pointing to its current row of data. Initially the cursor is positioned before there firstrow the next() moves the cursor to the next row, and it returns false when there are no more rows in the resultset object. Default resultset object is not updatable and has a cursor that moves forward only. Thus you can iterate through it only once and only from first row to the last row. It is possible to produce resultset objects that are scrollable and updatable.
+Process the ResultSet Interface, which contains the information about the query.  The methods that present in this interface are
+Ø  boolean next()  It moves the cursor to the one row from its current position
+Ø  boolean previous() It moves the cursor up to the one row from its current position.
+Ø  boolean isFirst()  It checks whether the cursor in the first row or not.
+Ø  boolean isLast()  It checks whether the cursor in the last row or not.
+ 
+Ø  double getDouble(int columnindex [String columnname])  It retrieves the value of the designated column in the current row of the ResultSet object as data type Double. The index value is considered based on the select query.
+Ø  int getint(int columnindex [String columnname])
+Ø  float getFloat(int columnindex [String columnname])
+Ø  long getLong(int columnindex [String columnname])
+Ø  short getShort(int columnindex [String columnname])
+Ø  String getString(int columnindex [String columnname])
+Ø  object getObject(int columnindex [String columnname])
+Ø  date getDate(int columnindex [String columnname])
+Ø  timestamp getTimestamp(int columnindex [String columnname])
+ 
+Step 4:
+            Disconnect the database using con.close() method, which closes the connection that established.
+Note:
+            In order to work with Database Connectivity, you have to import the package java.sql.*, and it throws an exception called SQLException(if there is any error in queries),ClassNotFoundException(jar file not present in folder and driver name specified wrongly)
+ 
+ 
+Transactions in Database:
+Steps:
+Set auto commit mode to be False, before performing the operation.
+Perform the operations to be done.
+After executing the operations, call the commit() method, and if you want to undo the process, then call rollback() method.
+Example: (efficient transaction)
+      Class.forName(“  ”);
+      Connection con = DriverManager.getConnection(“  ”);
+      Con.setAutoCommit(false);
+      preparedStatment ps = con.pre………..;
+      …………….
+      …………….
+…….………
+executeUpdate();
+con.commit();
+con.rollback();
+
+
+package pack1;
+
+ 
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+
+import java.sql.PreparedStatement;
+
+import java.util.Scanner;
+
+ 
+
+public class EmployeeInsert {
+
+ 
+
+    public static void main(String[] args) {
+
+       Scanner s=new Scanner(System.in);
+
+       System.out.println("Enter employee id:");
+
+       int id=Integer.parseInt(s.nextLine());
+
+       System.out.println("Enter employee name:");
+
+       String name=s.nextLine();
+
+       System.out.println("Enter address:");
+
+       String address=s.nextLine();
+
+       System.out.println("Enter salary:");
+
+       double sal=Double.parseDouble(s.nextLine());
+
+       System.out.println("Enter gender");
+
+       String gen=s.nextLine();
+
+       Connection con=null;
+
+       try{
+
+           Class.forName("com.mysql.jdbc.Driver");
+
+       con=DriverManager.getConnection("jdbc:mysql://localhost:3308/jdbc","root","root");
+
+           PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?,?,?)");
+
+           ps.setInt(1,id);
+
+           ps.setString(2, name);
+
+           ps.setString(3, address);
+
+           ps.setDouble(4, sal);
+
+           ps.setString(5, gen);
+
+           int i=ps.executeUpdate();
+
+           if(i==1)
+
+              System.out.println("Employee Record inserted successfully");
+
+       }
+
+        catch(Exception e){
+
+           System.out.println(e);
+
+        }
+
+       finally{
+
+           try{
+
+               if(con!=null)
+
+                  con.close();
+
+           }
+
+           catch(Exception e){
+
+               System.out.println(e);
+
+           }
+
+       }
+
+    }
+
+ 
+
+}
+
+ 
+
+ 
+
+package pack1;
+
+ 
+
+public class Employee1 {
+
+  private int empId;
+
+  private String name;
+
+  private String address;
+
+  private double salary;
+
+  private String gender;
+
+public int getEmpId() {
+
+    return empId;
+
+}
+
+public void setEmpId(int empId) {
+
+    this.empId = empId;
+
+}
+
+public String getName() {
+
+    return name;
+
+}
+
+public void setName(String name) {
+
+    this.name = name;
+
+}
+
+public String getAddress() {
+
+    return address;
+
+}
+
+public void setAddress(String address) {
+
+    this.address = address;
+
+}
+
+public double getSalary() {
+
+    return salary;
+
+}
+
+public void setSalary(double salary) {
+
+    this.salary = salary;
+
+}
+
+public String getGender() {
+
+    return gender;
+
+}
+
+public void setGender(String gender) {
+
+    this.gender = gender;
+
+}
+
+public Employee1() {
+
+    super();
+
+    // TODO Auto-generated constructor stub
+
+}
+
+@Override
+
+public String toString() {
+
+    return "Employee1 [empId=" + empId + ", name=" + name + ", address=" + address + ", salary=" + salary + ", gender="
+
+           + gender + "]";
+
+}
+
+ 
+
+}
+
+ 
+
+ 
+
+ 
+
+package pack1;
+
+ 
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+
+import java.sql.ResultSet;
+
+import java.sql.Statement;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+ 
+
+public class FetchEmp {
+
+ 
+
+    public static void main(String[] args) {
+
+       Connection con=null;
+
+       try{
+
+           Class.forName("com.mysql.jdbc.Driver");
+
+       con=DriverManager.getConnection("jdbc:mysql://localhost:3308/jdbc","root","root");
+
+           Statement st=con.createStatement();
+
+           ResultSet rs=st.executeQuery("select * from employee");
+
+           List<Employee1> l=new ArrayList<>();
+
+           while(rs.next()){
+
+               Employee1 e=new Employee1();
+
+               e.setEmpId(rs.getInt(1));
+
+               e.setName(rs.getString(2));
+
+               e.setAddress(rs.getString(3));
+
+               e.setSalary(rs.getDouble(4));
+
+               e.setGender(rs.getString(5));
+
+               l.add(e);
+
+               /*int id=rs.getInt(1);
+
+               String name=rs.getString(2);
+
+               String address=rs.getString(3);
+
+               double sal=rs.getDouble(4);
+
+               String gen=rs.getString(5);*/
+
+ 
+
+               //String name=rs.getString("ename");
+
+               //double sal=rs.getDouble("salary");
+
+           }
+
+           for(Employee1 e:l)
+
+               System.out.println(e);
+
+       }
+
+       catch(Exception e){
+
+          
+
+       }
+
+       finally{
+
+          
+
+       }
+
+ 
+
+    }
+
+ 
+
+}
+
+ 
+
+ 
+
+package pack1;
+
+ 
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+
+import java.sql.PreparedStatement;
+
+import java.sql.SQLException;
+
+ 
+
+public class Batch {
+
+ 
+
+    public static void main(String[] args) {
+
+       Connection con=null;
+
+       try{
+
+           Class.forName("com.mysql.jdbc.Driver");
+
+       con=DriverManager.getConnection("jdbc:mysql://localhost:3308/jdbc","root","root");
+
+           PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?,?,?)");
+
+           con.setAutoCommit(false);
+
+           ps.setInt(1, 9);
+
+           ps.setString(2, "Raj");
+
+           ps.setString(3, "Delhi");
+
+           ps.setDouble(4, 45000);
+
+           ps.setString(5, "male");
+
+           ps.addBatch();
+
+          
+
+           ps.setInt(1, 8);
+
+           ps.setString(2, "Amy");
+
+           ps.setString(3, "Punjab");
+
+           ps.setDouble(4, 55000);
+
+           ps.setString(5, "female");
+
+           ps.addBatch();
+
+          
+
+           ps.setInt(1, 7);
+
+           ps.setString(2, "Yash");
+
+           ps.setString(3, "Delhi");
+
+           ps.setDouble(4, 47000);
+
+           ps.setString(5, "male");
+
+           ps.addBatch();
+
+          
+
+           int[] a=ps.executeBatch();
+
+          
+
+           con.commit();
+
+       }
+
+       catch(Exception e){
+
+           System.out.println(e);
+
+           try {
+
+               con.rollback();
+
+           } catch (SQLException e1) {
+
+               // TODO Auto-generated catch block
+
+               e1.printStackTrace();
+
+           }
+
+       }
+
+       finally{
+
+           try{
+
+               if(con!=null)
+
+                  con.close();
+
+           }
+
+           catch(Exception e){
+
+               System.out.println(e);
+
+           }
+
+       }
+
+ 
+
+    }
+
+ 
+
+}
+
+ 
+

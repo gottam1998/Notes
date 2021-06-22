@@ -1,0 +1,217 @@
+XML Syntax rules
+1. XML document should contain one root element
+2. XMl document starts XML Prolog
+<?xml version="1.0" encoding="UTF-8"?>
+3. All XML elements must have a closing tag
+4. XML is case sensitive
+5. XML elements must be properly nested
+    <b><i>Hello</i></b>
+6. XML attributes must be single quoted/double quoted
+7. XML can have entity reference
+8. white space is preserved in XML
+ 
+Building block of XML
+1. XML element
+    4 types
+       1.  only text
+              <abc>Hello</abc>
+       2. attributes
+             <abc name="sam">Hello</abc>
+       3. other elements
+              <abc>
+                 <xyz>hello</xyz>
+              </abc>
+       4. mix of all above
+1. Element names are case sensitive
+2. Element name must start with letter or underscore
+3. Element name cannot start with  XML/xml/Xml
+4. Elements names can contains alphatebs,digits,-,_,.
+5. Elements names canot contain spaces
+ 
+2. XML attribute
+      - extra info about the elements
+1. Attributes should double quoted
+2. Avoid using attribute instead use as a child element
+3. Attributes cannot contain multiple values
+      <abc name="sam ram">
+4. Attributes cannot be represent as tree structure
+ 
+2 types of XML document
+1. Well formed XML document - if the XML document follows 8 syntax rules
+2. Valid XML document - if the XML document contains DTD file
+ 
+DTD - Document Type Defination
+   -- legal building block of XML elements and attributes
+   -- which contains, what is the root elt of xml document, how many child elt it can contain, how many times the element can occur in XML document
+ 
+2 types
+1. Internal DTD - DTD presents in same XML file
+<!DOCTYPE rooteltname [element name]>
+2. External DTD - DTD is created in separate file with .dtd extension and accessed inside the xml program using
+<!DOCTYPE rooteltname SYSTEM "filename">
+ 
+Building block of DTD
+1. DTD Elements
+Syntax:
+   <!ELEMENT eltname (elt category) > -- () indicates which order child element should display
+ 
+   <!ELEMENT eltname EMPTY>
+ 
+   <!ELEMENT eltname (#PCDATA)>
+ 
+   <!ELEMENT eltname ANY> -- contain ANY elements
+ 
+   <!ELEMENT eltname (childeltname) > - declaring only one occurance of the elt
+ 
+   <!ELEMENT eltname (childeltname+)> -- minimum one occurance of elt
+ 
+  <!ELEMENT eltname (childeltname*)> - zero or more occurance of elt
+ 
+  <!ELEMENT eltname (childeltname?)> - zero or one occurance of elt
+ 
+  <!ELEMENT eltname (to,from,subject,msg|body,abc)> -- either or content
+ 
+2. DTD attributes
+Syntax:
+<!ATTLIST eltname attribute-name attribute-type attribute-value>
+ 
+Types of attribute-type
+1. CDATA - value is character data
+2. Enumerated - provides a list of possible value and user use any one value from that list
+3. ID - used to identify elements, unique value
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mountains SYSTEM "newfile.dtd">
+<mountains>
+<mountain m_id="m100">
+<name>himalayas</name>
+</mountain>
+<mountain m_id="m101">
+<name>mt everest</name>
+</mountain>
+</mountains>
+ 
+ 
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name)>
+<!ATTLIST mountain m_id ID #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+ 
+4. IDREF - used to refer ID value of another elt in the document
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE employees SYSTEM "newfile.dtd">
+<employees>
+  <employee emp_id="e1000" mgr_id="m1000">
+     <firstname>Ram</firstname>
+     <lastname>kumar</lastname>
+  </employee>
+   <employee emp_id="e1001" mgr_id="m1002">
+     <firstname>Sam</firstname>
+     <lastname>kumar</lastname>
+  </employee>
+    <employee emp_id="e1002" >
+     <firstname>Sam</firstname>
+     <lastname>kumar</lastname>
+  </employee>
+</employees>
+ 
+<!ELEMENT employees (employee*)>
+<!ELEMENT employee (firstname,lastname)>
+<!ATTLIST employee emp_id ID #REQUIRED
+                   mgr_id IDREF #IMPLIED>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname (#PCDATA)>
+ 
+5.IDREFS - used to refer ID values of more than one element
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE individuals SYSTEM "newfile.dtd">
+<individuals>
+<individual individual_id="i1000" parent_id="i1002 i1003">
+  <firstname>Ram</firstname>
+  <lastname>Kumar</lastname>
+</individual>
+<individual individual_id="i1002" parent_id="i1000 i1003">
+  <firstname>Sam</firstname>
+  <lastname>Kumar</lastname>
+</individual>
+<individual individual_id="i1003">
+  <firstname>Raj</firstname>
+  <lastname>Kumar</lastname>
+</individual>
+</individuals>
+ 
+<!ELEMENT individuals (individual*)>
+<!ELEMENT individual (firstname,lastname)>
+<!ATTLIST individual individual_id ID #REQUIRED
+                     parent_id IDREFS #IMPLIED>
+<!ELEMENT firstname (#PCDATA)>
+<!ELEMENT lastname  (#PCDATA)>                 
+                 
+6. NMTOKEN - mix of name character but cannot contain spaces
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mountains SYSTEM "newfile.dtd">
+<mountains>
+<mountain country="NZ">
+<name>himalayas</name>
+</mountain>
+<mountain country="AU">
+<name>mt everest</name>
+</mountain>
+</mountains>
+ 
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name)>
+<!ATTLIST mountain country NMTOKEN #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+ 
+7. NMTOKENS - allows attribute multiple value separated by space
+ 
+ 
+Types of attributevalue
+1. defaultvalue - u can provide some default value
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mountains SYSTEM "newfile.dtd">
+<mountains>
+<mountain country="N Z">
+<name>himalayas</name>
+<age>25</age>
+<age>25</age>
+<age>25</age>
+</mountain>
+<mountain>
+<name>mt everest</name>
+ 
+</mountain>
+</mountains>
+ 
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name,age*)>
+<!ATTLIST mountain country NMTOKENS "A U">
+<!ELEMENT name (#PCDATA)>
+ 
+2. #REQUIRED - The attribute should complusory provided
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name,age*)>
+<!ATTLIST mountain country NMTOKENS #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+ 
+3. #IMPLIED - The attribute is optional
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name,age*)>
+<!ATTLIST mountain country NMTOKENS #IMPLIED>
+<!ELEMENT name (#PCDATA)>
+ 
+4. #FIXED "value" -- the attribute has fixed value
+<!ELEMENT mountains (mountain*)>
+<!ELEMENT mountain (name,age*)>
+<!ATTLIST mountain country NMTOKENS #FIXED "DEN">
+<!ELEMENT name (#PCDATA)>
+ 
+3. Entity reference -- shortcut to variables
+<!ENTITY entityname "entityvalue">
+ 
+4. PCDATA  - Parsed Character data
+     - which means it has to be evaluated by XML parsers
+Parsers are used to validate the XML document
+5. CDATA - Character data
+    - which means it is not to be evaluated by XML parsers

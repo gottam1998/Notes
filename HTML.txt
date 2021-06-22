@@ -1,0 +1,208 @@
+HTML
+  -- make machine to recognize markup tags
+  -- contains predefined tags
+  -- to develop static web pages
+  -- used to display the info
+  -- .html/.htm
+  -- tags are otherwise called as elements
+  -- elements contains attributes(extra info abt the element)
+  -- 3 tags
+       1. conditional tag
+              <b>hello</b>
+       2. unconditional tag
+       3. Empty tag -- no body
+  -- latest version is HTML 5
+  -- not case sensitive
+ 
+<!DOCTYPE html>  <!-- indicates we use html 5 --!>
+<html>
+<head>
+   <link></link>  <!-- use external css --!>
+   <title></title>
+   <script></script> <!-- use external or internal javascript --!>
+   <base></base>
+   <meta></meta>
+   <style></style> <!-- use internal css --!>
+</head>
+<body>
+  <!-- whatever we want to display in webpage --!>
+<p></p>
+</body>
+</html>
+ 
+Bootstrap - predefined styling as classes
+          - fit web page in all devices
+ 
+<B> A > B</B>
+create shortcuts for certain variables -- entity reference
+ 
+> - &gt;
+< - &lt;
+" - &quot;
+& - &amp;
+&copy;
+&reg;
+&nbsp; -- space
+ 
+ 
+<cite> -- defines title for ur work
+<code> - defines a piece of computer code
+<dfn> -- for defining
+<var>-- define variables
+<wbr> -- word break
+<pre> -- preformatted tag
+<mark> -- defines highlighted text
+<figure>-- specifies self contained images, diagrams, picture
+<figcaption>
+ 
+<a> -- anchor tag to create hyberlink
+<a href="" style="text-decoration:none" target="_blank/_self/_top/framename">Click</a>
+ 
+HTML images
+<img>
+<map>
+ 
+HTML list
+  1. unordered list - <ul>
+  2. Ordered list - <ol>
+  3. defination list - <dl>
+ 
+HTML tables
+<table>
+  <tr>
+  <th>
+  <td>
+<caption>
+cellpadding -- space between border and cell contentc
+cellspacing -- space between two cells
+<colgroup> -- group one or more columns of table to format
+<col> -- specifies column properties
+<thead>
+<tfoot>
+<tbody>
+frame = vside/hsides/above/below/lhs/rhs/box/border/void
+non-semantic layout
+<div> -- dividing the web page
+<span> -- defines a section of important document
+ 
+<iframe> -- internal frame
+ 
+Semantic layouts (html 5)
+1.<header> - defines header for document
+2. <footer> - defines footer for document
+3. <article> -- defines blogs, newsletter, forum post
+4. <aside> -- defines some content aside from the content it is placed
+5. <section> -- important section of document
+6. <summary> -- defines visible heading for details
+7. <nav> -- navigation links
+8. <details> -- define the additional details
+ 
+<video> --displays video player
+<audio> -- diplay audio player
+ 
+readonly -- it cant edit, but we can take the value from readonly textbox
+ 
+disabled -- it cant edit, but we cannot take the value from disabled textbox
+ 
+ 
+CSS - Cascading Style Sheet
+  -- to provide some styles for ur page
+  -- 3 types
+      1. External CSS - we create all style in separate file with .css extension and linked to HTML program using <link>, it can applied to any html prg
+      2. Internal CSS - it can applied to all elements of that particular HTML using <style>
+      3. Inline style - it can applied only to particular element of html page using style attribute
+ 
+Order of execution
+1. Inline style sheet
+2. Internal CSS
+3. External CSS
+ 
+Syntax:
+    selector { key:value; key:value;}
+  eg: h1 { background-color:red;}
+ 
+Color
+1. normal color
+2. in hexadecimal code #00ff00
+3. in rgb(0,0,0), rgb(255,255,255), rgb(100,50,255)
+ 
+CSS Selectors
+  -- in order select the elements and apply css
+1. ID selector
+     -- uniquely identify the elt using id attribute
+     -- using # operator
+ 
+2. Class selector
+     -- want to apply style for group of elements using class attribute
+     -- using . operator
+ 
+3. Pseudocolumn
+      -- predefined properties for certain elements
+      -- using : operator
+a - :link,:visited,:hover,:active
+input - :focus
+ 
+4. Group selector
+      -- if we want to apply common styles for multiple elements
+      -- using , operator
+ 
+5. descendant selector
+      -- indicates the element should be descendant (it should be inside the element) of that particular elt
+      -- using space operator
+ 
+6. child selector
+     -- indicates the element should be child of that particular elet
+     -- using > symbol
+<p>
+ <i>hello</i>
+  <i>hello</i>
+  <ol>
+    <li><i>hello</i></li>
+    <li><i>hello</i></li>
+  </ol>
+</p>
+ 
+p i { color:blue; }
+p > i {color:blue;}
+
+p:first-child { color: blue}
+p:last-child { color:blue }
+p: nth-child(3) {color:blue}
+p:nth-last-child(2) {color:blue}
+<p>Hello</p>
+<p>Hello</p>
+<p>Hello</p>
+<p>Hello</p>
+<p>Hello</p>
+ 
+id selector - #
+class selector - .
+group selector - ,
+descendant selector - space
+child selector - >
+universal selector - *
+Adjacent sibling selectors - +
+General sibling selectors - ~
+Attribute selector - []
+[title]
+[title="value"]
+[title~="hello"] - select all elts with title attribute that contains a space separated list of word called hello
+[title|="hello"] - select all elts with title attribute starting with specified value called hello, it can a single word or separated by -
+[title^="hello"] - select all elts with title attribute begins with a specified value
+[title$="hello"] - select all elts with title attribute ends with specified value
+[title*="hello"]- select all elts with title attribute that contains word hello
+ 
+ 
+XML - Extensible Markup lanaguage
+    - user defined tags
+    - used to store and transport data
+    - XML is used to describe the data
+    - 1.0 version
+<b>Hello</b> -- HTML - display the data
+<b>Hello</b> -- XML - Describe the data
+ 
+    -- XML is extensible
+    -- It simplifies data sharing
+    -- XML stores as plain text format
+    -- It simplifies platform changes -
+ 

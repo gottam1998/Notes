@@ -1,0 +1,1666 @@
+J2EE Components
+   1. Servlets
+   2. JSP
+   3. EJB
+ 
+Servlets
+   -- It is a java program used to write business logic processing
+ 
+2 types of Servlets
+1. GenericServlet
+       -- protocol independent, it can be used for any type of protocol
+       -- Syntax:
+        public abstract class GenericServlet extends Object implements Servlet, ServletConfig
+       -- import javax.servlet.*;
+ 
+Life cycle of GenericServlet
+1. public void init(ServletConfig sc) throws IOException
+      -- optional, used for initialization purpose and it is invoked first and only once in the lifecycle of program
+2. public void service(ServletRequest req,ServletResponse res) throws ServletException, IOException
+     -- mandatory, used to write business logic
+3. public void destroy()
+      -- optional, used for deallocation of memory
+ 
+2. HttpServlet
+      -- protocol dependent, used only for http protocol
+      -- Syntax:
+   public abstract class HttpServlet extends GenericServlet
+      -- import javax.servlet.http.*;
+ 
+Lifecycle of HttpServlet
+1.init()
+   -- optional, used for initialization purpose and it is invoked first and only once in the lifecycle of program
+2. public void doGet(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void doPut(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void doDelete(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void doHead(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void doTrace(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+                      or
+   public void service(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException
+   -- mandatory, used to write business logic processing
+3.destroy()
+    -- optional, used for deallocation of memory
+ 
+ 
+doGet()
+1. If we have html prog without method attribute or we dont have a html program at all in that case it is get request then we have to write the logic inside doGet()
+2. In doGet() the parameters are transferred in the URL between ? and & (ie) query string
+3. doGet() can transfer only 2GB of data so doGet() is used for fetching purpose only
+ 
+doPost()
+1. We should have html program with method="post", then it is post request then we have write logic inside doPost()
+2. In doPost() the parameters are directly transferred from one page to another page through headers
+3. doPost() transfers unlimited data, so doPost() is used for storing purpose
+ 
+Step 1:
+Once u create servlet program
+1. comment @WebServlet line
+2. remove everything from doPost() and doGet()
+ 
+Step 2: write business logic
+response.setContentType("text/html"); - we can use html tags in servlet program
+ 
+PrintWriter pw=response.getWriter(); - used to print output on browser
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class FirstServlet
+*/
+//@WebServlet("/FirstServlet")
+public class FirstServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FirstServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                pw.println("<b>Hello World</b>");
+                                System.out.println("Welcome to servlets");
+                                pw.close();
+                }
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+http://localhost:8080/projectname
+ 
+http://localhost:8080/J2EEProject/com/pack/FirstServlet
+ 
+http://localhost:8080/J2EEProject/a/b/c/d/e/f/g/h/FirstServlet
+ 
+Step 3:
+Whenever u create a Servlet prg, it should be configured in web.xml
+ 
+<web-app>
+<servlet>
+   <servlet-name>FirstServlet</servlet-name>
+   <servlet-class>com.pack.FirstServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+   <servlet-name>FirstServlet</servlet-name>
+   <url-pattern>/FirstServlet</url-pattern>
+</servlet-mapping>
+</web-app>
+ 
+ 
+Step 4:
+Run the servelet program
+http://localhost:8080/projectname/url pattern
+ 
+http://localhost:8080/J2EEProject/FirstServlet
+ 
+Instead of configuring in web.xml u can use @WebServlet
+ 
+import javax.servlet.http.*
+ 
+Interface
+1. HttpServletRequest
+      -- used to read data from client HTTP request
+Syntax:
+  public interface HttpServletRequest extends ServletRequest
+ 
+Methods
+1. String getParameter(String name)
+      -- used to get a single parameter value from html page to servlet prg
+2. String[] getParameterValues(String name)
+      -- used to get multiple value from the html page to servlet prg
+      -- eg: checkbox
+ 
+3. Enumeration getParameterNames()
+      -- used only for printing all parameter values at a time
+ 
+4. String getProtocol() - version of the protocol
+5. String getScheme() - name of the protocol
+6. String getRemoteAddr() - returns the server name
+7. int getServerPort() - returns port no
+8. String getContextPath() - returns project name
+9. String getServletPath() - returns servlet url pattern
+10. String getQueryString() - returns the value append between ?nd &
+11. String getPathInfo() - returns the path located after the servlet path and before the query string
+12. String getRequestURI () = contextpath+servletpath+pathinfo
+13. RequestDispatcher getRequestDispatcher(String url)
+ 
+first.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/ThirdServlet">
+Name: <input  type="text" name="n1"><br/>
+Age: <input  type="text" name="n2"><br/>
+Salary: <input  type="text" name="n3"><br/>
+Gender:
+<input type="radio" name="gen" value="male">Male
+<input type="radio" name="gen" value="female">Female
+<input type="radio" name="gen" value="other">Other
+<br/>
+Hobbies:
+<input type="checkbox" name="hobby" value="dance">Dancing
+<input type="checkbox" name="hobby" value="sing">Singing
+<input type="checkbox" name="hobby" value="play">Playing
+<input type="checkbox" name="hobby" value="swim">Swimming
+<br/>
+<input type="submit" value="Click">
+</form>
+</body>
+</html>
+ 
+ThirdServlet.java
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class ThirdServlet
+*/
+//@WebServlet("/ThirdServlet")
+public class ThirdServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ThirdServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                String name=request.getParameter("n1");
+                                pw.println(name+"<br/>");
+                                int age=Integer.parseInt(request.getParameter("n2"));
+                                pw.println(age+"<br/>");
+                                double sal=Double.parseDouble(request.getParameter("n3"));
+                                pw.println(sal+"<br/>");
+                                String gen=request.getParameter("gen");
+                                pw.println(gen+"<br/>");
+                                String[] hob=request.getParameterValues("hobby");
+                                for(String str:hob)
+                                                pw.println(str+"<br/>");
+                                pw.println(request.getProtocol()+"<br/>");
+                                pw.println(request.getScheme()+"<br/>");
+                                pw.println(request.getRemoteAddr()+"<br/>");
+                                pw.println(request.getServerName()+"<br/>");
+                                pw.println(request.getServerPort()+"<br/>");
+                                pw.println(request.getContextPath()+"<br/>");
+                                pw.println(request.getServletPath()+"<br/>");
+                                pw.println(request.getQueryString()+"<br/>");
+                                pw.println(request.getRequestURI()+"<br/>");
+                                pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                pw.println("Is post method"+"<br/>");
+                                String name=request.getParameter("n1");
+                                pw.println(name+"<br/>");
+                                int age=Integer.parseInt(request.getParameter("n2"));
+                                pw.println(age+"<br/>");
+                                double sal=Double.parseDouble(request.getParameter("n3"));
+                                pw.println(sal+"<br/>");
+                                String gen=request.getParameter("gen");
+                                pw.println(gen+"<br/>");
+                                String[] hob=request.getParameterValues("hobby");
+                                for(String str:hob)
+                                                pw.println(str+"<br/>");
+                                pw.println("Using Enumeration"+"<br/>");
+                                Enumeration e =request.getParameterNames();
+                                while(e.hasMoreElements()){
+                                                   String s1=(String)e.nextElement();
+                                                   String s2=request.getParameter(s1);
+                                                   pw.println(s1+"="+s2+"<br/>");
+                                }
+                                pw.close();
+                }
+ 
+}
+ 
+RequestDispatcher  interface
+    - used to dispatch/redirect the request from one servlet program to other program like HTML, JSP and servlets
+ 
+RequestDispatcher rd=request.getRequestDispatcher("a.html/a.jsp/url pattern");
+ 
+Methods
+1. forward()
+     -- forward the requests to another page and does not return back to the calling page
+     -- forward takes place on server side, so as client we cant see anything in the url to which it has redirected. So this method is used for success condition
+     -- forward redirects only within the application
+2. inculde()
+     -- include() will include the output of another page and returns back to the calling page
+
+
+
+
+Headers
+  -- whenever the client gives the request to server, certain default infomation will be transferred between client and server, those default info is called headers
+  -- certain headers will have String as value, certain will have int as value and certain headers have date as value
+  -- The different headers are
+1. accept - the file type the browser eg:text/html
+2. accept-language - language the broswer accept. en-us (default)
+3. accept-charset - default character encoding - ISO-8859-1
+4. accept-encoding - the type of encoding browser uses eg: gzip
+5. host - represent server name and portno
+6. user-agent - type of browser client uses
+7. connection: keep-alive
+ 
+14. String getHeader(String headername)
+    - return single header that takes string as value
+15. int getIntHeader(String headername)
+    - return single header that takes int as value
+16. long getDateHeader(String headername)
+   - return single header that takes date as value
+17. Enumeration getHeaderNames()
+   -- used only to print all header at a time
+18.Enumeration getHeaders(String headername)
+   -- if single header contains multiple values
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class HeaderServlet
+*/
+//@WebServlet("/HeaderServlet")
+public class HeaderServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public HeaderServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                pw.println(request.getHeader("accept-language")+"<br/>");
+                                pw.println(request.getHeader("host"));
+                                pw.println("<br/>");
+                                Enumeration e=request.getHeaderNames();
+                    while(e.hasMoreElements()){
+                                String s1=(String)e.nextElement();
+                                String s2=request.getHeader(s1);
+                                pw.println(s1+" = "+s2+"<br/>");
+                    }
+                    pw.println("<br/>");
+                    Enumeration e1=request.getHeaders("user-agent");
+                    while(e1.hasMoreElements()){
+                                pw.println(e1.nextElement()+"<br/>");
+                    }
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+ 
+Attribute methods
+   -- if we want transfer some value in background without enduser knowledge
+   -- 4 attribute methods present for 3 objects
+1. HttpServletRequest
+       -- if we set an attribute using request object we can get the attribute only to which page the request is transferred using RequestDispatcher
+2. HttpSession
+3. ServletContext
+     -- if we set an attribute using context object we can get the attribute throughout the application
+ 
+19. void setAttribute(String name, Object value)
+       -- used to set an attribute
+20. Object getAttribute(String name)
+       -- used to return an attribute
+21. Enumeration getAttributeNames()
+       -- used to print all attribute at a time
+22. void removeAttribute(String name)
+       -- want to remove the value for an attribute
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/SixthServlet">
+Name: <input type="text" name="name"/>
+Address: <input type="text" name="addr">
+<input type="submit">
+</form>
+</body>
+</html>
+ 
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class SixthServlet
+*/
+//@WebServlet("/SixthServlet")
+public class SixthServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SixthServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                String sname=request.getParameter("name");
+                                String saddress=request.getParameter("addr");
+                                //request.setAttribute("ename",sname);
+                                //request.setAttribute("eaddr", saddress);
+                                RequestDispatcher rd=request.getRequestDispatcher("/SeventhServlet");
+                                rd.forward(request, response);
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                }
+ 
+}
+ 
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class SeventhServlet
+*/
+@WebServlet("/SeventhServlet")
+public class SeventhServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SeventhServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                pw.println(request.getAttribute("ename")+"<br/>");
+                                pw.println(request.getAttribute("eaddr")+"<br/>");
+                                request.removeAttribute("eaddr");
+                                pw.println(request.getAttribute("eaddr"));
+                                pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+                }
+ 
+}
+ 
+ 
+23. String getMethod()
+       -- if servlet prg contains service(), it will invoke only service() whether it is get or post request
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="http://localhost:8080/J2EEProject/EightServlet">
+<input type="submit">
+</form>
+</body>
+</html>
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class EightServlet
+*/
+@WebServlet("/EightServlet")
+public class EightServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EightServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                PrintWriter pw=response.getWriter();
+                                pw.println("Inside doGet method");
+                                pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                PrintWriter pw=response.getWriter();
+                                pw.println("Inside doPost method");
+                                pw.close();
+                }
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                PrintWriter pw=response.getWriter();
+                                pw.println("Inside service method");
+                                String s=request.getMethod(); //GET/POST
+                                if(s.equals("GET"))
+                                                doGet(request,response);
+                                else
+                                                doPost(request,response);
+                }
+               
+ 
+}
+ 
+24. Cookie[] getCookies()
+25. HttpSession getSession()
+26. HttpSession getSession(boolean value)
+27. String getRequestedSessionId()
+28. boolean isRequestedSessionIdFromCookie()
+29. boolean isRequestedSessionIdFromUrl()
+30. boolean isRequestedSessionIdIsValid()
+ 
+ 
+2. HttpServletResponse interface
+     -- used to write data to http client request
+Syntax:
+public interface HttpServletResponse extends ServletResponse
+ 
+Methods
+1. void setContentType(String type)
+2. void setContentLength(int length)
+3. PrintWriter getWriter() throws IOException - write in char
+4. BufferedOutputStream getOutputStream() throws IOException - write in bytes
+5. void setHeader(String headername, String value)
+6. void setIntHeader(String headername, int value)
+7. void setDateHeader(String headername, long value)
+8. void sendRedirect(String url)
+     -- used to redirect from one page to another page, but redirection takes place on client place, so it is used in error case
+     -- redirect() can access outside the application
+9. void encodeUrl(String url)
+      -- normally session  id is stored in cookies, but certian browser dosent support cookie, in that case session id is stored in url
+     -- if we want send session id in url
+ 
+3. ServletConfig interface
+      -- used to access initialization parameter inside the servlet program which defined in web.xml using <init-param> or @WebInitParam
+      -- initialization parameter are the parameter which accessed only by a particular servlet program
+Syntax:
+  public interface ServletConfig
+ 
+ServletConfig getServletConfig()
+ 
+Methods
+1. String getInitParameter(String name)
+      -- used to access single initialization parameter
+2. Enumeration getInitParameterNames()
+      -- used to print all init parameter at a time
+ 
+<web-app>
+<servlet>
+    <servlet-name>TenthServlet</servlet-name>
+    <servlet-class>com.pack.TenthServlet</servlet-class>
+    <init-param>
+       <param-name>email</param-name>
+       <param-value>xyz.com</param-value>
+    </init-param>
+    <init-param>
+       <param-name>website</param-name>
+       <param-value>abc.com</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TenthServlet</servlet-name>
+    <url-pattern>/TenthServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
+ 
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+ 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class TenthServlet
+*/
+/*@WebServlet(
+                                urlPatterns = { "/TenthServlet" },
+                                initParams = {
+                                                                @WebInitParam(name = "email", value = "xyz.com"),
+                                                                @WebInitParam(name = "website", value = "abc.com")
+                                })*/
+public class TenthServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TenthServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                    ServletConfig sc=getServletConfig();
+                    String s1=sc.getInitParameter("email");
+                    pw.println(s1+"<br/>");
+                    String s2=sc.getInitParameter("website");
+                    pw.println(s2+"<br/>");
+                    Enumeration e=sc.getInitParameterNames();
+                    while(e.hasMoreElements()){
+                                String s3=(String)e.nextElement();
+                                String s4=sc.getInitParameter(s3);
+                                pw.println(s3+" = "+s4+"<br/>");
+                    }
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+ 
+4. ServletContext interface
+     -- used to access application parameter inside the servlet program which is configured in web.xml using <context-param>
+     -- application parameter is accessed by all the servlet program
+Syntax:
+public interface ServletContext
+ 
+ServletContext getServletContext()
+ 
+Methods
+1. String getInitParameter(String name)
+2. Enumeration getInitParameterNames()
+3. void setAttribute(String name, Object value)
+       -- used to set an attribute
+4. Object getAttribute(String name)
+       -- used to return an attribute
+5. Enumeration getAttributeNames()
+       -- used to print all attribute at a time
+6. void removeAttribute(String name)
+<web-app>
+<context-param>
+  <param-name>mark</param-name>
+  <param-value>87</param-value>
+  </context-param>
+  <context-param>
+  <param-name>state</param-name>
+  <param-value>Tamilnadu</param-value>
+  </context-param>
+</web-app>
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class EleventhServlet
+*/
+@WebServlet("/EleventhServlet")
+public class EleventhServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EleventhServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                ServletContext sc1=getServletContext();
+                                String s1=sc1.getInitParameter("mark");
+                                pw.println(s1+"<br/>");
+                                String s2=sc1.getInitParameter("state");
+                                pw.println(s2+"<br/>");
+                                sc1.setAttribute("myMark", s1);
+                                pw.println("<a href='http://localhost:8080/J2EEProject/NinethServlet'>Click</a>");
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+
+
+
+1. HttpSession interface
+      -- J2EE is used to develop web oriented appl, which is based on HTTP protocol
+      -- Http is called stateless protocol which means we can transfer data from only one page to next page
+      -- But if we want to transfer the info to multiple pages, then we have to go for concept called session
+      -- Session is used to maintain the stability or persistent of the web page by creating a unique session id, until u click logout button or close ur browser
+      -- Session concept is used only in the case of user authentication
+ 
+How to create a Session ?
+     -- with the  help of request object
+  1. HttpSession getSession()
+  2. HttpSession getSession(boolean val)
+ 
+HttpSession hs=request.getSession();
+       or
+HttpSession hs=request.getSession(true);
+    -- it will create a new session with unique session id
+    -- session id will be stored in cookies or url
+HttpSession interface is used to access extra info about the session
+Methods
+1.String getId() - return session id
+2.long getCreationTime() - return date & time in msec from jan 1st 1970 when the session created
+3. long getLastAccessedTime() - return date & time in msec when session is lastly access
+4. boolean isNew() - check the session new or not
+5. void setAttribute(String name, Object value)
+6. Object getAttribute(String name)
+7. Enumeration getAttributeNames()
+8. void removeAttribute(String name)
+     -- if we set an attribute using session object we can get the attribute in the page which participate in session
+9. void setMaxInactiveInterval(long sec)
+     -- we can make session to expire after certain time in seconds
+10. long getMaxInactiveInterval()
+11. We want to make session to expire after certain time in minutes wehave configure in web.xml
+<web-app>
+  <session-config>
+     <session-timeout>10</session-timeout>
+  </session-config>
+</web-app>
+12. void invalidate()
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+ 
+/**
+* Servlet implementation class TwelveServlet
+*/
+//@WebServlet("/TwelveServlet")
+public class TwelveServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TwelveServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                HttpSession hs=request.getSession();
+                                pw.println(hs.getId()+"<br/>");
+                                pw.println(hs.getCreationTime()+"<br/>");
+                                pw.println(hs.getLastAccessedTime()+"<br/>");
+                                pw.println(hs.isNew()+"<br/>");
+                                hs.setAttribute("myName","Ramu");
+                                pw.println("<a href='http://localhost:8080/J2EEProject/ThirteenServlet'>Click</a>");
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+ 
+/**
+* Servlet implementation class ThirteenServlet
+*/
+@WebServlet("/ThirteenServlet")
+public class ThirteenServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ThirteenServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                HttpSession hs=request.getSession(false);
+                                pw.println(hs.getAttribute("myName"));
+                                pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+                }
+ 
+}
+ 
+ 
+2. Cookie class
+      - temporary infor abt the web page stored in browser
+      - cookie will store session id, name  of webpage, path, domain, age of the web page
+ 
+Constructor
+1. Cookie()
+2. Cookie(String name,String value)
+ 
+Methods
+1. void setDomain(String domain)
+2. String getDomain()
+3. void setPath(String path)
+4. String getPath()
+5. void setMaxAge(int age)
+6. int getMaxAge()
+7. void setName(String name)
+8. String getName()
+9. void setValue(String value)
+10. String getValue()
+11. void setSecure(boolean val)
+12. boolean isSecure()
+ 
+How to create cookie in Servlet?
+1. Create object for Cookie class
+2. add the cookie at the time of response using addCookie()
+3. Retrieve the cookie info using Cookie[] getCookies()
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEProject/FourteenServlet">
+Name: <input type="text" name="name">
+<input type="submit">
+</form>
+</body>
+</html>
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class FourteenServlet
+*/
+//@WebServlet("/FourteenServlet")
+public class FourteenServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FourteenServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                String data=request.getParameter("name");
+                                Cookie c=new Cookie("Mycookie",data);
+                                response.addCookie(c);
+                                pw.println("Cookie has been set to "+data);
+                                pw.close();
+                               
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class GetCookie
+*/
+@WebServlet("/GetCookie")
+public class GetCookie extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GetCookie() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                Cookie[] c=request.getCookies();
+                                for(int i=0;i<c.length;i++){
+                                                pw.println("Name: "+c[i].getName()+" "+"Value: "+c[i].getValue());
+                                }
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+               
+                }
+ 
+}
+ 
+Filter interface
+     -- used to write preprocessing of request and postprocessing of response
+     -- eg, encryption and decryption
+     -- it is also a java program which implements javax.servlet.Filter interface
+Methods
+1.public void init(FilterConfig fc) throws IOException
+    -- optional, used for initialization purpose and invoked only once and first in the life cycle of program
+2.public void doFilter(SerletRequest req,ServletResponse res, FilterChain fc) throws ServletException, IOException
+    -- mandatory, to write preprocessing and postprocessing
+3. public void destroy() - optional used for deallocation
+ 
+Filter program is configured inside web.xml using or @WebFilter
+<web-app>
+<filter>
+   <filter-name>ExampleFilter</filter-name>
+   <filter-class>com.pack.ExampleFilter</filter-class>
+</filter>
+<filter-mapping>
+   <filter-name>ExampleFilter</filter-name>
+   <url-pattern>/FilterServlet</url-pattern> 
+</filter-mapping>
+</web-app>
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class FilterServlet
+*/
+@WebServlet("/FilterServlet")
+public class FilterServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FilterServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                pw.println(request.getAttribute("myCity"));
+                                pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+                }
+ 
+}
+ 
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+ 
+/**
+* Servlet Filter implementation class ExampleFilter
+*/
+//@WebFilter("/ExampleFilter")
+public class ExampleFilter implements Filter {
+ 
+    /**
+     * Default constructor.
+     */
+    public ExampleFilter() {
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see Filter#destroy()
+                */
+                public void destroy() {
+                                // TODO Auto-generated method stub
+                }
+ 
+                /**
+                * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+                */
+                public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+                                //preprocessing
+                                System.out.println("Entering filter");
+                                request.setAttribute("myCity", "chennai");
+                                chain.doFilter(request, response);
+                                //postprocessing
+                                System.out.println("Exiting filter ");
+                                request.removeAttribute("myCity");
+                                System.out.println(request.getAttribute("myCity"));
+                }
+ 
+                /**
+                * @see Filter#init(FilterConfig)
+                */
+                public void init(FilterConfig fConfig) throws ServletException {
+                                // TODO Auto-generated method stub
+                }
+ 
+}
+ 
+ 
+JDBC and servlet
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="http://localhost:8086/J2EEProject/JdbcServlet">
+<table>
+<tr>
+<td>Name</td>
+<td><input type="text" name="name"></td>
+</tr>
+<tr>
+<td>Age</td>
+<td><input type="text" name="age"></td>
+</tr>
+<tr>
+<td>DOB</td>
+<td><input type="date" name="dob"></td>
+</tr>
+<tr>
+<td>City</td>
+<td><input type="text" name="city"></td>
+</tr>
+<tr>
+<td><input type="submit"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+ 
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+ 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class JdbcServlet
+*/
+@WebServlet("/JdbcServlet")
+public class JdbcServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public JdbcServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                String sname=request.getParameter("name");
+                                int sage=Integer.parseInt(request.getParameter("age"));
+                                String sdob=request.getParameter("dob");
+                                System.out.println(sdob);
+                                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                                Date dob=null;
+                                try{
+                                                dob=sdf.parse(sdob);
+                                }
+                                catch(ParseException e){
+                                                System.out.println(e);
+                                }
+                                String scity=request.getParameter("city");
+                                Connection con=null;
+                                try{
+                                                Class.forName("com.mysql.jdbc.Driver");
+                                                con=DriverManager.getConnection("jdbc:mysql://localhost:3308/jdbc", "root","root");
+                                                PreparedStatement ps=con.prepareStatement("insert into student(sname,sage,sdob,scity)values(?,?,?,?)");
+                                    ps.setString(1, sname);
+                                    ps.setInt(2, sage);
+                                    java.sql.Date sdate=new java.sql.Date(dob.getTime());
+                                    ps.setDate(3, sdate);
+                                    ps.setString(4, scity);
+                                    int i = ps.executeUpdate();
+                                    if(i==1){
+                                                RequestDispatcher rd=request.getRequestDispatcher("/success.html");
+                                                rd.forward(request, response);
+                                    }
+                                }
+                                catch(Exception e){
+                                                System.out.println(e);
+                                }
+                }
+ 
+}
+ 
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Student inserted successfully</h1>
+</body>
+</html>
+
+
+
+Listeners interface
+   -- used to write extra processing of request and response
+   -- It is java program, configured in web.xml using or @WebListener
+<listener>
+   <listener-class>classname</listener-class>
+</listener>
+ 
+Types of Listeners
+1. ServletContextListener interface
+        - if we want to do extra processing at the time server startup and server shutdown
+Methods
+1. public void contextInitialized(ServletContextEvent s)
+           --  extra processing at the time server startup
+2. public void contextDestroyed(ServletContextEvent s)
+         -- extra processing at the time server shutdown
+ 
+<web-app>
+<context-param>
+     <param-name>furniture</param-name>
+     <param-value>table</param-value>
+  </context-param>
+</web-app>
+ 
+package com.pack;
+ 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+ 
+/**
+* Application Lifecycle Listener implementation class MyContextListener
+*
+*/
+//@WebListener
+public class MyContextListener implements ServletContextListener {
+ 
+    /**
+     * Default constructor.
+     */
+    public MyContextListener() {
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+     * @see ServletContextListener#contextDestroyed(ServletContextEvent)
+     */
+    public void contextDestroyed(ServletContextEvent arg0)  {
+         // TODO Auto-generated method stub
+    }
+ 
+                /**
+     * @see ServletContextListener#contextInitialized(ServletContextEvent)
+     */
+    public void contextInitialized(ServletContextEvent arg0)  {
+        ServletContext sc=arg0.getServletContext();
+        String fur=sc.getInitParameter("furniture");
+        sc.setAttribute("type", fur);
+    }
+               
+}
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+* Servlet implementation class ContextServlet
+*/
+@WebServlet("/ContextServlet")
+public class ContextServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ContextServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                   response.setContentType("text/html");
+                   PrintWriter pw=response.getWriter();
+                   ServletContext sc=getServletContext();
+                   pw.println(sc.getAttribute("type"));
+                   pw.close();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+2. HttpSessionListener interface
+       - used to do extra processing at the time of session created and destroyed
+ 
+Methods
+1. public void sessionCreated(HttpSessionEvent h)
+        -- extra processing at the time of session created
+2. public void sessionDestroyed(HttpSessionEvent h)
+        -- extra processing at the time of session destroy
+ 
+package com.pack;
+ 
+import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+ 
+/**
+* Application Lifecycle Listener implementation class MySessionListener
+*
+*/
+@WebListener
+public class MySessionListener implements HttpSessionListener {
+ 
+    /**
+     * Default constructor.
+     */
+    public MySessionListener() {
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+     * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
+     */
+    public void sessionCreated(HttpSessionEvent arg0)  {
+        HttpSession hs=arg0.getSession();
+        System.out.println("Session created: "+hs);
+        hs.setAttribute("dog","labrador");
+        hs.setAttribute("name","moti");
+    }
+ 
+                /**
+     * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
+     */
+    public void sessionDestroyed(HttpSessionEvent arg0)  {
+        HttpSession hs=arg0.getSession();
+        System.out.println("Session destroyed "+hs);
+        System.out.println(hs.getAttribute("dog"));
+        System.out.println(hs.getAttribute("name"));
+    }
+               
+}
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+ 
+/**
+* Servlet implementation class SessionListenerServlet
+*/
+@WebServlet("/SessionListenerServlet")
+public class SessionListenerServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SessionListenerServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                HttpSession hs=request.getSession();
+                                pw.println(hs.getAttribute("dog"));
+                                pw.println(hs.getAttribute("name"));
+                                hs.invalidate();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                               
+                }
+ 
+}
+ 
+3. HttpSessionAttributeListener interface
+      -- used to do extra processing at the time of set a new attribute to session object, remove the attribute from session object, replace the old attribute in session object
+ 
+1. public void attributeAdded(HttpSessionBindingEvent h)
+           to do extra processing at the time of set a new attribute to session object
+2.  public void attributeRemoved(HttpSessionBindingEvent h)
+           to do extra processing at the time of removing attribute from session object
+3. public void attributeReplaced(HttpSessionBindingEvent h)
+           to do extra processing at the time of replacing a old attribute in session object
+ 
+ 
+package com.pack;
+ 
+import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
+ 
+import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
+ 
+/**
+* Application Lifecycle Listener implementation class SessionAttributeListener
+*
+*/
+@WebListener
+public class SessionAttributeListener implements HttpSessionAttributeListener {
+ 
+    /**
+     * Default constructor.
+     */
+    public SessionAttributeListener() {
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+     * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
+     */
+    public void attributeAdded(HttpSessionBindingEvent arg0)  {
+        HttpSession hs=arg0.getSession();
+        System.out.println("Attribute added "+hs);
+        System.out.println(arg0.getName()+" "+arg0.getValue());
+    }
+ 
+                /**
+     * @see HttpSessionAttributeListener#attributeRemoved(HttpSessionBindingEvent)
+     */
+    public void attributeRemoved(HttpSessionBindingEvent arg0)  {
+                HttpSession hs=arg0.getSession();
+        System.out.println("Attribute removed "+hs);
+        System.out.println(arg0.getName()+" "+arg0.getValue());
+    }
+ 
+                /**
+     * @see HttpSessionAttributeListener#attributeReplaced(HttpSessionBindingEvent)
+     */
+    public void attributeReplaced(HttpSessionBindingEvent arg0)  {
+        HttpSession hs=arg0.getSession();
+        System.out.println("Attribute replaced "+hs);
+        System.out.println(arg0.getName()+" "+arg0.getValue());
+    }
+               
+}
+ 
+package com.pack;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+ 
+/**
+* Servlet implementation class SessionAttributeServlet
+*/
+@WebServlet("/SessionAttributeServlet")
+public class SessionAttributeServlet extends HttpServlet {
+                private static final long serialVersionUID = 1L;
+      
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SessionAttributeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+ 
+                /**
+                * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                                response.setContentType("text/html");
+                                PrintWriter pw=response.getWriter();
+                                HttpSession hs=request.getSession();
+                                hs.setAttribute("dog", "german");
+                                hs.setAttribute("name", "pinky");
+                                hs.setAttribute("age", 4);
+                                pw.println(hs.getAttribute("dog"));
+                                pw.println(hs.getAttribute("name"));
+                                pw.println(hs.getAttribute("age"));
+                                hs.removeAttribute("name");
+                                hs.invalidate();
+                }
+ 
+                /**
+                * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+                */
+                protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+                }
+ 
+}
+ 
+ 
+4. ServletContextAttributeListener
+ 
+1. public void attributeAdded(ServletContextEvent h)
+           to do extra processing at the time of set a new attribute to context object
+2.  public void attributeRemoved(ServletContextEvent h)
+           to do extra processing at the time of removing attribute from context object
+3. public void attributeReplaced(ServletContextEvent h)
+           to do extra processing at the time of replacing a old attribute in context object
+ 
+5. HttpServletRequestAttributeListener
+ 
+1. public void attributeAdded(HttpServletRequestEvent h)
+           to do extra processing at the time of set a new attribute to request object
+2.  public void attributeRemoved(HttpServletRequestEvent h)
+           to do extra processing at the time of removing attribute from request object
+3. public void attributeReplaced(HttpServletRequestEvent h)
+           to do extra processing at the time of replacing a old attribute in request object
+

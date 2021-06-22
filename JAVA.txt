@@ -1,0 +1,5537 @@
+System/Networking project
+
+Web oriented project
+
+ 
+
+Sun Microsystem/oracle
+
+1. J2SE - Java 2 Standard edition - system/networking
+
+2. J2EE - Java 2 Enterprise Edition - web oriented
+
+3. J2ME - Java 2 Micro/Mobile editon
+
+ 
+
+C
+
+1.Structured oriented lang
+
+2.Header files
+
+#include<stdio.h> standard input output operation
+
+3. 32 keywords
+
+4. datatypes - primitive datatype and userdefined datatype
+
+5.#DEFINE a 40 -- macros -- global declration
+
+6. address of variables or function - pointers
+
+ 
+
+ 
+
+C++
+
+1. Partially object oriented
+
+ 
+
+OOPS concept
+
+1. object - real world entity/ instance of the class/ object will contain memory reference
+
+2.class - collection of object / template
+
+     -- contains variables, methods and constructors
+
+     -- accessed using objects
+
+3. Encapsulation -- wrapping of data into single unit
+
+     data hiding -- public methods and private variables 
+
+4. Abstraction -- particular info to the user
+
+5. Inheritance -- accessing the properties(methods and variables) of one class into another class
+
+    Single, multiple, multileve, hybrid, hiearchial
+
+6. Polymorphism -- one class takes many forms
+
+2 types
+
+1. Static/compile time polymoriphism -- method overloading, constructor overloading and operator overloading
+
+2. Dynamic/runtime polymoriphism -- method overriding
+
+ 
+
+7. Constructor
+
+     1.whenever u create an object, a memory will be allocated, the allocation of memory is called as constructor
+
+     2. When constructor is invked - when ur  creating an object
+
+     3. purpose of constructor - used to initialize the value to variable
+
+     4. By default all class will have a default constructor(without any arguments) and when we create our own constructor where constructor name and class name should be name in that case it will destroy the already present default constructor
+
+     5. constructor should not have return type
+
+     6. constructor can have access specifier mostly public and if we create private constructor we cant create the obejct for that class
+
+     7. constructor can have parameters
+
+ 
+
+class Box{
+
+     Box(){
+
+        System.out.println("constructor");
+
+     }
+
+     void Box(){
+
+         System.out.println("hello");
+
+     }
+
+}
+
+8. Destructor -- deallocation of memory (~) tilde symbol
+
+ 
+
+ 
+
+ 
+
+Java
+
+1.fully object oriented lang
+
+2. No header files instead we have packages
+
+Packages -- it is a folder which contains collection of classes and interface
+
+import java.io.*;
+
+import java.io.File;
+
+import java.io.InputStream;
+
+ 
+
+import java.lang.* -- all basic classes -- optional package
+
+import java.util.* -- collection framework
+
+import java.net.* -- networking concept in java
+
+import java.applet.* -- develop GUI in java
+
+import javax.swing.* -- advanced version of GUI
+
+ 
+
+3. 49 keywords
+
+no sizeof,extern,signed,unsigned,register
+
+ 
+
+4. only primitive datatype
+
+5. no global declaration
+
+6. No pointers
+
+ 
+
+7. Inheritance- access the properties of one class into another
+
+No multiple inheritance -- instead we have interface
+
+ 
+
+8. Polymorphism -- one class takes many forms
+
+2 types
+
+1. Static/compile time polymoriphism -- method overloading, constructor overloading (u cant overload an operator)
+
+2. Dynamic/runtime polymoriphism -- method overriding
+
+ 
+
+7. Constructor
+
+     1.whenever u create an object, a memory will be allocated, the allocation of memory is called as constructor
+
+     2. When constructor is invked - when ur  creating an object
+
+     3. purpose of constructor - used to initialize the value to variable
+
+     4. By default all class will have a default constructor(without any arguments) and when we create our own constructor where constructor name and class name should be name in that case it will destroy the already present default constructor
+
+     5. constructor should not have return type
+
+     6. constructor can have access specifier mostly public and if we create private constructor we cant create the obejct for that class
+
+     7. constructor can have parameters
+
+ 
+
+class Box{
+
+     Box(){
+
+        System.out.println("constructor");
+
+     }
+
+     void Box(){
+
+         System.out.println("hello");
+
+     }
+
+}
+
+ 
+
+8. No destructor instead we have
+
+     1. Automatic Garbage collection
+
+             -- automatically memory is deallocated wjenn the program terminates
+
+     2. System.gc() / Runtime.gc() - to explicitly garbage collect
+
+Internally it calls protected void finalize(), which contains the resources to be deallocated and invoked only once in the lifecycle of the program
+
+ 
+
+Introduction to Java
+
+ 
+
+    Java - James Gosling, Chris Wirth and Patrick Naughton under name called OAK
+
+    
+
+JDK1.1 -  OAK
+
+JDK1.2 - Playground
+
+JDK1.3 - KESTREL
+
+JDK 1.4- MERLIN
+
+JDK 1.5 - TIGER
+
+JDK 1.6- DOLPHIN
+
+JDK 1.7- SPYDER
+
+ 
+
+JDK Java Development Kit -- contains all executable files used to support the Java developement
+
+JVM Java Virtual Machine -- independent of operating system, platform independent, will execute the java byte code
+
+JIT - Just In Time compiler - will take byte code and convert into machine code depends on OS at runtime
+
+JRE - Java Runtime Environment -- JDK+ external librarries that support ur java prg
+
+ 
+
+JDK
+
+1. Javac -- Java compiler - convert source code into byte code
+
+2. Java - Java interpreter -- used to execute the java prg
+
+3. Javap -- Java Disassembler - used to disassemble the methods, variables and constructor of the predefined and userdefined class in command prompt
+
+   >javap java.io.File
+
+4. javadoc -- java Documentation -- used to document the method, variable and constructor of user defined class in html page
+
+   >javadoc -d sample.java doc .
+
+ 
+
+ 
+
+Right click  my comp -- Properties - advanced settings- env variable - user variable click new button
+
+ 
+
+Variable name                                                   Variable value
+
+JAVA_HOME                                      C:\Program Files\Java\jdk1.8.0_05
+
+PATH                                         C:\Program Files\Java\jdk1.8.0_0\bin
+
+ 
+
+1. Open new cmd prompt
+
+2. javac
+
+ 
+
+ 
+
+2 types of classes
+
+ 
+
+1. Main class
+
+       1. only one main class
+
+       2. if it contains public static void main(String[] args) then it is consider as main class
+
+       3. always main class wll be executed first
+
+ 
+
+2. Base class
+
+      1. any number of base class
+
+      2. by creating object inside main class
+
+ 
+
+class A{
+
+    PSVM
+
+}
+
+ 
+
+A.java / B.java --- u can save the java program in any name, but execution should be always in the name of main class
+
+ 
+
+> javac B.java --- on successful compilation it creates A.class
+
+> java A
+
+ 
+
+class A{
+
+}
+
+class B{
+
+}
+
+class C{
+
+}
+
+class D{
+
+  PSVM
+
+}
+
+ 
+
+A.java/B.java/C.java/D.java/E.java - on successful compilation it creates A.class, B.clas, C.class, D.class
+
+  > java D
+
+ 
+
+class A{
+
+}
+
+public class B{
+
+}
+
+class C{
+
+}
+
+class D{
+
+  PSVM
+
+}
+
+ 
+
+B.java - whenever a class declared as public, it should be always saved in name of public class
+
+  > javac B.java --- creates A.clas, B.class, C.class, D.class
+
+  > java D
+
+ 
+
+One java prg can contain only one public class,
+
+ 
+
+Fundamentals of Java
+
+ 
+
+1.Identifiers - name given to variables or methods
+
+    1. should start with alphabets, can contain digits and special char allowed are _ and $
+
+ 
+
+2. Keywords - 49 keywords
+
+   no sizeof, extern, signed, unsigned and register
+
+  
+
+   goto and const are the keywords of Java, but if we use we get compilation error
+
+     goto --- continue
+
+     const -- final
+
+   reserved words -- true, false( only for boolean)
+
+                      null (only for objects)
+
+ 
+
+3. Data types -- type of value stored in variable, only primitive data type
+
+ 
+
+datatype              size(in bits)                         min        max
+
+1. byte              8                                -128    127
+
+2. short             16                 -2^15    2^15  - 1
+
+3. int                           32                 -2^31    2^31  - 1
+
+4. long              64                 -2^63    2^63  - 1
+
+5. float             32                   -       -
+
+6. double            64                   -       -
+
+7. char              16 bit unsigned      0      65535
+
+8. boolean            1                   true   false
+
+ 
+
+ 
+
+Literals -- how we represent the values
+
+ 
+
+1. Integer Literal -- 3 ways
+
+       1. Decimal integer literal 
+
+                 int a=23;
+
+                 int b=34657;
+
+       2. Octal literal -- always preceed with 0
+
+               int a=01;
+
+               int b=02;
+
+               int c=03;
+
+               int d=04;
+
+                   e=05;
+
+                   f=06;
+
+                   g=07;
+
+                   h=010;sop(h); //8
+
+                   h=011;   //9
+
+                   h=012; 2*8^0 + 1*8^1 + 0*8^2 //10
+
+       3. Hexadecimal literal -  always preceed with 0x/0X
+
+                 int a=0x16;
+
+                 int a=0xaa;
+
+ 
+
+2. Float literal
+
+        float a=3.14;   -- wrong
+
+        float a=3.14f; -- correct
+
+        float a=3.14F; -- correct
+
+By default in Java all decimals are treated as double
+
+ 
+
+3. Double literal
+
+     double d=3.14; -- correct
+
+     double d=3.14d;-- correct
+
+     double d=3.14D;-- correct
+
+ 
+
+4. Short literal
+
+     short s=1; -- correct
+
+     short s=1s;-- WRONG
+
+     short s=1S;  -- WRONG
+
+5. Long literal
+
+     long a=10;  -- correct
+
+     long a=10l; -- correct
+
+     long a=10L;  -- correct
+
+ 
+
+6. boolean literal (true and false should be in lowercase)
+
+      boolean v=true;  -- correct
+
+      boolean b1=false;-- correct
+
+      boolean b=True;  -- wrong  
+
+7. char literal -- single char single quote
+
+     char c='a'; -- correct
+
+     char c1="a"; --wrong
+
+     char c2='ab'; --wrong
+
+     char c2="ab"; --wrong
+
+     char c2=35;-- correct  (it prints ascii value of 35)
+
+     char c2=477;  -- correct
+
+     char c2=-23; --wrong
+
+     char c2= (char)70000; -- correct
+
+     char c2='\u0000';   unicode char   
+
+ 
+
+8. String literal -- group of char with double quotes
+
+        String s="hello"; -- correct
+
+ 
+
+9. null literal (only for objects if it contain no reference)
+
+       Sample s=null;
+
+       String s1=null;
+
+ 
+
+Variables: -- identifier used to hold some value
+
+   2 types:
+
+      1. global/instance/class variable
+
+              1. a variable that is declared outside the method and inside the class
+
+              2. no need to initialize this variable, it will take default value depending upon the datatype
+
+      int,byte,short,long=0;
+
+       float,double=0.0
+
+        boolean=false
+
+         char=\u0000
+
+         Object=null
+
+ 
+
+     2. local variable
+
+             1. any variable that is declared inside the method
+
+             2. local variable should be initialized otherwise it shows compilation error
+
+ 
+
+ 
+
+Access specifier/access modifier
+
+    4 types
+
+       1. default -- default access specifie
+
+       2. public --- it can access anywheer
+
+       3. private -- it can access only in same class
+
+       4. protected  -- it can access  in same class as well as inherited class
+
+ 
+
+access
+
+specifier        default     private    protected    public
+
+ 
+
+1.same class
+
+  same package    yes           yes        yes        yes
+
+ 
+
+2. diff class
+
+   same package   yes           no          no        yes
+
+ 
+
+3. diff class
+
+   diff package   no            no          no        yes
+
+ 
+
+4. diff class
+
+   diff package
+
+   subclass      no             no          yes        yes
+
+ 
+
+Operators
+
+ 
+
+1. Arthimetic operator - +,-,*,/
+
+2. Modulus operator - %
+
+3. relational operator  - >,<,>=,<=
+
+4. assignment operator - =
+
+5. compound assignment operator - +=,-=,*=,/=
+
+       a+=2 --- a=a+2
+
+6. Ternary operator -- ?:
+
+       z=a>b ? a:b;
+
+7. Increment and decrement operator -- ++, --
+
+8. equality and inequality operator -- ==,!=
+
+9. Bitwise operator
+
+      & -- Bitwise AND
+
+      | -- Bitwise OR
+
+      ^ -- Bitwise XOR
+
+      ~ -- 1's complement
+
+     << -- Left shift -- n * 2^s
+
+     >> -- Right shift -- n/2^s
+
+a=5, b=6, a&b=?
+
+a    b    a&b=4   a|b=7  a^b=3   ~a
+
+0    0     0       0      0       1
+
+1    1     1       1      0       0
+
+0    1     0       1      1       1
+
+1    0     0       1      1       0
+
+ 
+
+8>>2 = 8 * 4= 32
+
+n  s
+
+ 
+
+8<<2=8/4=2
+
+ 
+
+10. Boolean logical operator
+
+      & -- logical AND
+
+      | -- logical OR
+
+      ! -- Logical NOT
+
+a=true, b=false, a&b=false
+
+ 
+
+11. shortcircuit logical operator (check any codition)
+
+     && -- logical AND
+
+     || -- logical OR
+
+if((a>b) && (b==10)){
+
+ 
+
+}
+
+ 
+
+12.new operator -- to create an object at compile time
+
+     1. Sample s=new Sample();
+
+             -- creating an object called s which contain memory referene, new operator allocates the memory and invokes the default constructor
+
+    2. Sample s; //object declaration with null reference
+
+       s=new Sample();
+
+       s.show();
+
+    3. object is created to access methods and variables of class
+
+           new Sample();
+
+           new Sample().show();
+
+ 
+
+13.dot operator
+
+    to access method and variable of class
+
+14. instanceof operator
+
+   A a=new A();
+
+   if(a instanceof A){
+
+ 
+
+   }
+
+   else{
+
+   }
+
+ 
+
+Execution control statement in Java - 3 types
+
+ 
+
+1. Conditional statement - 3 types
+
+       1. if else
+
+            if(condition){
+
+                //statement
+
+            }
+
+            else{
+
+               //statement
+
+            }
+
+         int a=10;
+
+       if(a=110){
+
+         sop("hello");
+
+       }
+
+       else{
+
+          sop("error");
+
+       }
+
+       2. switch case
+
+              int a=41;
+
+             switch(a){
+
+                 case 4:
+
+                      sop("4");
+
+                       //break;
+
+                  case 1:
+
+                     sop("1");
+
+                      break;
+
+                 default:
+
+                      sop("6");
+
+                       break;
+
+              }
+
+              1.  expr-- int,byte,char,short,enum,String(JDK1.8)
+
+              2. arg should be final
+
+              3. default can be present anywhere
+
+              4. u cannot use continue inside switch if u r using it leadss to compilation error
+
+ 
+
+       3. Ternary operator  ?: -- z=a>b?a:b;
+
+ 
+
+2. Looping statement
+
+     1. for
+
+           for(initialization;condition;incr or dec)
+
+                     //statement
+
+          
+
+     2. while   while(condition);
+
+     3. do while
+
+             do{
+
+               //stmt
+
+              }
+
+             while(condition);
+
+3. Flow breaking stmt
+
+         1. break -- stops the entire iteration
+
+                labelled break
+
+                unlabelled break
+
+ 
+
+             a:
+
+               for(int i=0;i<5;i++){
+
+                b:
+
+                for(int j=0;j<6;j++){
+
+                    if(i==4)
+
+                        break b;
+
+                }
+
+              }
+
+         2. continue -- stops the current iteration
+
+                    labelled continue
+
+                    unlabelled continue
+
+ 
+
+         3. return -- transfer the call back to calling program
+
+ 
+
+Type casting
+
+    -- converting one data type to another data type
+
+2 types
+
+1. Implicit conversion -- automatic conversion from lower data type to higher data type
+
+      float f=3.14f;
+
+      double d=f;
+
+2. Explicit conversion -- converting from higher to lower data type
+
+    int i=128;
+
+    byte b= (byte)i;
+
+    sop(b);  -128         -128 to 127
+
+     
+
+ 
+
+Array  -- collection of similar data types
+
+ 
+
+1. int a[]={1,2,3};  -- correct, declaring and initialize array
+
+2. int[] a={1,2,3};  -- correct, declaring and initialize array
+
+3. int a[];   -- correct, first declared an array
+
+     a[0]=1; a[1]=2; a[2]=3; -- intialized the array
+
+4. int a[3]={1,2,3}; --wrong, if u want to specify the size we have use new operator
+
+5. int[] a=new int[3];  -- correct, declaring an array of size 3
+
+6. int a[]=new int[3];  -- correct, declaring an array of size 3
+
+7. int a[]=new int[3];  -- correct, declaring an array of size 3
+
+     a[0]=1; a[1]=2; a[2]=3; -- initialized the value
+
+8. int a[]=new int[]{1,2,3};--correct , anonymous array
+
+9. int a[]=new int[3]{1,2,3}; -- wrong
+
+10. int a[]=new int[-3]; -- correct, declare an array of size -3 but at runtime we get NegativeArraySizeException
+
+11. int a[]={1,2,3};
+
+ 
+
+1. for loop
+
+     for(int i=0;i<a.length;i++)
+
+           sop(a[i]);
+
+2. foreach statement --from jdk1.5 version
+
+     1.variable should be declared only inside foreach
+
+     2. what array we created, same datatype used to store
+
+     3. 1D is stored in variable, 2D is stored in 1D, 3D  is stored in 2D etc
+
+ 
+
+double d={1.2,3.4,5.6,7.8};
+
+  for(int i=0;i<d.length;i++)
+
+            sop(d[i]);
+
+ 
+
+  for(double d1:d)
+
+       sop(d1);
+
+ 
+
+2D array
+
+ 
+
+1. int a[][]={{1,2},{3,4}};--correct, declaring and initialing array
+
+2. int[][] a;  --correct, declaring
+
+    a[0][0]=1; a[0][1]=2;  --initializing
+
+3. int a[2][2]={{1,2},{3,4}}; -- wrong
+
+4. int a[][]=new int[2][2]; -- correct
+
+5. int[][] a=new int[2][2]; --correct
+
+6. int[] a[]=new int[2][2]; -- correct
+
+7. int a[][]=new int[5][5]; -- correct, declare an array 5*5*4=100 bytes of memory will be allocated
+
+    a[0][0]=1; a[0][1]=2;  //totally only 8 bytes is used, remaining 92 bytes are wasted
+
+In order to avoid the wasting the memory we use Arrays of array
+
+8. int a[][]=new int[5][];   -- Arrays of array, u have to specify only rows
+
+     a[0]=new int[2];
+
+     a[1]=new int[1];
+
+    a[0][0]=1; a[0][1]=2; a[1][0]=3;
+
+9. int a[][]=new int[][5]; --wrong
+
+public class Sample {
+
+               
+
+  public static void main(String[] args) {
+
+                  int a[][]={{1,2},{3,4}};
+
+                  for(int i=0;i<2;i++){
+
+                                  for(int j=0;j<2;j++){
+
+                                                  System.out.println(a[i][j]);
+
+                                  }
+
+                  }
+
+                  System.out.println("using foreach");
+
+                  for(int a1[]:a)
+
+                                   for(int a2:a1)
+
+                                  System.out.println(a2);
+
+}
+
+
+Assertion
+    -- avialble from JDK1.5 onwards
+    -- used to check boolean assumption at runtime
+    -- provided with 2 thing
+           -- assert keyword
+           -- AssertionError class is unchecked exception present inside Error class
+    -- by default assertion is disabled in java, we have to enable at runtime by using -ea
+    Syntax:
+          1. assert <expression>;
+          2. assert <expression>: String message;
+   -- if condition is false, it throws AssertionError exception
+ 
+public class Sample {
+                static double withdraw(double bal, double amt){
+                                assert bal>=amt;
+                                return bal-amt;
+                }
+               
+  public static void main(String[] args) {
+                System.out.println(withdraw(1000,500));
+                System.out.println(withdraw(1000,2000));
+}
+}
+ 
+access specifiers -- it can applied to all methods, class, variables, constructors, interface
+ 
+non access specifiers -- it has its own restriction
+ 
+static keyword
+1. It is non access specifier,
+2. when a class is declared as static there is no need to create an object for that class,Normally outer class cannot be declared as static, only inner class can be declared static
+3. if method is declared static, and if method present in same class it is called by just methodname() and if it is in different class it is called by classname.methodname()
+4. if a variable is declared to be static it acts like gobal variable and it it is present same class it is called by variablename and if it is in different class it is called by classname.variablename
+5. static methods will access only static content, then we have to access by creating an object
+class sample{
+      int a;
+   PSVM(){
+       Sample s=new Sample();
+       sop(s.a); //0
+   }
+}
+ 
+6. static block --if it is present it will be executed before the
+main method
+     static {
+         //statements
+     }
+ 
+class Example{
+                static int a=20;
+                static int b=30;
+                static {
+                                System.out.println("Examplr block");
+                }
+                static {
+                                System.out.println("Examplr block1");
+                }
+                static void show(){
+                                System.out.println(a);
+                }
+}
+public class Sample {
+               
+               
+                static{
+                                System.out.println("block2");
+                }
+  public static void main(String[] args) {
+                  System.out.println("hello");
+                  Example.show();
+                  System.out.println(Example.b);
+}
+}
+ 
+7. static methods will override only static methods
+ 
+8. System.out.println(); -- to print
+             System is a predefined class
+             out is an object of PrintStream class
+and it is a static variable in System class
+             println() is a method of PrintStream class
+ 
+System.in -- to reading the input
+ 
+public class System extends Object {
+       static PrintStream out;
+       static InputStream in;
+}
+ 
+9. static import
+     -- available from jdk1.5 onwards
+     -- if we dont want to invoke static methods or static variables without classname.methodname or classname.variablename in that case we can use static import
+ 
+import static java.lang.Math.*;
+import static java.lang.System.*;
+ 
+public class Sample {
+ 
+                public static void main(String[] args) {
+                                double d =sqrt(16);
+                                out.println(d);
+                }
+}
+ 
+Nested  class and inner class
+ 
+1. one class present inside another class - Nested class
+ 
+2. The inside class can be either static or non static class
+3. Non static inner class is called as inner class
+4. If we want to access the properties of outer class inside inner class it should be either an instance variable or should be declared as final
+ 
+class Outer {
+                int d=20;
+                void show(){
+                                System.out.println("outerclass");
+                }
+                class Inner { //inner class
+                                void display(){
+                                                System.out.println("Inner class method"+d);
+                                }
+                }
+               
+}
+ 
+class Outer1{
+                static class Inner1{ //static class
+                                void display1(){
+                                                System.out.println("static inner class method");
+                                }
+                }
+}
+public class Sample {
+ 
+                public static void main(String[] args) {
+                                Outer o=new Outer();
+                                Outer.Inner a=o.new Inner();
+                                //Outer.Inner a=new Outer().new Inner();
+                                o.show();
+                                a.display();
+                               
+                                Outer1.Inner1 b=new Outer1.Inner1();
+                                b.display1();
+                }
+}
+ 
+var args (variable number of args) (...)
+   -- available from jdk1.5 onwards
+   -- used in overloading
+ 
+void sum(int a,int b){
+  sop(a+b);
+}
+ 
+abstract keyword
+1. It is a non access specifier
+2. When a class is declared as abstract, you cannot create an object
+3. when a method is declared as abstract, the method doesnt have defination it ends with semicolon
+4. you cannot declare variable to be abstract
+5. A class should be declared as abstract if it contains abstract method but not necessary all abstract class should contain abstract method
+6. Abstract class can also contain nonabstarct methods
+7. abstarct class can be inherited but whenever u inherit abstract class we have to give the defination of abstract method or define the inherited  class itself to be abstract
+8. yes it contains default constructor
+ 
+abstract class Example{
+               
+                abstract void show();
+               
+                void concerteMethod(){
+                                System.out.println("Normal method");
+                }
+               
+}
+ 
+/* class Example1 extends Example{
+                void show(){
+                                System.out.println("abstarct method");
+                }
+}*/
+ 
+public class Sample {
+ 
+                public static void main(String... args) {
+                Example e=new Example() {   //Anonymous inner class
+                                public void concreteMethod(){
+                                                System.out.println("Normal method");
+                                }
+ 
+                                @Override
+                                void show() {
+                                                System.out.println("show method");
+                                }
+                };
+                e.concerteMethod();
+                e.show();
+                }
+}
+ 
+ 
+ 
+final keyword
+1. It is non access specifier
+2. when a class is declared as final, we cant inherit
+3. when a method is declared as final, we cant override
+4.when a variable is declared as final, it acts like as constant
+ 
+ 
+this constructor - used to invoke different constructor of same class, it should be in first line
+ 
+super constructor -- used to invoke parent class constructor, it also should be in first line
+ 
+In case of inheritance, the constructor will always invoke in top down approch and it will always invokes only base class  default constructor
+ 
+2 types of relationship
+1. is -a
+    class animal{
+    }
+    class cat extends animal{
+    }
+eg: cat is a animal
+ 
+2. has-a -- aggregration
+    class Wheel{
+    }
+    class Car{
+      Wheel w=new Wheel();
+    }
+eg: Car has a Wheel
+instance/compound block -- it is invoked before the constructor
+18
+21
+19
+2
+5
+7
+11
+14
+1
+3
+6
+4
+10
+12
+9
+8
+13
+17
+16
+15
+20
+ 
+ 
+class A{
+                {
+                                System.out.println("1");
+                }
+                static {
+                                System.out.println("2");
+                }
+                {
+                                System.out.println("3");
+                }
+                A(){
+                                this("hello");
+                                System.out.println("4");
+                }
+                static {
+                                System.out.println("5");
+                }
+                A(String s){
+                                System.out.println("6");
+                }
+}
+class B extends A{
+                static{
+                                System.out.println("7");
+                }
+                B(int a){
+                                this();
+                                System.out.println("8");
+                }
+                B(){
+                                System.out.println("9");
+                }
+                {
+                                System.out.println("10");
+                }
+                static{
+                                System.out.println("11");
+                }
+                {
+                                System.out.println("12");
+                }
+}
+class C extends B{
+                {
+                                System.out.println("13");
+                }
+                static{
+                                System.out.println("14");
+                }
+                C(String s){
+                                this(20);
+                                System.out.println("15");
+                }
+                C(int a){
+                                super(20);
+                                System.out.println("16");
+                }
+                {
+                                System.out.println("17");
+                }
+}
+public class Sample {
+   static{
+                   System.out.println("18");
+   }
+                public static void main(String... args) {
+                                System.out.println("19");
+                  C c=new C("Hai");
+                  System.out.println("20");
+                }
+                static{
+                                System.out.println("21");
+                }
+}
+ 
+ 
+Interface
+1. used instead of multiple inheritance
+2. Interface are similar to classes which contains only method declarations and variable declaration and intialization
+3. Syntax:
+     accessspecifier(public)  interface interfacename{
+          method declaration;
+          variable declaration and intialization;
+     }
+4. By default all interface are abstract, so you cannot create an object for interface
+5. By default all interface methods are public and abstract so the method dosent have defination
+6. By default all interface variables are public final and static
+interface A{
+    int z=20;
+}
+class sample implements A{
+     void show(){
+        SOP(A.z);
+      }
+}
+ 
+7. If a class implements an interface you have to complusorly give the defination of all interface methods with public access specifier otherwise we have make the class to be abstract
+8. An class implementing an interface can contain concrete methods also
+9. In JDK 1.8 they introduced, interface will contain default and static methods also
+10. interface can also be inherited
+11. one class extends one class
+12.one class implements many interface
+13. one interface extends many interface
+14.  certain interface which dosent contain anything -- marker interface eg: Cloneable, Serializable
+ 
+interface A{
+                void meth1();
+                int a=45;
+}
+interface B{
+                void meth2();
+}
+interface C extends A,B{
+                void meth3();
+}
+class example implements C{
+ 
+                @Override
+                public void meth1() {
+                System.out.println("method1");
+                               
+                }
+ 
+                @Override
+                public void meth2() {
+                                System.out.println("method2");
+                }
+ 
+                @Override
+                public void meth3() {
+                                System.out.println("method3");
+                               
+                }
+               
+}
+public class Sample {
+ 
+                public static void main(String... args) {
+                                example e=new example();
+                                e.meth1();
+                                e.meth2();
+                                e.meth3();
+                                System.out.println(A.a);
+                }
+}
+ 
+Object class
+   -- superclass of all the classes
+ 
+Methods:
+1.public String toString();  String represention of an object, to print some content when a object is printed instead of memory reference
+ 
+class Example{
+                String s;
+                Example(String s){
+                                this.s=s;
+                }
+                @Override
+                public String toString() {
+                                return "Example [s=" + s + "]";
+                }
+               
+               
+}
+public class Sample {
+ 
+                public static void main(String... args) {
+                                Example e=new Example("hello");
+                                System.out.println(e);
+                               
+                }
+}
+ 
+2. boolean equals(Object o); -- check equality of content
+3. == (equals versus) -- check equality of object reference
+ 
+public class Sample {
+ 
+                public static void main(String... args) {
+                                String s1=new String("hello");
+                                String s2=new String("hello");
+                                System.out.println(s1.equals(s2));
+                                System.out.println(s1==s2);
+                                String s3=s1;
+                                System.out.println(s1==s3);
+                                String s4="hello";
+                                String s5="hello";
+                                System.out.println(s4.equals(s5));
+                                System.out.println(s4==s5);
+                }
+}
+ 
+4.int hashCode()-- returns the unique code for the value stored  in  the object
+ 
+If two objects are equal according to equals() then hashCode on this 2 object will produce same result
+ 
+5.protected void finalize()
+6. final void wait() throws InterruptedException
+7. final void wait(long msec) throws InterruptedException
+8. final void notify()
+9. final void notifyAll()
+10. Object clone()
+
+Wrapper class  -- to perform operation on data types
+   -- the class that supports the primitive datatype
+int -- Integer
+double -- Double
+float -- Float
+byte -- Byte
+boolean -- Boolean
+char -- Character
+short -- Short
+long -- Long
+    -- All wrapper classes are immutable
+ 
+1.Float class -- to perform operation on float datatype
+ 
+Constructor
+1. Float(float f)
+      Float f1=new Float(3.14f);
+2. Float(double d)
+      Float f2=new Float(3.14);
+3. Float(String s)throws NumberFormatException
+     Float f3=new Float("3.14");
+ 
+Methods
+1. static int compare(float f1,float f2) - compare 2 float datatype
+   int a=5, b=5;
+if(a==b){
+}
+float f1=3.14f, f2=3.14f;
+  sop(Float.compare(f1,f2));
+ 
+2. int compareTo(Float f) -- compare 2 float object
+Float f1=new Float(3.14f);
+Float f2=new Flaot(3.14f);
+sop(f1.compareTo(f2));
+ 
+3. boolean isInfinite()
+     -- to check whether the float object is infinite or not
+Float f1=new Float(1/0.);
+sop(f1.isInfinite());
+4. static boolean isInfinite(float f)
+float f1=(float)1/0.;
+sop(Float.isInfinite(f1));
+ 
+5. boolean isNaN();
+ 
+Float f1=new Float(Math.sqrt(-4));
+sop(f1.isNaN());
+ 
+6. static boolean isNaN(float f)
+float f1=(double)Math.sqrt(-4);
+sop(Float.isNaN(f1));
+ 
+7. static Float parseFloat(String s) -- converts String to float datatype
+String s1="3.14";
+float f1=Float.parseFloat(s1);
+  sop(f1);  3.14
+String s2="abc";
+float f2=Float.parseFloat(s2);
+sop(f2);  //NumberFormatException
+ 
+8. static Float valueOf(String s) -- convert String to Float wrapper class
+   String s1="3.14";
+   Float f1=Float.valueOf(s1);
+   sop(f1); 3.14
+ 
+9. float floatValue()
+   int intValue()
+   long longValue()
+   double doubleValue()
+   short shortValue()
+   byte byteValue()
+       -- present in Number abstract class which in turn present in Float class
+      -- converts Float wrapper class to data type
+ 
+String s1="3.14";
+Float f1=Float.valueOf(s1);
+float f2=f1.floatValue();
+sop(f2); //3.14
+int i=f1.intValue();
+sop(i); //3
+ 
+Constant
+1. public static final float MAX_VALUE
+SOP(Float.MAX_VALUE);
+2. public static final float MIN_VALUE
+SOP(Float.MIN_VALUE);
+3. public static final TYPE
+SOP(Float.TYPE); //float
+ 
+2. Double class -- to perform operation on double data type
+ 
+Constructor
+1. Double(double d)
+    Double d1=new Double(3.14);
+2. Double(String s) throws NFE
+    Double d2=new Double("3.14");
+ 
+3. Integer class - perform operation on int data type
+ 
+Constructor
+1. Integer(int)
+    Integer i=new Integer(42);
+2. Integer(String s) throws NFE
+    Integer j=new Integer("42");
+ 
+int i=Integer.parseInt("42");
+sop(i); //42
+int j=Integer.parseInt("42",6);
+sop(j); 22
+ 
+Short class - to perform operation on short data type
+ 
+Constructor
+1. Short(short s)
+    Short s=new Short(134);  - wrong
+    Short s1=new Short((short)134); --correct
+ 
+2. Short(String s) throws NFE
+    Short s=new Short("134"); -- correct
+ 
+Long -- to perform operation on long datatype
+ 
+Constructor
+1.Long(long l)
+   Long l1=new Long(10l);
+2. Long(String s) throws NFE
+    Long l1=new Long("10");
+ 
+Byte -- to perform operation on byte data type
+1. Byte(byte b)
+    Byte b1=new Byte(123); -- wrong
+    Byte b1=new Byte((byte)123); --correct
+Boolean -- to perform op on boolean data type
+  
+Constructor
+1. Boolean(boolean)
+2. Boolean(String)
+ 
+Boolean b1=new Boolean(true); --true
+Boolean b2=new Boolean(false); --false
+Boolean b3=new Boolean(True);  -- error
+Boolean b4=new Boolean("hello"); -- false
+Boolean b5=new Boolean("True"); -- true
+Boolean b6=new Boolean("false"); -- false 
+ 
+Character - to perform op on char data type
+ 
+Construtor
+1. Character(char c)
+ 
+Unboxing(data type to wrapper class)/Autoboxing(wrapper class to data type)
+    -- only from jdk1.5
+ 
+Integer i;
+int j;
+j=5;
+i=j; //autoboxing   i=new Integer(j);
+j=i; //unboxing  j=i.intValue();
+
+java.util.*
+   -- Collection framework
+   -- used to store a collection of objects, so that we have faster performance
+   -- provides 2 concepts
+         1. Collection interface -- it is a core interface to store the collection of objects
+         2. Collections class -- contain static algorithm or methods that supports util package
+ 
+Collection interface -- used to store collection of object
+ 
+Methods
+1. boolean add(Object obj) -- to add a single obj into collection
+2. boolean addAll(Collection c) -to add a collection of objects
+3. boolean remove(Object obj)-- to remove single obj
+4. boolean removeAll(Collection c)
+5. boolean contains(Object o)- to check single object
+6. boolean containsAll(Collection c)
+7. boolean retainAll(Collection c) - removes from the target collection that are not contained in specified collection
+8. boolean equals(Object o)
+9. boolean isEmpty()
+10. int size() -- returns total number elts in collection
+11. Iterator iterator()
+12. Object[] toArray() - used to convert collection to Object[]
+ 
+1.List interface -- ordered, duplicates elts allowed
+ 
+Methods
+1. void add(Object obj) -- to add single object
+2. void add(int index, Object obj)
+3. boolean addAll(int index, Collection c)
+4. Object get(int index) -- return single object present in particular index
+5. void remove(int index) --
+6. int indexOf(Object obj)-- retunrs the position of first occurence of object
+7. int lastIndexOf(Object obj)
+8. Object set(int index,Object newobj) -- like replace
+9. ListIterator listIterator()
+10. List sublist(int start, int end)
+ 
+Set Interface -- unordered and no duplicates allowed
+1. ArrayList class
+      -- ArrayList class extends AbstractList implements List, Cloneable, Serializable
+      -- It is dynamic array, where we can increase or decrease its size at runtime
+     -- It is not thread safe
+     -- used for faster seraching and slower in insertion and deletion
+     -- default capacity of ArrayList is 10
+ 
+Constructor
+1. ArrayList()
+2. ArrayList(int capacity)
+3. ArrayList(Collection c)
+ 
+ArrayList l=new ArrayList();
+sop(l.size()); //0
+l.add(1);
+l.add(3);
+l.add(2);
+l.add(5);
+l.add(4);
+sop(l); [1 3 2 5 4]
+sop(l.contains(2)); true
+sop(l.get(3)); //5
+sop(l.remove(2));
+sop(l); [1 3 5 4]
+ArrayList l1=new ArrayList();
+sop(l1); []
+l1.addAll(l);
+sop(l1); [1 3 5 4]
+sop(l1.containsAll(l)); true
+ 
+l1=[1 3 5 4 6 7]
+l=[1 3 5]
+l1.retainAll(l);
+sop(l1); [1 3 5]
+sop(l); [1 3 5]
+ 
+Generics class -- to specify what type of object we are going to store in collection
+      -- only from jdk1.5 onwards
+ArrayList<String> l=new ArrayList<String>();
+l.add("1");
+l.add("2");
+ 
+ArrayList<Person> l=new ArrayList<>(); -- jdk1.7
+l.add(new Person(1,"Ram"));
+l.add(new Person(2,"Sam"));
+ 
+Dynamic Method dispatch
+List<Integer> l=new ArrayList<>();
+l.add(1);
+l.add(2);
+sop(l); [1 2]
+   l=new ArrayList<>();
+   l.add(3);
+   l.add(4);
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+     List<Integer> l=new ArrayList<>();
+     l.add(1);
+     l.add(2);
+     l.add(4);
+     l.add(5);
+     l.add(4);
+     System.out.println(l);
+    System.out.println(l.size());
+    System.out.println(l.contains(2));
+    System.out.println(l.get(4));
+    System.out.println(l.indexOf(4));
+    System.out.println(l.indexOf(3));
+    l.remove(2);
+    System.out.println(l);
+    List<Integer> l1=new ArrayList<>();
+    l1.add(1);
+    l1.add(5);
+    System.out.println(l1);
+   l.retainAll(l1);
+    System.out.println(l);
+                }
+}
+ 
+ 
+2.LinkedList class
+     -- LinkedList extends AbstractSequentialList implements List,Cloneable, Serializable, Deque
+     -- It is also dynamic array
+     -- faster insertion and deletion, slower in selection
+ 
+Constructors
+1. LinkedList()
+2. LinkedList(Collection c)
+ 
+Methods
+1. void addFirst(Object obj)
+2. void addLast(Object obj)
+3. Object getFirst()
+4. Object getLast()
+5. void removeFirst()
+6. void removeLast()
+ 
+import java.util.LinkedList;
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+     LinkedList<String> l=new LinkedList<>();
+     System.out.println(l.size());
+     l.add("1");
+     l.add("5");
+     l.add(1,"6");
+     l.add("4");
+     l.addFirst("3");
+     l.add("1");
+     l.addLast("8");
+     l.add(3,"9");
+     System.out.println(l);
+     System.out.println(l.get(5));
+     l.remove(3);
+     l.removeFirst();
+     l.remove("8");
+     System.out.println(l);
+                }
+}
+ 
+3. Vector
+     -- it is legacy(older class)
+     -- it is similar to ArrayList (dynamic array) but it is thread safe
+     -- default capacity is 10
+Costructors
+1. Vector()
+2. Vector(int capacity)
+3. Vector(int capacity, int incr)
+4. Vector(Collection c)
+ 
+import java.util.Vector;
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+    Vector<Integer> v=new Vector<>(3,2);
+    System.out.println(v.size());
+    System.out.println(v.capacity());
+    v.add(1);
+    v.add(2);
+    v.add(3);
+    v.add(4);
+    System.out.println(v.size());
+    System.out.println(v.capacity());
+    v.add(5);
+    v.add(6);
+    System.out.println(v.size());
+    System.out.println(v.capacity());
+    v.add(7);
+    v.add(8);
+    System.out.println(v.size());
+    System.out.println(v.capacity());
+    System.out.println(v.contains(6));
+    System.out.println(v.get(3));
+    v.set(4, 11);
+    System.out.println(v);
+                }
+}
+ 
+ 
+ 
+1. HashSet class
+     -- HashSet extends AbstractSet implements Set,Cloneable, Serializable
+     -- default capacity is 16
+     --  It will print the elements in random order
+     -- Internally HashSet works like HashMap
+            HashMap hm=new HashMap();
+          hm.put("key represent the elt we stored","dummyvalue");
+             
+              hm.put(4,747433);
+              hm.put(1,477722);
+Set<Integer> hs=new HashSet<>();
+   hs.add(1);
+   hs.add(4);
+   hs.add(1); //no error
+   hs.add(5);
+   sop(hs.size()); //3
+   sop(hs);  [5 4 1]
+ 
+Constructors
+1. HashSet()
+2. HashSet(int capacity)
+3. HashSet(int capacity, float fillratio)
+fillratio ranges from 0.0 to 1.0 and default is 0.75,if the number of elements is greater than the capacity, the capacity is incremented by fillratio
+4. HashSet(Collection c)
+ 
+Set<Integer> hs=new HashSet<>(3);     3*0.75=2.25+3=5.25
+  hs.add(1);
+  hs.add(2);
+  hs.add(3);
+  hs.add(4);
+  hs.add(5);
+ 
+2. LinkedHashSet
+     -- LinkedHashSet extends HashSet implements Set
+     -- will prints in the order we inserted
+ 
+Constructors
+1. LinkedHashSet()
+2. LinkedHashSet(int capacity)
+3. LinkedHashSet(int capacity, float fillratio)
+fillratio ranges from 0.0 to 1.0 and default is 0.75,if the number of elements is greater than the capacity, the capacity is incremented by fillratio
+4. LinkedHashSet(Collection c)
+ 
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      LinkedHashSet<Integer> hs=new LinkedHashSet<>();
+      hs.add(2);
+      hs.add(4);
+      hs.add(1);
+      hs.add(5);
+      hs.add(0);
+      hs.add(1);
+      hs.add(2);
+      System.out.println(hs.size());
+      System.out.println(hs);
+                }
+}
+ 
+ 
+3. TreeSet
+      -- if we want to sort the elements of Set in ascending or alphabetical order
+      -- TreeSet extends AbstractSet implements SortedSet, Cloneable, Serializable
+      -- you should not give combination of object, it it is it throws exception
+ 
+Constructor
+1. TreeSet()
+2. TreeSet(Collection c)
+3. TreeSet(SortedSet s)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      TreeSet<Integer> hs=new TreeSet<>();
+      hs.add(6);
+      hs.add(1);
+      hs.add(5);
+      hs.add(4);
+      System.out.println(hs.size());
+      System.out.println(hs);
+                }
+}
+
+Iterate individual elements from collection - 5 ways
+ 
+1.for loop
+2. forEach statement
+3.Iterator interface  - used to access individual elets of collection
+      Iterator iterator(); -- used to invoke Iterator interface
+Methods
+    1. boolean hasNext()
+    2. Object next()
+    3. void remove()
+ 
+4. ListIterator interface -- used to access individual elts of collection both forward and backward direction
+       ListIterator listIterator();
+Methods
+   1. boolean hasNext()
+   2. Object next()
+   3. boolean hasPrevious()
+   4. Object previous()
+   5. void remove()
+   6. void add(Object obj)
+   7. void set(Object obj)
+ 
+5. Enumeration interface -- used to access indivdual elts of collection
+     -- it is legacy interface
+        Enumeration elements();
+Methods
+    1. boolean hasMoreElements()
+    2. Object nextElement()
+ 
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> l1=new ArrayList<>();
+      l1.add("ram");
+      l1.add("sam");
+      l1.add("tam");
+      l1.add("tom");
+      l1.add("fam");
+      System.out.println(l1);
+     
+      //1.For loop
+     System.out.println("Using For loop");
+     for(int i=0;i<l1.size();i++){
+                 System.out.println(l1.get(i));
+     }
+    
+     System.out.println();
+     System.out.println("2.Using ForEach statement");
+     for(String s1:l1)
+                 System.out.println(s1);
+    
+     System.out.println();
+     System.out.println("3.Using Iterator");
+     Iterator itr=l1.iterator();
+     while(itr.hasNext()){
+                      String s=(String)itr.next();
+                      System.out.println(s);
+     }
+    
+     System.out.println();
+     System.out.println("4.Using List Iterator");
+     ListIterator lit=l1.listIterator();
+     while(lit.hasNext()){
+                 String s=(String) lit.next();
+                 lit.set(s+"+");
+     }
+     while(lit.hasPrevious()){
+                 String s1=(String)lit.previous();
+                 System.out.println(s1);
+     }
+    
+     System.out.println();
+     System.out.println("5.Using Enumeration");
+     Vector v=new Vector();
+     v.add(1);
+     v.add(2);
+     v.add(3);
+     v.add(4);
+     v.add(5);
+     System.out.println(v);
+     Enumeration e=v.elements();
+     while(e.hasMoreElements()){
+                 System.out.println(e.nextElement());
+     }
+                }
+}
+ 
+ 
+ 
+Map interface
+    -- used to store collection of object but as a unique key value pair
+    -- it is unordered
+Methods
+  1. void put(Object key, Object value) -- add single key value pair
+put(1,10);
+put(2,20);
+put(1,30);
+  2. void putAll(Map m) -- add collection of key value pair
+  3. Object get(Object key)
+  4. void remove(Object key)
+  5. boolean containsKey(Object key)
+  6. boolean containsValue(Object val)
+ 
+      Iterator interface cannot be directly applied on Map interface, we have to convert Map to Set interface then apply Iterator
+7. Set entrySet() -- convert both key and values to Set interface
+  8. Set keySet() -- convert only keys to Set interface
+ 
+Map.Entry interface
+   -- used to describe the info about key and value separately
+ 
+Methods
+  1. Object getKey()
+  2. Object getValue()
+  3. void setValue(Object val)
+ 
+1. HashMap class
+       -- HashMap extends AbstractMap implements Map,Cloneable, Serizable
+       -- also print in random order but as key value pair
+       -- default capacity of 16
+ 
+Constructor
+1. HashMap()
+2. HashMap(int capacity)
+3. HashMap(int capacity, float fillratio)
+4. HashMap(Map m)
+ 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+     Map<String,Integer> hm=new HashMap<>();
+     System.out.println(hm.size());
+     hm.put("e",10);
+     hm.put("b", 20);
+     hm.put("a",24);
+     hm.put("c", 12);
+     System.out.println(hm.size());
+     System.out.println(hm);
+     System.out.println(hm.get("a"));
+     hm.remove("e");
+     System.out.println(hm.get("e"));
+    
+     Set s=hm.entrySet();
+     Iterator i=s.iterator();
+     while(i.hasNext()){
+                  Map.Entry me=(Map.Entry)  i.next();
+                  System.out.println(me.getKey()+" "+me.getValue());
+     }
+     System.out.println();
+     Set s1=hm.keySet();
+     Iterator i1=s1.iterator();
+     while(i1.hasNext()){
+                      String key=(String) i1.next();
+                      System.out.println(key+" "+hm.get(key));
+     }
+                }
+}
+ 
+ 
+2.LinkedHashMap -- prints in the order we inserted
+3. TreeMap -- prints in ascending or alphabetically order based on keys
+
+
+1.HashTable class
+      -- legacy class
+      -- similar to HashMap but Hashtable is thread safe
+      -- contains key value pair and prints in random order
+      -- default capacity of Hashtable is 11
+ 
+Constructor
+1. HashTable()
+2. HashTable(int capacity)
+3. HashTable(int capacity, float fillratio)
+4. HashTable(Map m)
+ 
+Enumeration elements() - convert both key and values
+Enumeration keys() - convert only the keys
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+        Hashtable<Integer,Double> ht=new Hashtable<>();
+        ht.put(10,3.14);
+        ht.put(23, 5.7);
+        ht.put(13, 4.23);
+        ht.put(36, 23.45);
+        ht.put(41, 1.98);
+        System.out.println(ht.size());
+        System.out.println(ht);
+       
+        Enumeration e=ht.keys();
+        while(e.hasMoreElements()){
+               Integer i=(Integer)e.nextElement();
+               System.out.println(i+" "+ht.get(i));
+         }
+                               }
+}
+ 
+ 
+2. Properties class
+       -- it is legacy class
+       -- Properties class is subclass of Hashtable
+       -- it also contains key value pair but both key and value should be in the String and print in random order
+ 
+Constructor
+1. Properties()
+2. Properties(String default)
+ 
+Methods
+1. String getProperty(String key)
+ 
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+        Properties p=new Properties();
+        p.put("ram","chennai");
+        p.put("sam", "mumbai");
+        p.put("penny","delhi");
+        p.put("raj", "punjab");
+        p.put("lucy", "bangalore");
+        System.out.println(p);
+        Enumeration e=p.keys();
+        while(e.hasMoreElements()){
+                  String key=(String)e.nextElement();
+                  System.out.println(key+" "+p.getProperty(key));
+        }
+                               }
+}
+ 
+Collections class
+    -- contains static methods/algorithm that supports util package
+ 
+1. static int binarySearch(List l,Object val);
+     if the elements are not present -(index+1)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+       ArrayList<String> l=new ArrayList<>();
+      l.add("zebra");
+      l.add("seal");
+       l.add("hello");
+      
+       l.add("jack");
+      
+       l.add("lion");
+       l.add("mango");
+      
+       System.out.println(Collections.binarySearch(l, "seal"));
+                               }
+}
+ 
+ 
+2. static void copy(List dest,List src)
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> src=new ArrayList<>();
+      List<String> dest=new ArrayList<>();
+      src.add("A");
+      src.add("B");
+      src.add("C");
+     
+      dest.add("D");
+      dest.add("E");
+     // dest.add("F");
+      Collections.copy(dest, src);
+     
+      System.out.println(src);
+      System.out.println(dest);
+     
+                               }
+}
+ 
+ 
+3. static boolean disjoint(Collection c1, Collection c2) --returns true if two specified collection has no elts in common
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> src=new ArrayList<>();
+      List<String> dest=new ArrayList<>();
+      src.add("A");
+      src.add("B");
+      src.add("C");
+     
+      dest.add("D");
+      dest.add("E");
+     dest.add("F");
+    
+     boolean b=Collections.disjoint(src, dest);
+     
+     
+      System.out.println(b);
+     
+                               }
+}
+ 
+ 
+4. static List emptyList()
+5. static Set emptySet()
+6. static Map emptyMap()
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> l=Collections.emptyList();
+      System.out.println(l);
+     
+                               }
+}
+ 
+7. static void fill(List l, Object val) -- used to replace all elts of specified list with specified val
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> l=new ArrayList<>();
+      l.add("A");
+      l.add("B");
+      l.add("C");
+      Collections.fill(l, "E");
+      System.out.println(l);
+                               }
+}
+ 
+8. static int frequency(Collection c, Object val) -- used to get number of elts in specified collection
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> l=new ArrayList<>();
+      l.add("A");
+      l.add("B");
+      l.add("C");
+      l.add("C");
+      l.add("C");  
+      l.add("C");
+    int i=  Collections.frequency(l,"C");
+      System.out.println(i);
+                               }
+}
+ 
+9. static int indexOfSubList(List src,List target)
+   -- used to get the starting position of the first occurence of the specified target list with src list
+public class Sample {
+     
+                public static void main(String... args) {
+      List<String> src=new ArrayList<>();
+      List<String> target=new ArrayList<>();
+      src.add("A");
+      src.add("B");
+      src.add("C");
+      src.add("D");
+      src.add("E"); 
+      
+      target.add("C");
+      target.add("D");
+      target.add("E");
+      target.add("F");
+    int i=  Collections.indexOfSubList(src, target);
+      System.out.println(i);
+                               }
+}
+ 
+ 
+10.static int min(Collection c)
+11. static int max(Collection c)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      List<Integer> src=new ArrayList<>();
+     src.add(20);
+     src.add(-8);
+     src.add(2);
+     src.add(50);
+   
+      System.out.println(Collections.min(src));
+      System.out.println(Collections.max(src));
+                               }
+}
+ 
+ 
+12. static boolean replaceAll(List l, Object oldval, Object newval)
+public class Sample {
+     
+                public static void main(String... args) {
+      List<Integer> src=new ArrayList<>();
+     src.add(20);
+     src.add(-8);
+     src.add(2);
+     src.add(50);
+   
+      Collections.replaceAll(src, -8, 8);
+      System.out.println(src);
+                               }
+}
+ 
+13. static void reverse(List l)
+public class Sample {
+     
+                public static void main(String... args) {
+      List<Integer> src=new ArrayList<>();
+     src.add(20);
+     src.add(-8);
+     src.add(2);
+     src.add(50);
+    System.out.println(src);
+      Collections.reverse(src);
+      System.out.println(src);
+                               }
+}
+ 
+14. static void shuffle(List l)
+public class Sample {
+     
+                public static void main(String... args) {
+      List<Integer> src=new ArrayList<>();
+     src.add(20);
+     src.add(-8);
+     src.add(2);
+     src.add(50);
+    System.out.println(src);
+      Collections.shuffle(src);
+      System.out.println(src);
+                               }
+}
+ 
+ 
+15. static List singletonList(Object obj)
+       --create a list with single object
+16.static Set singleton(Object o)
+17. static Map singletonMap(Object key,Object val)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+      String[] str={"one","two","three","four"};
+      List<String> l=new ArrayList(Arrays.asList(str));
+      System.out.println(l);
+      l=Collections.singletonList("five");
+      System.out.println(l);
+                               }
+}
+ 
+18. static void swap(List l,int i,int j);
+public class Sample {
+     
+                public static void main(String... args) {
+     List<String> l=new ArrayList<>();
+     l.add("1");
+     l.add("2");
+     l.add("3");
+     l.add("4");
+     l.add("5");
+     System.out.println(l);
+     Collections.swap(l, 2, 4);
+     System.out.println(l);
+                               }
+}
+ 
+ 
+ 
+19. static void sort(List l)
+20. static void sort(List l,Comparator c)
+public class Sample {
+     
+                public static void main(String... args) {
+     List<String> l=new ArrayList<>();
+     l.add("21");
+     l.add("2");
+     l.add("1");
+     l.add("53");
+     l.add("42");
+     System.out.println(l);
+     Collections.sort(l);
+     System.out.println(l);
+                               }
+}
+ 
+21. static List synchronizedList(List l)
+22. static Set synchronizedSet(Set s)
+23. static Map synchronizedMap(Map m)
+public class Sample {
+     
+                public static void main(String... args) {
+     List<String> l=new ArrayList<>();
+     l.add("21");
+     l.add("2");
+     l.add("1");
+     l.add("53");
+     l.add("42");
+     System.out.println(l);
+     List<String> l1=Collections.synchronizedList(l);
+     System.out.println(l1);
+                               }
+}
+ 
+24. static List unmodifiableList(List l)
+25. static Set unmodifiableSet(Set s)
+26. static Map unmodifiableMap(Map m)
+public class Sample {
+     
+                public static void main(String... args) {
+     List<String> l=new ArrayList<>();
+     l.add("21");
+     l.add("2");
+     l.add("1");
+     l.add("53");
+     l.add("42");
+     System.out.println(l);
+    
+     List<String> l1=Collections.unmodifiableList(l);
+     System.out.println(l1);
+    
+     l1.add("34");
+                               }
+}
+ 
+28. static List nCopies(int n,Object val)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+     List<String> l=Collections.nCopies(5, "ram");
+     System.out.println(l);
+    
+                               }
+}
+ 
+ 
+Arrays class
+    -- used to perform any operation on datatype array
+ 
+Constructor
+1. Arrays()
+ 
+Methods
+1. static List asList(int[] arr)
+        --convert datatype array to List
+2. static int binarySearch(int a[],int val)
+  int a[]={1,2,3,4,5};
+  int i=Arrays.binarySearch(a,4);
+   sop(i);  //3
+  int a1[]={2,6,8,13,15};
+  int j=Arrays.binarySearch(a1,10); -(index+1)
+  sop(j); //-4
+3. static boolean equals(int[] a, int[] b)
+4. static void fill(int a[], int val)
+5. static void fill(int a[], int start, int end, int val)
+6. static void sort(int a[]);
+7. static void sort(int a[], int start, int end)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+     int arr[]=new int[9];
+     for(int i=0;i<arr.length;i++){
+                 arr[i]=i*-3;
+                 
+     }
+     display(arr);
+     System.out.println();
+    Arrays.sort(arr);
+    display(arr);
+     System.out.println();
+     Arrays.fill(arr,3,6,-1);
+     display(arr);
+     System.out.println();
+     Arrays.sort(arr);
+     display(arr);
+     int i=Arrays.binarySearch(arr, -3);
+     System.out.println(i);
+                               }
+ 
+                private static void display(int[] arr) {
+                                for(int a1:arr)
+                                System.out.println(a1);
+                               
+                }
+}
+ 
+Comparable and Comparator interface -- to sort the object based on some criteria
+ 
+1. To sort a List interface we have to go for Collections.sort()
+2. To sort a set interface we have to go for TreeSet class
+ 
+List<Integer> l=new ArrayList<>();
+  l.add(10);
+  l.add(2);
+  l.add(3);
+  Collections.sort(l);
+  sop(l); [2,3,10]
+ 
+TreeSet<Integer> ts=new TreeSet<>();
+ts.add(10);
+  ts.add(2);
+  ts.add(3);
+sop(ts); [2,3,10]
+ 
+ 
+List<Student> l=new ArrayList<>();
+   l.add(new Student(10,"Ram",23));
+   l.add(new Student(21,"Sam",20));
+   l.add(new Student(13,"Raj",38));
+  Collection.sort(l);
+ 
+1. Comparable interface
+    1. it provides only single sorting sequence (ie) sort based on only one condition
+    2. it affects original class
+    3. it contains one method
+          public int compareTo(Object o)
+    4. it is present in java.lang.*
+    5. we have do sorting using Collections.sort(List l)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+                                List<Employee> l=new ArrayList<>();
+                                l.add(new Employee(12,"Ram",25234));
+                                l.add(new Employee(10,"Sam",45634));
+                                l.add(new Employee(20,"Mam",23644));
+                                l.add(new Employee(22,"Tim",12934));
+                               
+                                Collections.sort(l);
+                                for(Employee e:l)
+                                                System.out.println(e);
+ 
+                }
+}
+ 
+public class Employee implements Comparable<Employee> {
+  int empid;
+  String name;
+  int salary;
+public Employee(int empid, String name, int salary) {
+                super();
+                this.empid = empid;
+                this.name = name;
+                this.salary = salary;
+}
+/*@Override
+public int compareTo(Employee emp) {
+                if(salary==emp.salary)
+                return 0;
+                else if(salary > emp.salary)
+                                return 1;
+                else
+                                return -1;
+}*/
+ 
+@Override
+public String toString() {
+                return "Employee [empid=" + empid + ", name=" + name + ", salary=" + salary + "]";
+}
+@Override
+public int compareTo(Employee emp) {
+                return this.name.compareTo(emp.name);
+}
+ 
+ 
+}
+
+
+
+Comparator interface
+    -- used for multiple sorting sequence
+    -- it does affect the original class
+    -- 1 method
+         public int compare(Object o1,Object o2)
+    -- it is present in java.util.*
+    -- use Collections.sort(List l,Comparator c)
+import java.util.Comparator;
+ 
+public class NameComparator implements Comparator<Student> {
+ 
+                @Override
+                public int compare(Student s1, Student s2) {
+                                return s1.name.compareTo(s2.name);
+                }
+ 
+}
+ 
+import java.util.Comparator;
+ 
+public class AgeComparator implements Comparator<Student>{
+ 
+                @Override
+                public int compare(Student o1, Student o2) {
+                                if(o1.age==o2.age)
+                                return 0;
+                                else if(o1.age > o2.age)
+                                                return 1;
+                                else
+                                                return -1;
+                }
+ 
+}
+ 
+public class Student {
+  int rollno;
+  String name;
+  int age;
+public Student(int rollno, String name, int age) {
+                super();
+                this.rollno = rollno;
+                this.name = name;
+                this.age = age;
+}
+@Override
+public String toString() {
+                return "Student [rollno=" + rollno + ", name=" + name + ", age=" + age + "]";
+}
+ 
+}
+public class Sample {
+     
+                public static void main(String... args) {
+                                /*List<Employee> l=new ArrayList<>();
+                                l.add(new Employee(12,"Ram",25234));
+                                l.add(new Employee(10,"Sam",45634));
+                                l.add(new Employee(20,"Mam",23644));
+                                l.add(new Employee(22,"Tim",12934));
+                               
+                                /*Collections.sort(l);
+                                for(Employee e:l)
+                                                System.out.println(e);*/
+                               
+                                List<Student> l=new ArrayList<>();
+                                l.add(new Student(12,"Ram",25));
+                                l.add(new Student(21,"Sam",23));
+                                l.add(new Student(31,"Tam",20));
+                                l.add(new Student(15,"Yam",24));
+                                l.add(new Student(11,"Raj",29));
+                               
+                                Collections.sort(l,new NameComparator());
+                                for(Student st:l)
+                                                System.out.println(st);
+                               
+                                System.out.println();
+                                Collections.sort(l,new AgeComparator());
+                                for(Student st:l)
+                                                System.out.println(st);
+                                System.out.println();
+                                TreeSet<Student> ts=new TreeSet<>(new NameComparator());
+                                ts.add(new Student(12,"Ram",25));
+                                ts.add(new Student(21,"Sam",23));
+                                ts.add(new Student(31,"Tam",20));
+                                ts.add(new Student(15,"Yam",24));
+                                ts.add(new Student(11,"Raj",29));
+                                for(Student st:ts)
+                                                System.out.println(st);
+                                System.out.println();
+                               
+                                TreeSet<Student> ts1=(TreeSet<Student>)ts.descendingSet();
+                                for(Student st:ts1)
+                                                System.out.println(st);
+                }
+}
+ 
+ 
+ 
+ 
+Date class
+--- used to print both date and time in Java
+ 
+Constructor
+1.Date() -- prints current date and time
+2. Date(long msec) -- print the date and time from jan 1st 1970 when it becomes that particular msec
+ 
+Methods
+1. boolean after(Date d)
+2. boolean before(Date d)
+3.int compareTo(Date d)
+4. long getTime()
+5. void setTime(long msec)
+ 
+ 
+public class Sample {
+      
+                public static void main(String... args) {
+                Date d1=new Date();
+                System.out.println(d1);
+                Date d2=new Date(10000);
+                System.out.println(d2);
+                System.out.println(d1.after(d2));
+                System.out.println(d1.before(d2));
+                System.out.println(d1.compareTo(d2));
+                System.out.println(d1.getTime());
+                }
+}
+ 
+Calendar class
+   -- it is abstract class used to extract useful info from date and time component
+ 
+Constructor
+1. Calendar()
+ 
+Constants
+1. Calendar.AM
+2. Calendar.PM
+3. Calendar.HOUR
+4. Calendar.MINUTE
+5. Calendar.YEAR
+6. Calendar.SECOND
+7. Calendar.MONTH
+8. Calendar.DAY
+9. Calendar.MILLISECOND
+10. Calendar.HOUR_OF_DAY
+11.Calendar.DAY_OF_MONTH
+12.Calendar.DAY_OF_WEEK
+13.Calendar.DAY_OF_WEEK_IN_MONTH
+14.Calendar.DAY_OF_YEAR
+15.Calendar.WEEK_OF_MONTH
+16.Calendar.WEEK_OF_YEAR
+ 
+Methods
+1.void add(int which,int val)
+      add(Calendar.YEAR,2);
+2. boolean after(Calendar obj)
+3. boolean before(Calendar obj)
+4. int get(int Calendarfield)
+      get(Calendar.HOUR)
+5. static Calendar getInstance() -- create object for Calendar class
+6. Date getTime() -- convert Calendar to Date
+7. void setTime(Date d) -- convert Date to Calendar
+8. void set(int which,int val)
+      set(Calendar.YEAR,2000);
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+                                String mon[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+                Calendar c=Calendar.getInstance();
+                System.out.println("DATE:");
+                System.out.print(c.get(Calendar.DATE)+"-"+mon[c.get(Calendar.MONTH)]+"-"+c.get(Calendar.YEAR));
+                System.out.println("TIME:");
+                System.out.print(c.get(Calendar.HOUR)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND));
+                c.set(Calendar.DATE, 10);
+                c.set(Calendar.MONTH, 7);
+                c.set(Calendar.YEAR, 2010);
+                System.out.println();
+                System.out.println(c.get(Calendar.DATE)+"-"+mon[c.get(Calendar.MONTH)]+"-"+c.get(Calendar.YEAR));
+               
+                int m=c.getMaximum(Calendar.DAY_OF_MONTH);
+                System.out.println(m);
+                int n=c.getMaximum(Calendar.WEEK_OF_YEAR);
+                System.out.println(n);
+                }
+}
+ 
+ 
+GregorianCalendar class
+    -- it is concrete implementation of Calendar class
+    -- only we can check it is leap year or not
+    -- boolean isLeapYear(int year)
+ 
+Constructor
+1. GregorianCalendar() -- have current date and time
+2. GregorianCalendar(int year,int month,int date)
+3. GregorianCalendar(int year,int month,int date,int hour, int min,int sec)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+                                String mon[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+                GregorianCalendar gc=new GregorianCalendar();
+                System.out.println(gc.get(Calendar.DATE)+"-"+mon[gc.get(Calendar.MONTH)]+"-"+gc.get(Calendar.YEAR));
+                int year=gc.get(Calendar.YEAR);
+                if(gc.isLeapYear(year)){
+                                System.out.println("Current year is leap year");
+                }
+                else{
+                                System.out.println("It is not leap year");
+                }
+                }
+}
+ 
+DateFormat class
+     -- it is abstract class used for formatting(date to string) and parsing(string to date)
+    -- present in java.text.*
+ 
+Constructor
+1.DateFormat()
+ 
+Constant
+1. DateFormat.LONG
+2. DateFormat.FULL
+3. DateFormat.MEDIUM
+4.DateFormat.SHORT
+ 
+methods
+1. static String format(Date d) -- convert date to string
+2. Date parse(String s) throws ParseException - convert string to date
+3. static DateFormat getInstance()-- convert both date and time in SHORT style
+4. static DateFormat getDateInstance() -- convert only date in medium style
+5. static DateFormat getDateInstance(int style) -
+6.  static DateFormat getTimeInstance()- convert only time in medium style
+7. static DateFormat getTimeInstance(int style) -        
+8. static DateFormat getDateTimeInstance() -- convert both date and time in medium style
+9. static DateFormat getDateTimeInstance(int datestyle, int timestyle)
+ 
+public class Sample {
+     
+                public static void main(String... args) {
+                                Date d=new Date();
+                                System.out.println(d);
+                                DateFormat df=DateFormat.getInstance();
+                                System.out.println(df.format(d));
+                                DateFormat df1=DateFormat.getDateInstance();
+                                System.out.println(df1.format(d));
+                                DateFormat df2=DateFormat.getDateInstance(DateFormat.FULL);
+                                System.out.println(df2.format(d));
+                                DateFormat df3=DateFormat.getTimeInstance(DateFormat.FULL);
+                                System.out.println(df3.format(d));
+                                DateFormat df4=DateFormat.getDateTimeInstance(DateFormat.FULL,DateFormat.LONG);
+                                System.out.println(df4.format(d));
+                }
+}
+ 
+SimpleDateFormat class
+   -- it is concrete implementation of DateFormat class
+   -- present in java.text.*
+  
+Constructor
+1. SimpleDateFormat()
+2. SimpleDateFormat(String pattern)
+ 
+1. G - represent era (AD/BC)
+2. y - represent year in number
+3. M -- represent month, MMMM - August, MMM - Aug, MM-08
+4. w - represent week in year in number
+5. W - represent week in month in number
+6. D - represent day in year in number
+7. d- represent day in month in number
+8. F - day in week in month
+9. E - day in week in text
+10. H - hours in day 00 to 23
+11. k- hours in day from 1 to 24
+12. K - hours in AM/PM from 0 to 11
+13. h - hours in AM/PM from 1 to 12
+14. m - minute
+15. s - second
+16. S- milliseconds
+ 
+public class Sample {
+     
+                public static void main(String... args)throws ParseException {
+                                /*Scanner sc=new Scanner(System.in);
+                                System.out.println("Enter date of birth");
+                                String s=sc.nextLine();
+                                SimpleDateFormat sd=new SimpleDateFormat("dd-MM-yyyy");
+                                //sd.setLenient(false);
+                     Date d=null;
+                    
+                                 d=sd.parse(s);
+                   
+                     System.out.println(d);
+                    /* SimpleDateFormat sd1=new SimpleDateFormat("dd-MMMM-yyyy");
+                     System.out.println(sd1.format(d));*/
+                               
+                                SimpleDateFormat sdf = new SimpleDateFormat () ;
+        sdf.applyPattern("MM/dd/yyyy") ;
+        sdf.setLenient(false);
+        try {
+            Date d = sdf.parse("2011/02/06") ;
+            System.out.println(d) ;
+        } catch (ParseException e) {
+            System.out.println("Parse exception");
+        }
+                }
+}
+
+2 ways,
+1. By implementing Runnable interface
+      1. public void run() -- contains operation/processing of child thread
+class NewThread implements Runnable{
+     Thread t;
+     NewThread(){
+                 t=new Thread(this,"Demothread");
+                 System.out.println("Child thread: "+t);
+                 t.start();
+     }
+ 
+    //processing of child thread
+                public void run() {
+                                try{
+                                                for(int i=5;i>0;i--){
+                                                                System.out.println("Child Thread: "+i);
+                                                                Thread.sleep(500);
+                                                }
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Child thread interrupted");
+                                }
+                               
+                }
+               
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+                                new NewThread();
+                                try{
+                                                for(int i=5;i>0;i--){
+                                                                System.out.println("Main thread: "+i);
+                                                                Thread.sleep(1000);
+                                                }
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Main thread interrupted");
+                                }
+                }
+ 
+}
+ 
+ 
+2. By extending the Thread class
+ 
+//it just acts like child thraed but yet thread is not created
+//u have to use any one of 7 constructor
+class NewThread extends Thread{
+     Thread t;
+     NewThread(){
+                 super("Demothread");
+                 System.out.println("Child thread: "+this);
+                 start();//creates  new thread puts in runnable thread
+                  //goes to main thread
+     }
+ 
+    //processing of child thread
+                public void run() {
+                                try{
+                                                for(int i=5;i>0;i--){
+                                                                System.out.println("Child Thread: "+i);
+                                                                Thread.sleep(500);
+                                                }
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Child thread interrupted");
+                                }
+                               
+                }
+               
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+                                new NewThread();
+                                try{
+                                                for(int i=5;i>0;i--){
+                                                                System.out.println("Main thread: "+i);
+                                                               
+                                                }
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Main thread interrupted");
+                                }
+                }
+ 
+}
+ 
+ 
+final boolean isAlive() -- to check whether thread is alive or not
+final void join() throws InterruptedException --
+     without using blocking methods on main thread if we want to invoke child thread, then put all child thread inside join(), then my main thread will be waiting at that point until all child thread are completed instead of main thread waiting at end of the program
+ 
+ 
+package pack1;
+ 
+class NewThread implements Runnable{
+                String name;
+                Thread t;
+                NewThread(String tname){
+                                name=tname;
+                                t=new Thread(this,name);
+                                System.out.println("NewThread: "+t);
+                                t.start();
+                }
+                public void run(){
+                                try{
+                                                for(int i=5;i>0;i--){
+                                                                System.out.println(name+":"+i);
+                                                                Thread.sleep(1000);
+                                                }
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println(name + "thread interrupted");
+                                }
+                                System.out.println(name+"existing");
+                }
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+                                NewThread ob1=new NewThread("one");
+                                NewThread ob2=new NewThread("two");
+                                NewThread ob3=new NewThread("three");
+                                System.out.println("Thread one is alive"+ob1.t.isAlive());
+                                System.out.println("Thread two is alive"+ob2.t.isAlive());
+                                System.out.println("Thread three is alive"+ob3.t.isAlive());
+                                  try{
+                                                                ob1.t.join();
+                                                                ob2.t.join();
+                                                                ob3.t.join();
+                                                }
+                                                catch(InterruptedException e){
+                                                                System.out.println("Main thread interrupted");
+                                                }
+         System.out.println("Thread one is alive"+ob1.t.isAlive());
+                               System.out.println("Thread two is alive"+ob2.t.isAlive());
+                               System.out.println("Thread three is alive"+ob3.t.isAlive());
+                               System.out.println("Main thread existing");
+        
+                }
+ 
+}
+ 
+public void yield() -- gives the flow to next consecutive thread and make the thread runnable to running and running to runnable
+public void stop() -- it will completely destroy the thread, it cannot be reused
+ 
+ 
+package pack1;
+ 
+class A extends Thread{
+                public void run(){
+                                try{
+                                                for(int i=0;i<5;i++){
+                                                                System.out.println("From thread A: "+i);
+                                                                if(i==0)
+                                                                                yield();
+                                                }
+                                }
+                                catch(Exception e){
+                                                System.out.println("A thread interrupted");
+                                }
+                                System.out.println("Exit from A");
+                }
+}
+class B extends Thread{
+                public void run(){
+                                try{
+                                                for(int j=0;j<5;j++){
+                                                                System.out.println("From thread B: "+j);
+                                                                if(j==3)
+                                                                                stop();
+                                                }
+                                }
+                                catch(Exception e){
+                                                System.out.println("B thread interrupted");
+                                }
+                                System.out.println("Exit from B");
+                }
+}
+class C extends Thread{
+                public void run(){
+                                try{
+                                                for(int k=0;k<5;k++){
+                                                                System.out.println("From thread C: "+k);
+                                                                if(k==0)
+                                                                                sleep(1000);
+                                                }
+                                }
+                                catch(Exception e){
+                                                System.out.println("C thread interrupted");
+                                }
+                                System.out.println("Exit from c");
+                }
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+               
+                                A a=new A();
+                                B b=new B();
+                                C c=new C();
+                                a.start();
+                                b.start();
+                                c.start();
+                
+                                System.out.println("END OF MAIN THREAD");
+                a.setPriority(Thread.MIN_PRIORITY); //1
+                b.setPriority(a.getPriority()+3);//4
+                c.setPriority(Thread.MAX_PRIORITY); //10
+                }
+ 
+}
+
+Synchronization
+ 
+[Hello[synchronized[world]
+]
+]
+package pack1;
+ 
+class Callme{
+                void call(String msg){
+                                System.out.print("["+msg);
+                                try{
+                                   Thread.sleep(1000);   
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Interrupted");
+                                }
+                                System.out.println("]");
+                }
+}
+class Caller implements Runnable{
+    String msg;
+    Callme target;
+    Thread t;
+                public Caller(Callme targ,String s){
+                                target=targ;
+                                msg=s;
+                                t=new Thread(this);
+                                t.start();
+                }
+               
+                public void run() {
+                                target.call(msg);
+                }
+               
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+               
+                                Callme target=new Callme();
+                                Caller ob1=new Caller(target,"Hello");
+                                Caller ob2=new Caller(target,"synchronized");
+                                Caller ob3=new Caller(target,"world");
+                                try{
+                                ob1.t.join();
+                                ob2.t.join();
+                                ob3.t.join();
+                                }
+                                catch(Exception e){
+                                                System.out.println("Interrupted");
+                                }
+                }
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+When multiple threads accessing single resource, the resource should be utilized completely or fullfelged by each thread is called Synchroniztion
+-- it can be achieved by keyword called synchronized
+-- it is non access specifier
+-- it can be applied only to methods or synchronized block of object
+ 
+synchronized(object){
+ 
+}
+ 
+ 
+class Callme{
+                void call(String msg){
+                                System.out.print("["+msg);
+                                try{
+                                   Thread.sleep(1000);   
+                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Interrupted");
+                                }
+                                System.out.println("]");
+                }
+}
+class Caller implements Runnable{
+    String msg;
+    Callme target;
+    Thread t;
+                public Caller(Callme targ,String s){
+                                target=targ;
+                                msg=s;
+                                t=new Thread(this);
+                                t.start();
+                }
+               
+                public void run() {
+                                synchronized(target){
+                                target.call(msg);
+                                }
+                }
+               
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+               
+                                Callme target=new Callme();
+                                Caller ob1=new Caller(target,"Hello");
+                                Caller ob2=new Caller(target,"synchronized");
+                                Caller ob3=new Caller(target,"world");
+                                try{
+                                ob1.t.join();
+                                ob2.t.join();
+                                ob3.t.join();
+                                }
+                                catch(Exception e){
+                                                System.out.println("Interrupted");
+                                }
+                }
+ 
+}
+ 
+[Hello]
+[synchronized]
+[world]
+ 
+Interthread communication
+ 
+public synchonized void run(){
+  for(;;){
+  }
+}
+ 
+wait(), notify()
+   -- in order to come out from synchronized block
+   -- this method present in Object class
+   -- always wait() and notify() called in synchronized block
+   -- in order to perform wait() notify() we should have atleast 2 threads
+ 
+wait();    // thread will waits forever
+notify();
+ 
+package pack1;
+ 
+class Q{
+                int n;
+                boolean valueset=false;
+               
+                synchronized int get(){
+                                if(!valueset)
+                                                try{
+                                                                wait();
+                                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Exception caught");
+                                }
+                                System.out.println("Got:"+n);
+                                valueset=false;
+                                notify();
+                                return n;
+                }
+               
+                synchronized void put(int n){
+                                if(valueset)
+                                                try{
+                                                                wait();
+                                                }
+                                catch(InterruptedException e){
+                                                System.out.println("Exception caught");
+                                }
+                                this.n=n;
+                                valueset=true;
+                                System.out.println("Put:"+n);
+                                notify();
+                }
+}
+class Producer implements Runnable{
+                Q q;
+                Producer(Q q){
+                                this.q=q;
+                                new Thread(this,"Producer").start();
+                }
+ 
+                @Override
+                public void run() {
+                  int i=0;
+                  while(true){
+                                  q.put(i++);
+                  }
+                }
+               
+}
+class Consumer implements Runnable{
+                Q q;
+                Consumer(Q q){
+                                this.q=q;
+                                new Thread(this,"Consumer").start();
+                }
+ 
+                @Override
+                public void run() {
+                                while(true){
+                                                q.get();
+                                }
+                }
+               
+}
+public class Example {
+ 
+                public static void main(String[] args) {
+               
+                                Q q=new Q();
+                                Producer p=new Producer(q);
+                                Consumer c=new Consumer(q);
+                               
+                                System.out.println("End of main thread");
+                }
+ 
+}
+ 
+ 
+Daemon thread
+   -- thread which is running in background,when all user threads dies also JVM terminates the thread automatically
+   -- eg: Garbage collection
+ 
+void setDaemon(boolean on)
+boolean isDaemon()
+ 
+IllegalThreadStateException
+   -- unchecked exception
+   -- if the same thread is started twice
+   -- calling setDaemon() after starting the thraed
+IllegalMonitorStateException
+   -- unchecked exception
+   -- in the case of deadlock
+   -- we have 2threads X and Y,now Thread X calls the synchronized method of Thread y and Thread y calls synchronised method of Thread X
+   -- the concept is called deadlock, u will be getting IllegalMonitorStateException
+
+java.io.* - File handling in Java
+ 
+1. File class
+      -- used to access information about existing files
+2. Stream class
+      -- we can perform read/write inside file
+      -- 2 types
+           1. ByteStream - used to read and write in bytes
+                  1. InputStream -- used to read in bytes
+                  2. OutputStream -- used to write in bytes
+           2. CharacterStream -- usd to read & write in char
+                  1. Reader - used to read in char
+                  2. Writer - used to write in char
+ 
+File class
+   -- collection of records
+   -- used to access info abt existing files
+Constructor
+  1. File(String dirpath)
+       File f1=new File("c:/java/a.txt");
+  2. File(String dirpath,String filename)
+       File f2=new File("c:/java/","a.txt");
+  3. File(File object)
+        File f1=new File("c:/java/a.txt");
+        File f3=new File(f1);
+  4. File(Url u)
+ 
+Methods
+1. String getName()
+2. String getPath()
+3. String getAbsolutePath()
+4. String getParent()
+5. boolean exists()
+6. boolean canWrite()
+7. boolean canRead()
+8. boolean isFile()
+9. boolean isDirectory()
+10. boolean isAbsolute()
+11. long lastModified()
+12. int length()
+13. boolean delete()
+14. boolean isHidden()
+15. void setReadOnly(boolean mode)
+16. void setLastModified(long msec)
+17. boolean renameTo(File newname)
+ 
+ 
+Constants
+1. File.Separator - ;
+2. File.pathSeparator - /
+ 
+import java.io.File;
+ 
+public class Example {
+ 
+                public static void main(String[] args) {
+               
+                                File f=new File("C:\\Project\\demo1.txt");
+                                System.out.println(f.getName());
+                                System.out.println(f.getPath());
+                                System.out.println(f.getAbsolutePath());
+                                System.out.println(f.getParent());
+                                System.out.println(f.lastModified());
+                                System.out.println(f.length());
+                                System.out.println(f.canRead());
+                                System.out.println(f.canWrite());
+                                System.out.println(f.isFile());
+                                System.out.println(f.isAbsolute());
+                                System.out.println(f.isHidden());
+                }
+ 
+}
+ 
+ByteStream
+   -- used to read and write in bytes
+ 
+1. InputStream -- used to read in bytes
+      syntax: public abstract class InputStream
+ 
+Constructor:
+1. InputStream()
+ 
+Methods
+1. int available() -- return no of bytes available from file pointer position
+2. void mark(int numbytes) - used to mark file pointer to particular position
+3. void reset() - resets the file pointer to original position
+4. int read() -- it reads single byte
+5. int read(byte[] buffer); -- reads all info from byte[]
+6. int read(byte[] buffer, int offset, int numbytes)
+       read(buf,48,16)
+7. long skip(long numbytes)
+ 
+OutputStream class - used to write in the form of bytes
+   Syntax: public abstract class OutputStream
+ 
+Constructor
+1. OutputStream()
+ 
+Methods
+1. void write(int b)-write a single byte
+2. void write(byte[] buff)
+3. void write(byte[] buf, int offset,int numbytes)
+4. void close()
+5. void flush()
+ 
+ 
+ 
+1. FileInputStream - used to read from the file in the form of bytes
+   If the file dosent exist it throws FileNotFoundException
+Syntax: public class FileInputStream extends InputStream
+ 
+Constructor
+1. FileInputStream(String filepath);
+     FIS f=new FIS("c:/java/a.txt");
+2. FileInputStream(File obj)
+    File f=new File("c"/java/a.txt");
+    FIS f1=new FIS(f);
+ 
+ 
+public class Example {
+ 
+                public static void main(String[] args) {
+                try{
+                FileInputStream f=new FileInputStream("C:\\Project\\demo1.txt");
+                int i=f.read();
+                System.out.println((char)i);
+                }
+                                catch(Exception e){
+                                                System.out.println(e);
+                                }
+                }
+ 
+}
+ 
+2. FileOutputStream -- used to write into the file in form bytes
+    -- if file exist it will override the content
+    -- if file dosent exist it will create a new file
+Syntax: public class FileOutputStream extends OutputStream
+ 
+Constructor
+1. FileOutputStream(String filepath)
+     FOS f=new FOS("a.txt");
+2. FileOutputStream(String filepath, File obj)
+3. FileOutputStream(String filepath,boolean append)
+4. FileOutputStream(File obj, boolean append)
+ 
+ 
+f3.write(buf,64-64/4,64/4)
+f3.write(buf,48,16)
+ 
+ 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+ 
+public class Example {
+ 
+                public static void main(String[] args) throws Exception {
+                   String source="Welcome to Files in Java programming";
+                   byte[] buf=source.getBytes();
+                  
+                   FileOutputStream f1=new FileOutputStream("file1.txt");
+                   for(int i=0;i<buf.length;i+=2){
+                                   f1.write(buf[i]);
+                   }
+                   f1.close();
+                  
+                   FileOutputStream f2=new FileOutputStream("file2.txt");
+                   f2.write(buf);
+                   f2.close();
+                  
+                  OutputStream f3=new FileOutputStream("file3.txt");
+                   f3.write(buf,buf.length-buf.length/4,buf.length/4);
+                   f3.close();
+ 
+                }
+ 
+}
+ 
+ 
+3. ByteArrayInputStream  - reads from byte array in the form of bytes
+Syntax: public class ByteArrayInputStream extends InputStream
+ 
+Constructor
+1.ByteArrayInputStream(byte[] buf)
+2. ByteArrayInputStream(byte[] buf, int offset, int numbytes)
+ 
+import java.io.ByteArrayInputStream;
+ 
+public class Example {
+ 
+                public static void main(String[] args) throws Exception {
+                  String temp="abc";
+                  byte[] b=temp.getBytes();
+                  ByteArrayInputStream b1=new ByteArrayInputStream(b);
+                  for(int i=0;i<2;i++){
+                                  int c;
+                                  while((c=b1.read()) != -1){
+                                                  if(i==0){
+                                                                  System.out.println((char)c);
+                                                  }
+                                                  else{
+                                                                System.out.println(Character.toUpperCase((char)c));
+                                                  }
+                                  }
+                                                System.out.println();
+                                                b1.reset();
+                  }
+ 
+                }
+ 
+}
+ 
+ 
+4. ByteArrayOutputStream -- used to write inside byte array in the form of bytes
+Syntax: public class ByteArrayOutputStream extends OutputStream
+ 
+Constructor
+1. ByteArrayOutputStream()
+2. ByteArrayOutputStream(int numbyte)
+ 
+import java.io.ByteArrayOutputStream;
+ 
+public class Example {
+ 
+                public static void main(String[] args) throws Exception {
+                String s="Hello world";
+                byte[] b=s.getBytes();
+                ByteArrayOutputStream f=new ByteArrayOutputStream();
+                f.write(b);
+                System.out.println(f.toString());
+                }
+ 
+}
+ 
+5. FilteredInputStream and FilteredOutputStream
+      where we pass another inputstream and outputstream as an argument
+ 
+1. PushbackInputStream
+         -- read info is pushed back to read it once again with the help of unread()
+Syntax: public class PushbackInputStream extends FilteredInputStream
+ 
+Constructor
+1. PushbackInputStream(InputStream in)
+2. PushbackInputStream(InputStream in, int bufsize)
+ 
+import java.io.ByteArrayInputStream;
+import java.io.PushbackInputStream;
+ 
+public class Example {
+ 
+                public static void main(String[] args) throws Exception {
+                String s="if (a==4) a=0;\n";
+                byte[] buf=s.getBytes();
+                ByteArrayInputStream b1=new ByteArrayInputStream(buf);
+                PushbackInputStream f=new PushbackInputStream(b1);
+                int c;
+                while((c=f.read())!= -1){
+                                switch(c){
+                                case '=':
+                                                if((c=f.read()) == '=')
+                                                                System.out.print(".eq.");
+                                                else{
+                                                                System.out.print("<-");
+                                                     f.unread(c);
+                                                }
+                                                break;
+                     default:
+                                System.out.print((char)c);
+                                break;
+                                }
+                }
+                }
+ 
+}
+ 
+ 
+ 
+if (a.eq.4) a<-0;
+ 
+2. No PushbackOutputStream
+ 
+3. DataInputStream
+     -- used to read the info from used based on primitive data type
+ 
+ 
+4. DataOutputStream
+     -- used to write the info from used based on primitive data type
+ 
+5. BufferedInputStream - read from buffer in bytes
+6. BufferedOutputStream - write to buffer in bytes
+ 
+7. PipedInputStream
+8. PipedOutputStream
+   pipedinputstream is connected with pipedoutputstream
+public class Example {
+ 
+                public static void main(String[] args) throws Exception {
+                PipedOutputStream pout=new PipedOutputStream();
+                PipedInputStream pin=new PipedInputStream();
+                  pout.connect(pin);
+                  pout.write(65);
+                  pout.write(66);
+                 
+                  for(int i=0;i<2;i++){
+                                  System.out.println((char)pin.read());
+                  }
+               
+                }
+ 
+}
+ 
+ 
+ 
+CharacterStream -- read and write in char
+   2 types
+     1. Reader - read in char
+     2. Writer - write in char
+4 diff
+1. InputStream replaced by Reader
+2. OutputStream replace by writer
+3. byte data type is replace by char datatype
+4. String s="abc";
+   byte[] b=s.getBytes();
+ 
+   String s="abc";
+   char c[]=new char[s.length()];
+   s.getChars(0,s.length(),c,0);
+ 
+ 
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+sysout("Enter age");
+String s=br.readLine();
+int age=Integer.parseInt(s);
+
+
+Serialization
+   -- process of writing the state of information directly into the object -- it is done using ObjectOutputStream class
+   -- it is established by implementing Serializable interface -- one of a marker interface
+   -- process of reading the information from object is called deserialization -- it is done using ObjectInputStream class
+ 
+1. Only non static data members can be saved via serialization
+2. If a class implements a serializable then by default its subclasses also implements serializable
+class A implements Serailizable{
+ 
+}
+class B extends A{
+}
+3. If subclass implements Serializable and my superclass dosent implements serializable
+    --when u create object for such class the non-serializable superclass must run its constructor
+ 
+class A{
+   A(){
+     sop("a");
+   }
+}
+class B extends A implements Serializable{
+   B(){
+     sop("b");
+   }
+}
+class Main { PSVM {
+    B b=new B();  //aba
+}}
+ 
+4. class A{
+ 
+   }
+   class B implements Serializable{
+       A a=new A();
+   }
+When u attempt to serilaize an instance of B into A class that implements Serializable will raise an NonSerializableException
+ 
+package pack1;
+ 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+ 
+class MyClass implements Serializable {
+                String s;
+                int i;
+                double d;
+                public MyClass(String s, int i, double d) {
+                                super();
+                                this.s = s;
+                                this.i = i;
+                                this.d = d;
+                }
+                @Override
+                public String toString() {
+                                return "MyClass [s=" + s + ", i=" + i + ", d=" + d + "]";
+                }
+               
+}
+ 
+public class Example  {
+ 
+                public static void main(String[] args)  {
+       try{
+                 MyClass object1=new MyClass("hello",7,1.34);
+                 System.out.println(object1);
+                 FileOutputStream fos=new FileOutputStream("file4.txt");
+                 ObjectOutputStream oos=new ObjectOutputStream(fos);
+                 oos.writeObject(object1);
+                 oos.flush();
+                 oos.close();
+       }
+       catch(Exception e){
+                   System.out.println("Exception during Serialization"+e);
+       }
+      
+       //object deserialization
+       try{
+                   MyClass object2;
+                   FileInputStream fis=new FileInputStream("file4.txt");
+                   ObjectInputStream ois=new ObjectInputStream(fis);
+                  object2=(MyClass) ois.readObject();
+                  ois.close();
+                  System.out.println(object2);
+       }
+       catch(Exception e){
+                   System.out.println("Exception during deserialization");
+       }
+                }
+ 
+}
+ 
+Transient keyword
+    -- it is a non access specifier
+    -- it can applied only to variable
+    -- if it is applied the variable cannot be serialized
+
+
+Java 8
+
+1. Lambda expression
+
+2. Functional interface
+
+3. Method reference
+
+4. Nashorm
+
+5. DEFAULT AND static methods in interface
+
+6. Date API
+
+7. Optional class
+
+ 
+
+Interface
+
+   -- normally with abstract methods and variables
+
+   -- In JDK 1.8, interface also contains default and static methods
+
+ 
+
+public interface Example1 {
+
+    default public void display(){
+
+                System.out.println("Example1: default method");
+
+    }
+
+}
+
+ 
+
+ 
+
+public interface Example2 {
+
+                default public void display(){
+
+                System.out.println("Example2: default method");
+
+    }
+
+}
+
+ 
+
+public class Test implements Example1, Example2
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+        Test t=new Test();
+
+        t.display();
+
+         
+
+    }
+
+ 
+
+                @Override
+
+                public void display() {
+
+                                Example1.super.display();
+
+                                Example2.super.display();
+
+                }
+
+     
+
+  
+
+}
+
+ 
+
+ 
+
+public interface MyInterface {
+
+  default public void show(){
+
+                  System.out.println("default method");
+
+  }
+
+  public static void greet(){
+
+                  System.out.println("welcome");
+
+  }
+
+  public abstract int getNum();
+
+}
+
+ 
+
+ 
+
+public class MyClass implements MyInterface{
+
+ 
+
+                @Override
+
+                public int getNum() {     
+
+                                return 10;
+
+                }
+
+ 
+
+}
+
+ 
+
+ 
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+        MyInterface m=new MyClass();
+
+        System.out.println(m.getNum());
+
+        m.show();
+
+        MyInterface.greet();
+
+    }    
+
+  
+
+}
+
+ 
+
+Date API
+
+    -- IN JDK1.8 present in java.time.* based on Joda time
+
+    -- lower version of Date is mutuable
+
+    -- but jdk1.8 Date API is immutuable
+
+ 
+
+1. LocalDate -- used to create current Date
+
+ 
+
+import java.time.Clock;
+
+import java.time.DayOfWeek;
+
+import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+
+import java.time.ZoneId;
+
+import java.time.temporal.ChronoUnit;
+
+import java.time.temporal.TemporalAdjuster;
+
+import java.time.temporal.TemporalAdjusters;
+
+ 
+
+public class Test implements Example1, Example2
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+                  LocalDate l1=LocalDate.now();
+
+          System.out.println(l1);
+
+         
+
+          Clock c=Clock.systemDefaultZone();
+
+          LocalDate l2=LocalDate.now(c);
+
+          System.out.println(l2);
+
+         
+
+          ZoneId z=ZoneId.of("Europe/Paris");
+
+          LocalDate l3=LocalDate.now(z);
+
+          System.out.println(l3);
+
+         
+
+          LocalDate l4=LocalDate.of(2000, 12, 14);
+
+          System.out.println(l4);
+
+         
+
+          LocalDate l5=LocalDate.parse("2017-03-02");
+
+          System.out.println(l5);
+
+         
+
+          LocalDate l6= l5.plusDays(4);
+
+          System.out.println(l6);
+
+         
+
+          LocalDate l7=l4.minusYears(10);
+
+          System.out.println(l7);
+
+         
+
+          LocalDate l8=l7.minus(2,ChronoUnit.DAYS);
+
+          System.out.println(l8);
+
+         
+
+          DayOfWeek d1=LocalDate.parse("2017-11-13").getDayOfWeek();
+
+          System.out.println(d1);
+
+         
+
+          int m1=LocalDate.parse("2017-11-13").getDayOfMonth();
+
+          System.out.println(m1);
+
+         
+
+          LocalDate l9=LocalDate.now();
+
+          System.out.println(l9.isLeapYear());
+
+         
+
+          LocalDate l10=LocalDate.now().minusYears(1);
+
+          System.out.println(l10.isLeapYear());
+
+         
+
+          boolean b1=LocalDate.parse("2017-03-01").isBefore(LocalDate.parse("2017-02-28"));
+
+          System.out.println(b1);
+
+         
+
+          boolean b2=LocalDate.parse("2017-03-01").isAfter(LocalDate.parse("2017-02-28"));
+
+          System.out.println(b2);
+
+         
+
+          LocalDateTime l11=LocalDate.parse("2017-11-13").atStartOfDay();
+
+          System.out.println(l11);
+
+         
+
+          LocalDate l12=LocalDate.parse("2017-03-11").with(TemporalAdjusters.firstDayOfMonth());
+
+          System.out.println(l12);
+
+         
+
+    }
+
+}
+
+ 
+
+2.LocalTime -- used to create current time
+
+ 
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+                 LocalTime l1=LocalTime.now();
+
+                 System.out.println(l1);
+
+                 
+
+                 LocalTime l2=LocalTime.parse("09:30");
+
+                 System.out.println(l2);
+
+                 
+
+                 LocalTime l3=LocalTime.of(9, 45);
+
+                 System.out.println(l3);
+
+                 
+
+                 LocalTime l4=l1.plusHours(2);
+
+                 System.out.println(l4);
+
+                 
+
+                 LocalTime l5=l4.minusMinutes(20);
+
+                 System.out.println(l5);
+
+                 
+
+                 LocalTime l6=l5.plus(2,ChronoUnit.HOURS);
+
+                 System.out.println(l6);
+
+               
+
+         boolean b1=LocalTime.parse("09:30").isBefore(LocalTime.parse("09:35"));
+
+        System.out.println(b1);
+
+        
+
+         boolean b2=LocalTime.parse("09:30").isAfter(LocalTime.parse("09:35"));
+
+         System.out.println(b2);
+
+        
+
+         System.out.println(LocalTime.MAX);
+
+         System.out.println(LocalTime.MIN);
+
+    }
+
+}
+
+ 
+
+ 
+
+3. LocalDateTime class -- used to print both date and time
+
+ 
+
+import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+
+import java.time.LocalTime;
+
+import java.time.ZoneId;
+
+import java.util.Calendar;
+
+import java.util.Date;
+
+ 
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+    LocalDateTime l1=LocalDateTime.now();
+
+    System.out.println(l1);
+
+   
+
+    LocalDateTime l2=LocalDateTime.of(LocalDate.now(),LocalTime.now());
+
+    System.out.println(l2);
+
+   
+
+    LocalDateTime l3=LocalDateTime.parse("2000-02-20T13:24:25");
+
+    System.out.println(l3);
+
+   
+
+    LocalDate l4=l3.toLocalDate();
+
+    System.out.println(l4);
+
+   
+
+    LocalTime l5=l3.toLocalTime();
+
+    System.out.println(l5);
+
+   
+
+    System.out.println(LocalDateTime.MAX);
+
+    System.out.println(LocalDateTime.MIN);
+
+   
+
+    Date d=new Date();
+
+    LocalDateTime l6=LocalDateTime.ofInstant(d.toInstant(), ZoneId.systemDefault());
+
+     System.out.println(l6);
+
+    
+
+     Calendar c=Calendar.getInstance();
+
+     LocalDateTime l7=LocalDateTime.ofInstant(c.toInstant(), ZoneId.systemDefault());
+
+     System.out.println(l7);
+
+    }
+
+}
+
+ 
+
+ 
+
+4. TemporalAdjusters - to extract extra info from date and time
+
+ 
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+LocalDateTime l1=LocalDateTime.now();
+
+System.out.println(l1);
+
+System.out.println(l1.with(TemporalAdjusters.firstDayOfMonth()));
+
+System.out.println(l1.with(TemporalAdjusters.lastDayOfMonth()));
+
+System.out.println(l1.with(TemporalAdjusters.firstDayOfNextMonth()));
+
+System.out.println(l1.with(TemporalAdjusters.firstDayOfNextYear()));
+
+System.out.println(l1.with(TemporalAdjusters.firstDayOfYear()));
+
+System.out.println(l1.with(TemporalAdjusters.next(DayOfWeek.MONDAY)));
+
+    }
+
+}
+
+ 
+
+ 
+
+ 
+
+class CustomTemporalAdjuster implements TemporalAdjuster{
+
+ 
+
+                @Override
+
+                public Temporal adjustInto(Temporal temporal) {
+
+                                LocalDate l1=LocalDate.from(temporal);
+
+                                int day=l1.getDayOfMonth();
+
+                                if(day%2==0){
+
+                                                l1=l1.plusDays(1);
+
+                                }
+
+                                else{
+
+                                                l1=l1.plusDays(2);
+
+                                }
+
+                                return temporal.with(l1);
+
+                }
+
+               
+
+}
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+    LocalDate l1=LocalDate.of(2017, Month.NOVEMBER, 1);
+
+    LocalDate l2=LocalDate.of(2017, Month.NOVEMBER, 2);
+
+   
+
+    CustomTemporalAdjuster cust=new CustomTemporalAdjuster();
+
+   
+
+    LocalDate d1=l1.with(cust);
+
+    LocalDate d2=l2.with(cust);
+
+   
+
+    System.out.println("Next odd day for "+l1+" is "+d1);
+
+    System.out.println("Next odd day for "+l2+" is "+d2);
+
+    }
+
+}
+
+ 
+
+ 
+
+5. Period - in order to get difference between two dates
+
+   Duration - in order to get difference between two time
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+     LocalDate l1=LocalDate.now();
+
+     LocalDate l2=l1.plus(Period.ofDays(5));
+
+     int i=Period.between(l1, l2).getDays();
+
+     System.out.println(i);
+
+     int j=Period.between(l1, l2).getMonths();
+
+     System.out.println(j);
+
+    
+
+     long l3=ChronoUnit.DAYS.between(l1, l2);
+
+     System.out.println(l3);
+
+    
+
+     LocalTime l4=LocalTime.now();
+
+     LocalTime l5=l4.plus(Duration.ofSeconds(30));
+
+     long l6=Duration.between(l4,l5).getSeconds();
+
+     System.out.println(l6);
+
+    }
+
+}
+
+ 
+
+6. DateTimeFormatter -- used to format date and time in different style
+
+ 
+
+public class Test
+
+{
+
+    public static void main(String [] args)
+
+    {
+
+     LocalDateTime l=LocalDateTime.of(2017, Month.NOVEMBER,25,6,30);
+
+     System.out.println(l);
+
+     String s1=       l.format(DateTimeFormatter.ISO_DATE);
+
+     System.out.println(s1);
+
+     String s2=l.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+     System.out.println(s2);
+
+     String s3=l.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.UK));
+
+     System.out.println(s3);
+
+    }
+
+}
+
+ 
+
+Lambda Expression -- it is used to give implementation for functional interface
+
+ 
+
+   a=public void show(){
+
+        System.out.println("hello");
+
+     }
+
+ 
+
+   a=void show(){
+
+        sop("hello");
+
+     }
+
+ 
+
+   a=void(){
+
+        sop("hello");
+
+     }
+
+ 
+
+   a=(){
+
+        sop("hello");
+
+      }
+
+   a=() -> {
+
+        //logic
+
+     }
+
+This is lambda expression
+
+ 
+
+1. In case we only oneline of logic
+
+       a=() -> sop("hello");
+
+ 
+
+2. a=(int a) -> {
+
+           return a*2;
+
+     }
+
+If the lambda expr is one line, even we can remove return stmt
+
+   a=(int a)-> a*2;
+
+   b=(int a,int b)->a+b;
+
+3. a=(int a,int b) -> {
+
+         if(b==0)
+
+            return 0;
+
+         else
+
+             return a/b;
+
+     };
+
+4. a=(String s)->s.length();
+
+ 
+
+ 
+
+Return type of lambda expr is always functional interface - type inference (binding between lambda expression and functional interface)
+
+
+FunctionalInterface -- also called SAM (Single Abstract method)
+
+    Any interface that contains only 1 abstract method it is called Functional interface
+
+    - It can also default and static method
+
+    -- we use @FunctionalInterface (optional)
+
+    -- If an interface contains any methods from Object class as abstract it also considered as FunctionalInterface
+
+    -- we have predefined functionalinterface in java.util.function.* package
+
+ 
+
+ 
+
+@FunctionalInterface
+
+public interface MyLambdaInterface {
+
+    int getLength(String s);
+
+}
+
+ 
+
+public class Example3 {
+
+ 
+
+                public static void main(String[] args) {
+
+                                MyLambdaInterface m=(String s)->s.length();
+
+                                System.out.println(m.getLength("hello"));
+
+ 
+
+                }
+
+ 
+
+}
+
+ 
+
+In jdk1.8, introduced new method forEach(Consumer)
+
+   -- Consumer is functional interface present in java.util.function.* it contains 1 abstract method
+
+     void accept(Object o)
+
+Streams API
+  --  java.util.stream.*
+  -- sequence of object from a source which support some aggregrate opeartion in a sequential mannner
+1. Intermediate operation -- returns Stream itself, it does not actually perform any operation instead it creates new stream
+    -- filter(), map(),distinct(),sorted(), peek(),limit(),skip()
+2. Terminal operation
+      -- it traverse the stream to produce single result
+      -- toArray(),count(),min(),max(),noneMatch(),anyMatch(),allMatch(),findFirst(),forEach()
+ 
+Creation of Stream
+1. stream()
+2. of()
+ 
+String a[]=new String[]{"a","b","c"};
+Stream<String> s=Arrays.stream(a);
+ 
+List<String> l=new ArrayList<>();
+l.add("a");
+l.add("b");
+Stream<String> st=l.stream();
+ 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+ 
+public class Main2 {
+                public static void main(String[] args) {
+                String arr[]=new String[]{"AA","BB","CC"};
+                Stream<String> s=Arrays.stream(arr);
+                s.forEach(System.out::println);
+               
+                List<String> l1=new ArrayList<>();
+                l1.add("A");
+                l1.add("B");
+                l1.add("C");
+                Stream<String> s1=l1.stream();
+                s1.forEach(System.out::println);
+               
+                Stream<String> s2=Stream.of("X","Y","Z");
+                s2.forEach(System.out::println);
+                }
+}
+ 
+Stream operations
+1. distinct(), count()
+public class Main2 {
+                public static void main(String[] args) {
+               
+                List<String> l1=new ArrayList<>();
+                l1.add("Ram");
+                l1.add("Babu");
+                l1.add("Cindy");
+                l1.add("Sam");
+                l1.add("Babu1");
+                //Stream<String> s=l1.stream();
+               
+                /*long count=l1.stream().distinct().distinct().count();
+                System.out.println(count);*/
+               
+                Stream<String> s=l1.stream().distinct();
+                long count=s.count();
+                System.out.println(count);
+               
+                boolean b1=l1.stream().anyMatch(s2->s2.contains("Ra"));
+                System.out.println(b1);
+                }
+}
+ 
+ 
+2. filter(), anyMatch(), allMatch(), noneMatch()
+public class Main2 {
+                public static void main(String[] args) {
+               
+                List<Student1> l1=new ArrayList<>();
+                l1.add(new Student1("PK",23));
+                l1.add(new Student1("KK",26));
+                l1.add(new Student1("MK",23));
+                l1.add(new Student1("SK",21));
+                l1.add(new Student1("RK",40));
+                l1.add(new Student1("BK",30));
+                l1.add(new Student1("DK",80));
+               
+                Stream<Student1> s1=l1.stream().filter(s->s.getAge()>25);
+                s1.forEach(System.out::println);
+               
+                boolean b1=l1.stream().allMatch(s->s.getName().contains("K"));
+                System.out.println(b1);
+               
+                boolean b2=l1.stream().anyMatch(s->s.getAge()>35);
+                System.out.println(b1);
+               
+                boolean b3=l1.stream().noneMatch(s->s.getAge()>55);
+                System.out.println(b3);
+                }
+}
+ 
+ 
+3. map(), flatMap()
+map() -- takes one function as an argument and returns a new stream consisiting of the result generated by applying the passed function to all elts of stream
+flatMap() -- takes one function as an argument and returns a new stream and then the new result is copied to new stream which will return the value of  method
+ 
+ 
+ 
+public class Main2 {
+                public static void main(String[] args) {
+               
+                List<Integer> l1=Arrays.asList(1,2,3,4,5);
+                //Stream<Integer> l2=l1.stream().map(e->e*e);
+                //l2.forEach(System.out::println);
+                List<Integer> l2=l1.stream().map(e->e*e).collect(Collectors.toList());
+                System.out.println(l2);
+               
+               
+                List<Integer> l3=l1.stream().flatMap(e->Stream.of(e*e)).collect(Collectors.toList());
+                System.out.println(l3);
+                }
+}
+ 
+4. reduce() and collect()
+ 
+public class Main2 {
+                public static void main(String[] args) {
+               
+                List<Integer> l1=new ArrayList<>();
+                l1.add(10);
+                l1.add(20);
+                l1.add(30);
+               
+                Integer i=l1.stream().reduce(100,(x,y)->(x+y));
+                System.out.println(i);
+               
+                Set<String> hs=new HashSet<>();
+                hs.add("Sean");
+                hs.add("Martin");
+                hs.add("Frank");
+               
+                Set<String> s=hs.stream().map(e->e.toUpperCase()).collect(Collectors.toSet());
+                s.forEach(System.out::println);
+                }
+}
+ 
+5. builder() -- build the stream
+generate() -- create a infinite stream, to limit we can some methods
+iterate() --
+ 
+public class Main2 {
+                public static void main(String[] args) {
+               
+                Stream<String> s1=Stream.<String>builder().add("KK").add("PK").add("MK").build();
+                s1.forEach(System.out::println);
+               
+                Stream<String> s2=Stream.generate(()->"Hello").limit(3);
+                s2.forEach(System.out::println);
+               
+                Stream<Integer> s3=Stream.iterate(10,i->i+2).limit(10);
+                s3.forEach(System.out::println);
+               
+                IntStream i=IntStream.range(1,6);
+                i.forEach(System.out::println);
+               
+                IntStream i1=IntStream.rangeClosed(1,6);
+                i1.forEach(System.out::println);
+               
+                IntStream i2="abcd".chars();
+                i2.forEach(System.out::println);
+               
+                Random r=new Random();
+                DoubleStream d=r.doubles(5);
+                d.forEach(System.out::println);
+                }
+}
+ 
+ 
+Parallel Streams
+   -- which allows operation in parallel mode
+ 
+ 
+public class Main2 {
+                public static void main(String[] args) {
+               
+List<Product> l=Arrays.asList(new Product(23,"soap"),new Product(45,"powder"),new Product(33,"perfume"));
+                               
+                                Stream<Product> s=l.parallelStream();
+                                boolean b=s.isParallel();
+                                System.out.println(b);
+                               
+                                boolean b1=s.map(p->p.getId()*12).anyMatch(p->p>200);
+                                System.out.println(b1);
+                               
+                                IntStream intStream=IntStream.range(1, 50).parallel();
+                                boolean b2=intStream.isParallel();
+                                System.out.println(b2);
+                               
+                               
+                                IntStream i2=intStream.sequential();
+                                boolean b3=i2.isParallel();
+                                System.out.println(b3);
+ 
+                }
+}
+
+log4j framework
+  -- we use SOP() to print the log statement
+        -- it prints log messages in console
+        -- we can't store log messages in any permanent place
+Log4j -- open source framework provided by Apache for printing log messages
+    -- we download externally the jar file and put inside the Java appl
+ 
+Log4j components
+1. Logger
+      - It is class present in org.apache.log4j.* package
+      - we need initialize Logger class with some logger methods to print log messages
+     static Logger log=Logger.getLogger(classname);
+5 methods
+  1. info()
+  2. debug()
+  3. warn()
+  4. fatal()
+  5. error()
+ 
+Level  class in org.apache.log4j.* package
+  debug < info <warn <error< fatal
+Fatal is highest priority
+ 
+2. Appender -- used to write log message in file or db or console
+     1. ConsoleAppender
+     2. FileAppender
+     3. JDBCAppender
+     4. SocketAppender
+3. Layout -- used to define the formatting of logs to print
+1. PatternLayout
+2. SimpleLayout
+3. XMLLayout
+4. HTMLLayout
+ 
+ 
+1. BasicConfigurator.configure()
+        --- prints log message in console
+The output contains
+0 - time elapsed from start of prg in milliseconds
+main - thread name
+Debug -- logger level
+com.pack.Main - class name
+Debug message - log message
+ 
+public class Main {
+     static final Logger log=Logger.getLogger(Main.class);
+                public static void main(String[] args) {
+                                BasicConfigurator.configure();
+                                log.debug("Debug message");
+                                log.info("Info message");
+                                log.warn("Warn message");
+                                log.error("Error message");
+                                log.fatal("Fatal message");
+                }
+ 
+}
+ 
+We want to configure the logger info in properties file or xml
+ 
+rootLogger - resides on top of logger hierarchy, use to set logger level
+ 
+ConversionPattern
+%r - elapsed time
+  %-4r -- 4 indicates total width
+   - -- we have pad space after the number
+0___
+ 
+%t - thread name
+%p - logger level
+%-5p
+ 
+ 
+log4j.rootLogger=DEBUG, CA
+ 
+log4j.appender.CA=org.apache.log4j.ConsoleAppender
+log4j.appender.CA.layout=org.apache.log4j.PatternLayout
+log4j.appender.CA.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+ 
+log4j.rootLogger=WARN, CA
+ 
+log4j.appender.CA=org.apache.log4j.ConsoleAppender
+log4j.appender.CA.layout=org.apache.log4j.PatternLayout
+log4j.appender.CA.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+ 
+log4j.appender.AdminFileAppender=org.apache.log4j.FileAppender
+log4j.appender.AdminFileAppender.File=admin.log
+log4j.appender.AdminFileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.AdminFileAppender.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+ 
+log4j.logger.com.pack=DEBUG, AdminFileAppender
+ 
+Configure properties inside XML
+ 
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
+ 
+public class Main2 {
+     static final Logger log=Logger.getLogger(Main2.class);
+                public static void main(String[] args) {
+                                DOMConfigurator.configure("log4j.xml");
+                                log.debug("Debug message");
+                                log.info("Info message");
+                                log.warn("Warn message");
+                                log.error("Error message");
+                                log.fatal("Fatal message");
+                }
+ 
+}
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CA" class="org.apache.log4j.ConsoleAppender">
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
+       </layout>
+    </appender>
+    <root>
+       <level value="debug" />
+       <appender-ref ref="CA"/>
+    </root>
+</log4j:configuration>
+ 
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CA" class="org.apache.log4j.ConsoleAppender">
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
+       </layout>
+    </appender>
+    <appender name="FA" class="org.apache.log4j.FileAppender">
+       <param name="File" value="sample.log" />
+       <param name="Threshold" value="WARN" />
+       <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%-4r [%t] %-5p %c %x - %m%n" />
+       </layout>
+    </appender>
+    <root>
+       <level value="debug" />
+       <appender-ref ref="CA"/>
+       <appender-ref ref="FA" />
+    </root>
+</log4j:configuration>
+ 
+Unit testing
+ 
+1. Planning & Estimation
+2. Requirements and Analysis
+    -- what is to to done in project
+3. Design
+    -- How is to be done
+    -- we spend 40% work
+4. Coding - convert all algorithm into coding - only 20% work
+   do the testing coding stage by developer -- unit testing
+    Test individual class - unit testing
+5. Testing - we test the product whether it satisfies client requirement - 40% work
+6. Implementation -- run in appl in production
+7. Maintainence -- maintain ur appl
+ 
+JUNIT Framework -- it is regression testing framework used by developers to implement unit testing
+ 
+Download junit jar file and configure inside  the project
+ 
+How to define a test in Junit?
+1. To test any method inside test class, we have to use @Test annotation
+  2. You can use assert methods provided by Junit to test ur expected result verus actual test
+assertEquals()
+assertNotEquals()
+assertFalse()
+assertTrue()
+assertNotNull()
+assertNull()
+assertSame()
+assertNotSame()
+   3. Run the test in command line using org.junit.runner.JUnitCore class provides runClasses() whose return type is Result
+ 
+ 
+ 
+ 
+public class Message {
+   private String msg;
+ 
+public Message(String msg) {
+                super();
+                this.msg = msg;
+}
+ 
+public String print(){
+                System.out.println(msg);
+                return msg;
+}
+  
+}
+ 
+import static org.junit.Assert.*;
+ 
+import org.junit.Test;
+ 
+public class TestMessage {
+               
+                String msg="Welcome";
+ 
+                @Test
+                public void testPrint() {
+                                Message m=new Message(msg);
+                                assertEquals(msg,m.print());
+                }
+ 
+}
+ 
+public class Main3 {
+ 
+                public static void main(String[] args) {
+                                Result res=JUnitCore.runClasses(TestMessage.class);
+        for(Failure f:res.getFailures()){
+               System.out.println(f.toString());
+        }
+        System.out.println(res.wasSuccessful());
+                }
+ 
+}
+ 
+public class MyClass {
+  public boolean check(int num){
+                  boolean b=false;
+                  if(num%2==0){
+                                  b=true;
+                  }
+                  return b;
+  }
+}
+ 
+import static org.junit.Assert.*;
+ 
+import org.junit.Test;
+ 
+public class TestMyClass {
+ 
+                @Test
+                public void testCheck() {
+                                MyClass m=new MyClass();
+                                //assertEquals(false,m.check(3));
+                                assertNotEquals(true, m.check(3));
+                }
+ 
+}
+ 
+ 
+@Before - run before each test
+@After - run after each test
+@BeforeClass - run before all test only once for the execution
+@AfterClass - run after all test only once for the execution
+ 
+package com.pack;
+ 
+import static org.junit.Assert.assertEquals;
+ 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+ 
+public class TestMyClass {
+               
+                @BeforeClass
+                public static void init1(){
+                                System.out.println("Before class test");
+                }
+               
+                @Before
+                public  void init(){
+                                System.out.println("Before test-1");
+                }
+               
+                @Before
+                public void init2(){
+                                System.out.println("Before test-2");
+                }
+ 
+                @Test
+                public void testAdd() {
+                                MyClass m=new MyClass();
+                                assertEquals(7, m.add(3,4));
+                }
+               
+                @After
+                public  void destroy(){
+                                System.out.println("After test-1");
+                }
+ 
+                @After
+                public  void destroy1(){
+                                System.out.println("After test-2");
+                }
+                @AfterClass
+                public static void destroy2(){
+                                System.out.println("After class test");
+                }
+}
+
+@Ignore -- if we want to ignore any test
+
+ 
+
+package com.pack;
+
+ 
+
+import org.junit.After;
+
+import org.junit.AfterClass;
+
+import org.junit.Before;
+
+import org.junit.BeforeClass;
+
+import org.junit.Ignore;
+
+import org.junit.Test;
+
+ 
+
+public class TestMyClass {
+
+    @BeforeClass
+
+    public static void beforeClass(){
+
+                System.out.println("before class test");
+
+    }
+
+   
+
+    @AfterClass
+
+    public static void afterClass(){
+
+                System.out.println("after class test");
+
+    }
+
+   
+
+    @Before
+
+    public void before(){
+
+                System.out.println("before test");
+
+    }
+
+   
+
+    @After
+
+    public void after(){
+
+                System.out.println("after test");
+
+    }
+
+   
+
+    @Ignore
+
+    @Test
+
+    public void test1(){
+
+                System.out.println("Test1");
+
+    }
+
+    @Test
+
+    public void test2(){
+
+                System.out.println("Test 2");
+
+    }
+
+}
+
+ 
+
+Order of execution of test
+
+  MethodSorters class introduced junit4.11 -- decide the order of execution of test
+
+ 
+
+1. MethodSorters.DEFAULT - not predictable order
+
+2. MethodSorters.JVM -- Leaves the test methods in the order returned by JVM
+
+3. MethodSorters.NAME_ASCENDING - Sort the test methods by the method name
+
+ 
+
+import org.junit.FixMethodOrder;
+
+import org.junit.Test;
+
+import org.junit.runners.MethodSorters;
+
+ 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
+public class OrderTest {
+
+   @Test
+
+   public void secondTest(){
+
+                   System.out.println("Executing second test");
+
+   }
+
+   @Test
+
+   public void firstTest(){
+
+                   System.out.println("Executing first test");
+
+   }
+
+   @Test
+
+   public void thirdTest(){
+
+                   System.out.println("Executing third test");
+
+   }
+
+}
+
+ 
+
+Test Suite
+
+   -- used to bundle the unit test cases and run them together
+
+   --@RunWith and @Suite annotation
+
+ 
+
+package com.pack;
+
+ 
+
+public class MessageUtil {
+
+    private String msg;
+
+ 
+
+                public MessageUtil(String msg) {
+
+                                super();
+
+                                this.msg = msg;
+
+                }
+
+   
+
+                public String print(){
+
+                                System.out.println(msg);
+
+                                return msg;
+
+                }
+
+                public String show(){
+
+                                msg="Hello"+msg;
+
+                                System.out.println(msg);
+
+                                return msg;
+
+                }
+
+}
+
+ 
+
+ 
+
+package com.pack;
+
+ 
+
+import static org.junit.Assert.*;
+
+ 
+
+import org.junit.Test;
+
+ 
+
+public class TestJunit1 {
+
+                String msg="Ram";
+
+                @Test
+
+                public void testPrint(){
+
+                                MessageUtil m=new MessageUtil(msg);
+
+                                System.out.println("Inside test1");
+
+                                assertEquals(msg, m.print());
+
+                }
+
+}
+
+ 
+
+ 
+
+package com.pack;
+
+ 
+
+import static org.junit.Assert.*;
+
+ 
+
+import org.junit.Test;
+
+ 
+
+public class TestJunit2 {
+
+  String msg="Sam";
+
+  @Test
+
+  public void testShow(){
+
+                  MessageUtil m=new MessageUtil(msg);
+
+                  System.out.println("Inside test2");
+
+                  msg="Hello"+msg;
+
+                  assertEquals(msg,m.show());
+
+  }
+
+}
+
+ 
+
+ 
+
+package com.pack;
+
+ 
+
+import org.junit.runner.RunWith;
+
+import org.junit.runners.Suite;
+
+ 
+
+@RunWith(Suite.class)
+
+@Suite.SuiteClasses({
+
+                TestJunit1.class, TestJunit2.class
+
+})
+
+public class TestSuites {
+
+ 
+
+}
+
+ 
+
+ 
+
+Timeout
+
+   if test case takes more time than the specified number of millisecond, the junit will automatically fails the test
+
+ 
+
+package com.pack;
+
+ 
+
+import static org.junit.Assert.*;
+
+ 
+
+import org.junit.Test;
+
+ 
+
+public class TestJunit1 {
+
+                String msg="Ram";
+
+                @Test(timeout=1000)
+
+                public void testPrint(){
+
+                                MessageUtil m=new MessageUtil(msg);
+
+                                System.out.println("Inside test1");
+
+                                assertEquals(msg, m.print());
+
+                }
+
+                @Test
+
+                  public void testShow(){
+
+                                  MessageUtil m=new MessageUtil(msg);
+
+                                  System.out.println("Inside test2");
+
+                                  msg="Hello"+msg;
+
+                                  assertEquals(msg,m.show());
+
+                  }
+
+}
+
+ 
+
+ 
+
+Test Exception
+
+  expected parameter is used to handle exception in Junit
+
+ 
+
+package com.pack;
+
+ 
+
+import static org.junit.Assert.*;
+
+ 
+
+import org.junit.Test;
+
+ 
+
+public class TestJunit1 {
+
+                String msg="Ram";
+
+                @Test(expected=ArithmeticException.class)
+
+                public void testPrint(){
+
+                                MessageUtil m=new MessageUtil(msg);
+
+                                System.out.println("Inside test1");
+
+                                m.print();
+
+                }
+
+                @Test
+
+                  public void testShow(){
+
+                                  MessageUtil m=new MessageUtil(msg);
+
+                                  System.out.println("Inside test2");
+
+                                  msg="Hello"+msg;
+
+                                  assertEquals(msg,m.show());
+
+                  }
+
+}
+
+ 
+Coding standards
+
+   1. class -- each starting letter should be uppercase
+
+   2. methods -- camel case - getAge(), getMinimumAge()
+
+   3. variables -- lowercase
+
+  4. constants -- all caps
+
+ 
+
+PMD -- Programming Mistake Detector
+
+    -- static code analyzer that report an issues found within code
+
+CPD - Copy Paste detector
+
+Findbugs --   - static code analyzer that report an issues found within code
+
+   Findbugs will run against binaries but PMD will run only source code
+
+ 
+
+Checkstyle - it checks for empty catch block, equals(), ==
+
+ 

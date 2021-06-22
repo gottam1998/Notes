@@ -1,0 +1,2877 @@
+SQL
+
+ 
+
+3 LAYERS
+
+1. Presentation layer -- used to present the info to the client
+
+         -- reside on the client side
+
+         -- HTML,CSS, Java script -- client components
+
+ 
+
+2.Business logic layer -- used to write business logic processing
+
+         -- reside on server side
+
+         -- web tier component - JSP, Servlets, Java bean
+
+         -- Enterprise tier component -- EJB
+
+ 
+
+3. Data access layer
+
+        -- used to perform db connectivity
+
+       
+
+File processing system -- store inside the files
+
+Drawback
+
+   1. data redundancy -- duplicates of data
+
+   2. data isolation -- same data is scattered across multiple machine
+
+   3.we can store only particular format of data
+
+   4.no security
+
+   5. no backup recovery
+
+   6. integrity constraints are buried under programming logic
+
+ 
+
+Database system
+
+   -- set of logical related data  -- database
+
+   -- set of programs to access those data  - DBMS/RDBMS 
+
+ 
+
+DBMS
+
+1. There is no relationship between the table
+
+2. data are stored flat file system
+
+3. only single user can access
+
+4. eg:MS Access, Visual Foxpro
+
+ 
+
+RDBMS
+
+1. Tables related with each other using foreign key concept
+
+2. data are stored in tables
+
+3. multiple user can access the data
+
+
+
+
+4. eg: Oracle, MySQL, SQL Server, DB2, Sybase, Postgress SQL
+
+ 
+
+DBMS -- set of programs to access the data
+
+  1. SQL
+
+  2. PL/SQL
+
+ 
+
+Data model - represent semantic features of data
+
+1. Network model
+
+2. Hiearchial model
+
+3. ER model -- represent table in the form ER diagram
+
+4. Relational model -- represent data in form of tables
+
+  columns/attributes/fields
+
+  rows/tuples/records
+
+ 
+
+ 
+
+SQL - Structured Query Language
+
+   -- it is english like syntax used to insert,delete,select the data from db
+
+ 
+
+Types of keys
+
+1. Super key -any combination of column to uniquely determine value from table
+
+  Consider we have employee table - empid,ename,salary,addr,dept
+
+ 
+
+ename,addr,dept - super key
+
+empid,salary - candidate key (minimal of super key)
+
+empid - primary key (any one of candidate key)
+
+salary - alternate key
+
+ 
+
+Integrity constraints
+
+1. Entity integrity constraint
+
+     -- constraint applied on the table
+
+     -- Primary key -- no duplication and no null value
+
+     -- Unique key -- no duplication and only one null value is allowed
+
+2. Domain integrity constraint
+
+     -- Domain is permitted value for the column
+
+     -- constraint that applied to the value of column
+
+     -- not null
+
+     -- check -- but it not present in MYSQL
+
+3. Referential integrity constraint
+
+     -- we can refer one table with another table
+
+     -- Foreign key
+
+     -- one table PK will act as FK in another table
+
+     -- First we have to create PK table and then we have to create FK table
+
+     -- FK will contain duplicate values and also contain null value
+
+     -- FK column contain only the values that are present in PK column
+
+     -- First we have to delete PK table then only we can delete FK table
+
+Person
+
+pid(pk)  pname   address
+
+ 1         A       XYZ    
+
+ 2         B       PQR    
+
+ 3         C       MNL    
+
+ 
+
+Order
+
+orderid(pk)   ordernumber pid(FK)
+
+10              100         1
+
+11              101         2
+
+12              102         3
+
+13              103         1
+
+14              104         2     
+
+ 
+
+4. default constraint
+
+     by default the value is null irrespective of the datatype
+
+5. null constraint
+
+ 
+
+6. Composite primary key
+
+     -- if table has more than one column as primary key and its combination should be unique
+
+ 
+
+Emp
+
+A(PK)   B(PK)  C    D
+
+1         2    2    -
+
+2         1    3    3
+
+3         1    4    1
+
+1         1    3    0
+
+ 
+
+Data types
+
+1. Numeric data type
+
+   numeric(p,q)- numeric(5,2) - 123.45
+
+   numeric(p) - numeric(5) - 12345
+
+   int/integer
+
+   tinyint -- -128 to 127
+
+   smallint -- -32768 to 32767
+
+   mediumint -- -8388608 to 8388607
+
+   bigint -- -9223372036854775808 to 9223372036854775807
+
+   decimal(p,q)
+
+   fixed(p,q)
+
+   float
+
+   double
+
+ 
+
+2. character data type
+
+    varchar(n) - variable length of char between 1 to 255 char
+
+        varchar(10)='ram' -- it allocates only 3 byte
+
+    char(n) -- fixed length of char between 1 to 255 char
+
+       char(10)='ram' -- it allocates 10 bytes
+
+3. Date data type
+
+     1. Date -- yyyy-MM-dd
+
+     2. Datetime - yyyy-MM-dd hh:mm:ss
+
+     3. Timestamp - print both date and time but without - and :
+
+             yyyyMMddhhmmss
+
+     4. Time - hh:mm:ss
+
+ 
+
+4. LOB data type - large object data type
+
+1. BLOB -- store images, videos and audios
+
+2. CLOB -- store big string
+
+ 
+
+SQL Operators
+
+1. +,-,*,/, >,<,>=,<=
+
+2. ALL
+
+3. ANY
+
+4. EXISTS AND NOT EXITS
+
+5. Pattern matching operator -- LIKE, not like
+
+6. Range operator - between, not between
+
+7. in, not in
+
+8. and
+
+9. or
+
+10. SET operator - intersect, minus, union, union all
+
+11. is null, is not null
+
+ 
+
+SQL statements
+
+1. DDL statement  -- Data Defination Language
+
+    create - used to create a table
+
+    alter - changing the table name
+
+          - to add a new column to existing table
+
+          - to modify the data type of existing column
+
+          - to drop the existing column from table
+
+          - to rename the column name
+
+          - to add a new constraint to existing table
+
+          - to enable and disable the keys
+
+    drop - to drop the entire table (ie) both structure and data
+
+    truncate - will delete the data but the structure will exist it cannot be rollback
+
+ 
+
+rollback cannot be applied for DDL 
+
+ 
+
+create database sample;
+
+use sample;
+
+ 
+
+show databases; //all db
+
+show tables; //show all tables in db
+
+ 
+
+drop database sample;
+
+ 
+
+ 
+
+CREATE TABLE suppliers
+
+( supplier_id numeric(10) not null,
+
+  supplier_name varchar(50) not null,
+
+  contact_name varchar(50) 
+
+);
+
+ 
+
+CREATE TABLE Customer
+
+(SID integer PRIMARY KEY,
+
+Last_Name varchar(30),
+
+First_Name varchar(30));
+
+ 
+
+CREATE TABLE customers
+
+( customer_id numeric(10) not null,
+
+  customer_name varchar(50) not null,
+
+  address varchar(50), 
+
+  city varchar(50), 
+
+  state varchar(25), 
+
+  zip_code varchar(10), 
+
+  CONSTRAINT customers_pk PRIMARY KEY (customer_id)
+
+);
+
+ 
+
+CREATE TABLE contacts
+
+( contact_id INT(11) NOT NULL AUTO_INCREMENT,
+
+  last_name VARCHAR(30) NOT NULL,
+
+  first_name VARCHAR(25),
+
+  birthday DATE,
+
+  CONSTRAINT contacts_pk PRIMARY KEY (contact_id)
+
+);
+
+ 
+
+ALTER TABLE contacts AUTO_INCREMENT = 50;
+
+ 
+
+CREATE TABLE departments
+
+( department_id numeric(10) not null,
+
+  department_name varchar(50) not null,
+
+  CONSTRAINT departments_pk PRIMARY KEY (department_id)
+
+);
+
+ 
+
+ 
+
+CREATE TABLE employees
+
+( employee_number numeric(10) not null,
+
+  employee_name varchar(50) not null,
+
+  dept_id numeric(10), 
+
+  salary numeric(6), 
+
+  CONSTRAINT employees_pk PRIMARY KEY (employee_number),
+
+  CONSTRAINT fk_departments
+
+    FOREIGN KEY (dept_id)
+
+    REFERENCES departments(department_id)
+
+);
+
+ 
+
+ 
+
+CREATE TABLE ORDERS
+
+(Order_ID integer primary key,
+
+Order_Date date,
+
+Customer_SID integer references CUSTOMER(SID),
+
+Amount double);
+
+ 
+
+ 
+
+CREATE TABLE Persons
+
+(
+
+P_Id int NOT NULL,
+
+LastName varchar(255) NOT NULL,
+
+FirstName varchar(255),
+
+Address varchar(255),
+
+City varchar(255),
+
+CONSTRAINT chk_Person CHECK (P_Id>0 AND City='Sandnes')
+
+)
+
+ 
+
+ 
+
+CREATE TABLE Student
+
+(Student_ID integer Unique,
+
+Last_Name varchar (30),
+
+First_Name varchar (30),
+
+Score integer DEFAULT 80);
+
+ 
+
+ 
+
+CREATE TABLE Customer
+
+(SID integer Unique,
+
+Last_Name varchar(30),
+
+First_Name varchar(30));
+
+ 
+
+ 
+
+ 
+
+CREATE TABLE Persons
+
+(
+
+P_Id int NOT NULL,
+
+c_id int not null,
+
+LastName varchar(255) NOT NULL,
+
+FirstName varchar(255),
+
+Address varchar(255),
+
+City varchar(255),
+
+CONSTRAINT uc_PersonID primary key (P_Id,c_id)
+
+)
+
+ 
+
+//copys both structure and data from person to supplier table
+
+CREATE TABLE suppliers
+
+  AS (SELECT *
+
+         FROM persons
+
+         WHERE p_id > 1000);
+
+ 
+
+ 
+
+ 
+
+CREATE TABLE suppliers
+
+  AS (SELECT id, address, city, state, zip
+
+          FROM companies
+
+          WHERE id > 1000);
+
+ 
+
+ 
+
+ 
+
+ 
+
+CREATE TABLE suppliers
+
+  AS (SELECT companies.id, companies.address, categories.cat_type
+
+          FROM companies, categories
+
+          WHERE companies.id = categories.id
+
+          AND companies.id > 1000);
+
+ 
+
+//copy only structure
+
+CREATE TABLE suppliers
+
+  AS (SELECT * FROM persons WHERE 1=2);
+
+ 
+
+ 
+
+ 
+
+ALTER TABLE suppliers
+
+RENAME TO vendors;
+
+ 
+
+ 
+
+ALTER TABLE suppliers
+
+ADD suppl_name  varchar(50);
+
+ 
+
+ 
+
+ALTER TABLE suppliers ADD COLUMN address INTEGER AFTER supplier_name;
+
+ 
+
+ 
+
+ALTER TABLE suppliers
+
+ADD ( state varchar(50),
+
+  city varchar(45) );
+
+ 
+
+ALTER TABLE contacts
+
+  ADD last_name varchar(40) NOT NULL
+
+    AFTER contact_id,
+
+  ADD first_name varchar(35)
+
+    AFTER last_name;
+
+ 
+
+ALTER TABLE suppliers
+
+MODIFY supplier_name   varchar(100)     not null;
+
+ 
+
+ 
+
+ALTER TABLE suppliers
+
+MODIFY column supplier_name varchar(100) not null,
+
+ modify column city varchar(75);
+
+ 
+
+ 
+
+ALTER TABLE suppliers
+
+DROP COLUMN supplier_name;
+
+ 
+
+ALTER TABLE suppliers
+
+  CHANGE COLUMN supplier_name sname
+
+    varchar(20) NOT NULL;
+
+ 
+
+ 
+
+ALTER TABLE Persons
+
+ADD CONSTRAINT pk_Person primary key (P_Id)
+
+ 
+
+--disable pk and unique
+
+ALTER TABLE <tablename> DISABLE KEYS;
+
+ 
+
+-- disable FK
+
+SET FOREIGN_KEY_CHECKS=0;
+
+ 
+
+--Enable
+
+SET FOREIGN_KEY_CHECKS=1;
+
+ALTER TABLE <tablename> ENABLE KEYS;
+
+ 
+
+ALTER TABLE tbl_magazine_issue
+
+  DROP FOREIGN KEY FK_tbl_magazine_issue_mst_users
+
+ 
+
+ 
+
+DROP TABLE supplier;
+
+DROP TABLE customers, suppliers;
+
+DROP TABLE IF EXISTS customers, suppliers;
+
+ 
+
+truncate table suppliers;
+
+ 
+
+2. DML statement - Data Manipulation Language
+
+       insert -- used to insert a new row inside table
+
+       update -- used to update the existing data from table
+
+       delete -- will delete the data but structure will exist but it can rollbacked
+
+ 
+
+//insert to all columns of table
+
+INSERT INTO suppliers
+
+VALUES
+
+(24553, 'IBM',"Chennai");
+
+ 
+
+//insert only to specific columns
+
+INSERT INTO suppliers
+
+(supplier_id, supplier_name)
+
+VALUES
+
+(24553, 'IBM');
+
+ 
+
+//insert into select stmt
+
+INSERT INTO suppliers
+
+(supplier_id, supplier_name)
+
+SELECT account_no, name
+
+FROM customers
+
+WHERE city = 'Newark';
+
+ 
+
+//single insert query to insert 3 values
+
+INSERT INTO tasks(subject,start_date,end_date,description)
+
+VALUES ('Task 1','2010-01-01','2010-01-02','Description 1'),
+
+       ('Task 2','2010-01-01','2010-01-02','Description 2'),
+
+       ('Task 3','2010-01-01','2010-01-02','Description 3');
+
+ 
+
+UPDATE suppliers
+
+SET name = 'HP'
+
+WHERE name = 'IBM';
+
+ 
+
+ 
+
+UPDATE suppliers
+
+SET name = 'HP',city='abc'
+
+WHERE name = 'IBM';
+
+ 
+
+ 
+
+DELETE FROM suppliers;
+
+ 
+
+DELETE FROM suppliers
+
+WHERE supplier_name = 'IBM';
+
+ 
+
+ 
+
+DELETE FROM contacts
+
+WHERE last_name = 'Johnson'
+
+ORDER BY contact_id DESC
+
+LIMIT 1;
+
+ 
+
+3. DQL statement - Data Query Language
+
+        select - used to select the data from table
+
+select * from suppliers;
+
+ 
+
+select sid,sname,city from suppilers;
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE city = 'Newark';
+
+ 
+
+ 
+
+SELECT name, city, state
+
+FROM suppliers
+
+WHERE supplier_id > 1000;
+
+ 
+
+ 
+
+SELECT orders.order_id, suppliers.name
+
+FROM suppliers, orders
+
+WHERE suppliers.supplier_id = orders.supplier_id;
+
+ 
+
+SELECT o.order_id, s.name
+
+FROM suppliers s, orders o
+
+WHERE s.supplier_id = o.supplier_id;
+
+ 
+
+SELECT DISTINCT city
+
+FROM suppliers;
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE city = 'New York'
+
+and type = 'PC Manufacturer';
+
+ 
+
+SELECT o.order_id, s.supplier_name
+
+FROM suppliers s, orders o
+
+WHERE s.supplier_id = o.supplier_id
+
+and s.supplier_name = 'IBM';
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE city = 'New York'
+
+or city = 'Newark';
+
+ 
+
+SELECT supplier_id
+
+FROM suppliers
+
+WHERE name = 'IBM'
+
+or name = 'Hewlett Packard'
+
+or name = 'Gateway';
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE (city = 'New York' and name = 'IBM')
+
+or (city = 'Newark');
+
+ 
+
+SELECT supplier_id
+
+FROM suppliers
+
+WHERE (name = 'IBM')
+
+or (name = 'Hewlett Packard' and city = 'Atlantic City')
+
+or (name = 'Gateway' and status = 'Active' and city = 'Burma');
+
+ 
+
+Pattern matching operator
+
+    -- Like, not like
+
+    -- 2 wild card characters
+
+          % = everything(all)
+
+          _ = single value
+
+ 
+
+If we want include % and _ in selection in that case we go fro escape sequence
+
+ 
+
+Hello%
+
+ 
+
+select * from supplier where supplier_name like 'Hello%';
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE supplier_name like 'Hew%';
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE supplier_name like '%bob%';
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE supplier_name not like 'T%';
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE supplier_name like 'Sm_th';
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE account_number like '12317_';
+
+ 
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE supplier_name LIKE 'G!%' ESCAPE '!';
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE supplier_name LIKE 'H%!%' ESCAPE '!';
+
+ 
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE supplier_name LIKE 'H\%';
+
+ 
+
+ 
+
+in, not in -- multiple or
+
+ 
+
+SELECT *
+
+FROM suppliers
+
+WHERE supplier_name in ( 'IBM', 'Hewlett Packard', 'Microsoft');
+
+ 
+
+SELECT *
+
+FROM orders
+
+WHERE order_id not in (10000, 10001, 10003, 10005);
+
+ 
+
+between, not between - range operator (inclusive range)
+
+ 
+
+SELECT * FROM suppliers
+
+WHERE supplier_id between 5000 AND 5010;
+
+ 
+
+select * from suppliers where supplier_id>=5000 and supplier_id<=5010
+
+ 
+
+Set operators - union, union all, intersect, minus
+
+//takes both supplier_id from suppliers and orders if duplication is there it considered only once
+
+select supplier_id
+
+from suppliers
+
+UNION
+
+select supplier_id
+
+from orders;
+
+ 
+
+//takes both supplier_id from suppliers and orders and prints everything
+
+select supplier_id
+
+from suppliers
+
+UNION ALL
+
+select supplier_id
+
+from orders;
+
+ 
+
+//takes common supplier_id from suppliers and orders
+
+select supplier_id
+
+from suppliers
+
+INTERSECT
+
+select supplier_id
+
+from orders;
+
+ 
+
+//removes common supplier_id from supplier table
+
+select supplier_id
+
+from suppliers
+
+MINUS
+
+select supplier_id
+
+from orders;
+
+ 
+
+order by clause
+
+    -- used for sorting purpose
+
+    -- it will always present in last of select stmt
+
+select - from - where - group by - having - order by
+
+    -- by default it is ascending
+
+    -- ORDER BY 2 DESC; 2 represent from the select list
+
+    -- If we sort on two columns, by default it sort only by first column, in first column if there is any repetition for those city columns alone the state is sorted in ascending order
+
+ 
+
+SELECT supplier_city
+
+FROM suppliers
+
+WHERE supplier_name = 'IBM'
+
+ORDER BY supplier_city;
+
+ 
+
+ 
+
+SELECT supplier_city
+
+FROM suppliers
+
+WHERE supplier_name = 'IBM'
+
+ORDER BY supplier_city DESC;
+
+ 
+
+Supplier
+
+sup_id supplier_name supplier_city age dob
+
+ 
+
+SELECT supplier_city,age,dob
+
+FROM suppliers
+
+WHERE supplier_name = 'IBM'
+
+ORDER BY 2 DESC;
+
+ 
+
+SELECT supplier_city, supplier_state
+
+FROM suppliers
+
+WHERE supplier_name = 'IBM'
+
+ORDER BY supplier_city DESC, supplier_state ASC;
+
+ 
+
+ 
+
+supplier_city   supplier_state
+
+  chennai          ABC
+
+  chengalpat       Tamilnadu
+
+  chennai          Tamilnadu
+
+  salem            Tamilnadu
+
+ 
+
+Aggregrate function/Group function
+
+   -- used to group the values
+
+   -- will ignore the null values
+
+   -- sum(), avg(), min(), max(),count(), stddev(),mean(),median()
+
+   -- date datatype - min(), max(), count()
+
+ 
+
+Select COUNT(*) from suppliers;
+
+COUNT(*)
+
+--------
+
+20
+
+ 
+
+Select COUNT(sup_id) from suppliers;
+
+COUNT(sup_id)
+
+-------------
+
+20
+
+ 
+
+SELECT COUNT(*) as "number of employees"
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+number of employees
+
+--------
+
+20
+
+ 
+
+SELECT COUNT(*)  "number of employees"
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+number of employees
+
+--------
+
+20
+
+ 
+
+SELECT COUNT(*)  numberofemployees
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+numberofemployees
+
+--------
+
+20
+
+ 
+
+SELECT COUNT(DISTINCT department) as "Unique departments"
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+SELECT SUM(salary) as "Total Salary"
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+SELECT SUM(DISTINCT salary) as "Total Salary"
+
+FROM employees
+
+WHERE salary > 25000;
+
+ 
+
+SELECT SUM(sales * 0.10) as "Commission"
+
+FROM order_details;
+
+ 
+
+SELECT MIN(salary) as "Lowest salary"
+
+FROM employees;
+
+ 
+
+SELECT MAX(salary) as "Highest salary"
+
+FROM employees;
+
+ 
+
+group by clause
+
+   -- used to group values of the tables based on some aggregate function
+
+  
+
+Employee
+
+empid   ename   dept     salary
+
+1        A       HR       4000
+
+2        B       Sales    5000
+
+3        C       HR       6000
+
+4        D       Finance  10000
+
+5        E       Sales    5000
+
+6        F       Finance  8000
+
+7        G       HR       10000
+
+ 
+
+We want to calculate the total sum of salary in each dept?
+
+select dept, sum(salary) from employee group by dept;
+
+ 
+
+dept       sum(salary)
+
+----       -----------
+
+HR           20000
+
+Sales        10000
+
+Finance      18000
+
+ 
+
+Having clause
+
+   -- used to exclude the result from group by clause
+
+select dept, sum(salary) from employee group by dept having
+
+sum(salary)>15000;
+
+dept       sum(salary)
+
+----       -----------
+
+HR           20000
+
+Finance      18000
+
+ 
+Subquery
+
+   -- select query inside another select query
+
+   -- subquery is used to retrive data based on unknown condition
+
+   -- inner query will be executed first, based on the output outer query will be executed
+
+   -- 2 types
+
+       1. Single row subquery -- inner query returns only single row, then it is evaluated with outer query using =,!=,>,<,>=,<=
+
+       2. Multi row subquery -- inner query returns multiple rows and it is evaluated with outer query using in, not in, exists, not exists, all, any
+
+ 
+
+create table emp (eid int primary key, efirstname char(15), elastname char(15), ecity char(25));
+
+insert emp values (001, 'rama', 'krishnan', 'coimbatore');
+
+insert emp values (002, 'radha','krishnan', 'salem');
+
+insert emp values (003, 'balaji','s', 'madurai');
+
+insert emp values (004, 'moideen', 'babu', 'salem');
+
+insert emp values (005, 'alagiri','ajay', 'chennai');
+
+insert emp values (006, 'krishna','kumar', 'madurai');
+
+select * from emp;
+
+ 
+
+drop table dept;
+
+create table dept (did int primary key, empid int references emp(eid), dname char(20), dsal float);
+
+insert dept values (1001,001, 'acc', 5000);
+
+insert dept values (1001,002, 'man', 10000);
+
+insert dept values (1002,003, 'acc', 5000);
+
+insert dept values (1002,004, 'man', 10000);
+
+insert dept values (1003,005, 'civ', 12000);
+
+insert dept values (1003,006, 'civ', 15000);
+
+select * from dept;
+
+ 
+
+select * from emp;
+
+select * from dept;
+
+ 
+
+select * from emp where eid = (select empid from dept where dsal=12000);
+
+ 
+
+in
+
+ 
+
+select * from emp where eid in (select empid from dept where dsal<10000);
+
+ 
+
+ 
+
+Any
+
+select * from emp where eid > any (select empid from dept where dsal<10000);
+
+ 
+
+ 
+
+All
+
+ 
+
+select * from emp where eid > all (select empid from dept where dsal<10000);
+
+ 
+
+select * from dept
+
+ 
+
+ 
+
+All
+
+ 
+
+select * from emp where eid = all (select empid from dept where dsal>12000);
+
+ 
+
+ 
+
+exists
+
+ 
+
+select * from emp where exists (select * from dept where dsal=16000);
+
+ 
+
+ 
+
+select * from emp where exists  (select * from dept where dsal=12000);
+
+ 
+
+ 
+
+select * from emp where exists (select * from dept where dsal=5000);
+
+ 
+
+ 
+
+not exists
+
+ 
+
+select * from emp where not exists (select * from dept where dsal=3000);
+
+select * from emp where not exists (select * from dept where dsal=5000);
+
+ 
+
+Join
+
+  -- at the time of displaying we can join the tables
+
+Types
+
+1. Equi join
+
+     -- we join the table based on some equality condition
+
+      emp                                          dept                                          
+
+ename    deptid                     deptid    dname
+
+Pat        10                         10       Sales
+
+Sat        20                         20       Admin
+
+Pack       10                         30       HR
+
+Mack        -                         40       Operations
+
+ 
+
+select e.ename,d.dname from emp e, dept d where e.deptid=d.deptid;
+
+ 
+
+e.ename    d.dname
+
+Pat          Sales
+
+Sat          Admin
+
+Pack         Sales
+
+ 
+
+Inner join
+
+   -- similar to equi join
+
+select e.ename,d.dname from emp e inner join dept d on e.deptid=d.deptid;
+
+ 
+
+e.ename    d.dname
+
+Pat          Sales
+
+Sat          Admin
+
+Pack         Sales
+
+ 
+
+Outer join
+
+   -- will display both matched and unmatched column
+
+3 types
+
+1. Left outer join
+
+     -- all rows from left table + only matched rows from right table
+
+ 
+
+select e.ename,d.dname from emp e left join dept d on e.deptid=d.deptid;
+
+ 
+
+e.ename    d.dname
+
+Pat          Sales
+
+Sat          Admin
+
+Pack         Sales
+
+Mack          -
+
+ 
+
+2. Right outer join
+
+     -- all rows from right table + only matched rows from left table
+
+ 
+
+select e.ename,d.dname from emp e right join dept d on e.deptid=d.deptid;
+
+ 
+
+e.ename    d.dname
+
+Pat          Sales
+
+Sat          Admin
+
+Pack         Sales
+
+-            HR
+
+-           Operation
+
+ 
+
+3. Full outer join
+
+       -- all matched and unmatched rows from both the table
+
+       -- in mysql there is no full outer join
+
+ 
+
+select e.ename,d.dname from emp e left join dept d on e.deptid=d.deptid
+
+union
+
+select e.ename,d.dname from emp e right join dept d on e.deptid=d.deptid;
+
+ 
+
+4. Cross join
+
+       -- cartesian product of two table
+
+ 
+
+emp                     dept
+
+A      B          C     D     E
+
+1      2          5     6     7
+
+3      4          8     9     10
+
+                  11    12    13
+
+ 
+
+select * from emp,dept;
+
+    or
+
+select * from emp cross join dept;
+
+ 
+
+A             B             C             D             E
+
+1              2              5              6              7
+
+1              2              8              9              10
+
+1              2              11           12           13
+
+3              4              5              6              7
+
+3              4              8              9              10
+
+3              4              11           12           13
+
+ 
+
+5.Self join
+
+    -- we are going the table within the same table
+
+ 
+
+mysql> select * from emp;
+
+ 
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+ 
+
+14 rows selected.
+
+ 
+
+ 
+
+mysql> SELECT e.ename  ' works as '  IFNULL(m.ename, ' the shareholders')
+
+  2  FROM emp e, emp m
+
+  3  WHERE e.mgr = m.empno;
+
+ 
+
+E.ENAME 'WORKSAS' IFNULL(M.ENAME,'THES
+
+-------------------------------------
+
+FORD works as JONES
+
+SCOTT works as JONES
+
+JAMES works as BLAKE
+
+TURNER works as BLAKE
+
+MARTIN works as BLAKE
+
+WARD works as BLAKE
+
+ALLEN works as BLAKE
+
+MILLER works as CLARK
+
+ADAMS works as SCOTT
+
+CLARK works as KING
+
+BLAKE works as KING
+
+JONES works as KING
+
+SMITH works as FORD
+
+ 
+
+13 rows selected
+
+String Functions
+ 
+1.Ascii
+ 
+ASCII function returns the numeric value of the left-most character of a string.
+ 
+mysql> SELECT ASCII('t');
+116
+ 
+mysql> SELECT ASCII('Bad');
+97
+ 
+2.char_length
+CHAR_LENGTH function returns the length of the specified string (measured in characters).
+ 
+mysql> SELECT CHAR_LENGTH(NULL);
+Result: NULL
+ 
+mysql> SELECT CHAR_LENGTH('');
+Result: 0
+ 
+mysql> SELECT ASCII('Bad');
+Result: 3
+ 
+3.character_length
+CHARACTER_LENGTH function returns the length of the specified string (measured in characters).
+ 
+4.concat
+CONCAT function allows you to concatenate two or more expressions together.
+mysql> SELECT CONCAT('The answer is ', 24);
+Result: 'The answer is 24'
+ 
+mysql> SELECT CONCAT('The answer is ', 10+10);
+Result: 'The answer is 20'
+ 
+mysql> SELECT CONCAT('The answer is ', null);
+Result: null
+ 
+mysql> SELECT 'The answer is ' '24';
+Result: 'The answer is 24'
+ 
+mysql> SELECT 'The answer is ' '10+10';
+Result: 'The answer is 10+10'
+ 
+5.concat_ws
+CONCAT_WS function allows you to concatenate two or more expressions together and adds a separator between each of the concatenated expressions.
+ 
+mysql> SELECT CONCAT_WS(',', 1, 2, 3, 4);
+Result: '1,2,3,4'
+ 
+mysql> SELECT CONCAT_WS(', ', 1, 2, 3, 4);
+Result: '1, 2, 3, 4'
+ 
+mysql> SELECT CONCAT_WS('ABC', 'x', 'y', 'z');
+Result: 'xABCyABCz'
+ 
+mysql> SELECT CONCAT_WS('ABC', 'x', 'y', NULL, 'z');
+Result: 'xABCyABCz'
+ 
+mysql> SELECT CONCAT_WS(NULL, 'x', 'y', 'z');
+Result: NULL
+ 
+6.Field
+FIELD function returns the position of a value in a list of values (val1, val2, val3, ...).
+ 
+mysql> SELECT FIELD('b', 'a', 'b', 'c', 'd', 'e', 'f');
+Result: 2
+ 
+mysql> SELECT FIELD('B', 'a', 'b', 'c', 'd', 'e', 'f');
+Result: 2
+ 
+mysql> SELECT FIELD(15, 10, 20, 15, 40);
+Result: 3
+ 
+mysql> SELECT FIELD('c', 'a', 'b');
+Result: 0
+ 
+mysql> SELECT FIELD('g', '');
+Result: 0
+ 
+mysql> SELECT FIELD(null, 'a', 'b', 'c');
+Result: 0
+ 
+7.Find_in_set
+FIND_IN_SET function returns the position of a string in a comma-delimited string list.
+mysql> SELECT FIND_IN_SET('b', 'a,b,c,d,e,f');
+Result: 2
+ 
+mysql> SELECT FIND_IN_SET('B', 'a,b,c,d,e,f');
+Result: 2
+ 
+mysql> SELECT FIND_IN_SET('f', 'a,b,c,d,e,f');
+Result: 6
+ 
+mysql> SELECT FIND_IN_SET(2,'1,2,3');
+Result: 2
+ 
+mysql> SELECT FIND_IN_SET('g', 'a,b,c,d,e,f');
+Result: 0
+ 
+mysql> SELECT FIND_IN_SET('g', '');
+Result: 0
+ 
+mysql> SELECT FIND_IN_SET(null, 'a,b,c');
+Result: NULL
+ 
+mysql> SELECT FIND_IN_SET('a', null);
+Result: NULL
+ 
+ 
+8.Format
+FORMAT function formats a number as a format of '#,###.##', rounding it to a certain number of decimal places and then it returns the result as a string.
+mysql> SELECT FORMAT(12345.6789, 2);
+Result: '12,345.68'
+ 
+mysql> SELECT FORMAT(12345.6789, 1);
+Result: '12,345.7'
+ 
+mysql> SELECT FORMAT(12345.6789, 0);
+Result: '12,346'
+ 
+9.instr
+INSTR function returns the location of a substring in a string.
+mysql> SELECT INSTR('Hello', 'H');
+Result: 1
+ 
+mysql> SELECT INSTR('Hello', 'h');
+Result: 1
+ 
+mysql> SELECT INSTR('Hello', 'e');
+Result: 2
+ 
+mysql> SELECT INSTR(''Hello', 'o');
+Result: 5
+ 
+ 
+10. lcase
+LCASE function converts all characters in the specified string to lowercase.
+mysql> SELECT LCASE('HEllo');
+Result: 'hello'
+ 
+11.Left
+LEFT function allows you to extract a substring from a string, starting from the left-most character.
+mysql> SELECT LEFT('Hello', 1);
+Result: 'H'
+ 
+mysql> SELECT LEFT('Hello', 4);
+Result: 'Hell'
+ 
+mysql> SELECT LEFT('Hello', 20);
+Result: 'Hello'
+ 
+12.Length
+LENGTH function returns the length of the specified string (measured in bytes).
+ 
+13.Locate
+LOCATE function returns the location of the first appearance of a substring in a string.
+mysql> SELECT LOCATE('H', 'Hello');
+Result: 1
+ 
+mysql> SELECT LOCATE('h', 'Hello');
+Result: 1
+ 
+mysql> SELECT LOCATE('l','Hello', 2);
+Result: 4
+ 
+mysql> SELECT LOCATE('e', 'Hello');
+Result: 2
+ 
+mysql> SELECT LOCATE('e', 'techonlogy internet', 3);
+Result: 18
+ 
+mysql> SELECT LOCATE('int', 'techonlogy internet', 1);
+Result: 12
+ 
+mysql> SELECT LOCATE('Z', 'hello');
+Result: 0
+ 
+ 
+14.Lower
+LOWER function converts all characters in the specified string to lowercase.
+ 
+15.Lpad
+LPAD function returns a string that is left-padded with a specified string to a certain length.
+ 
+16.Ltrim
+LTRIM function removes all space characters from the left-hand side of a string.
+ 
+mysql> SELECT LTRIM('   Hello');
+Result: 'Hello'
+ 
+mysql> SELECT LTRIM('   hello  world   ');
+Result: 'hello  world   '
+ 
+17.Mid
+MID function allows you to extract a substring from a string.
+mysql> SELECT MID('technology', 5, 2);
+Result: 'no'
+ 
+mysql> SELECT MID('technology', 1, 4);
+Result: 'tech'
+ 
+mysql> SELECT MID('technology', -3, 3);
+Result: 'ogy'
+ 
+mysql> SELECT MID('techonlogy', -7, 3);
+Result: 'hon'
+ 
+18.Position
+POSITION function returns the location of a substring in a string.
+ 
+mysql> SELECT POSITION('H' IN 'Hello');
+Result: 1
+ 
+mysql> SELECT POSITION('h' IN 'Hello');
+Result: 1
+ 
+mysql> SELECT POSITION('e' IN 'Hello');
+Result: 2
+ 
+mysql> SELECT POSITION('w' IN 'Hello');
+Result: 0
+ 
+19.Repeat
+REPEAT function repeats a string a specified number of times.
+mysql> SELECT REPEAT('A', 2);
+Result: 'AA'
+ 
+mysql> SELECT REPEAT('a', 5);
+Result: 'aaaaa'
+ 
+mysql> SELECT REPEAT('abc', 2);
+Result: 'abcabc'
+ 
+mysql> SELECT REPEAT(' ', 6);
+Result: '      '
+ 
+mysql> SELECT REPEAT(3, 2);
+Result: '33'
+ 
+mysql> SELECT REPEAT('abc', 0);
+Result: ''
+ 
+ 
+20.Replace
+REPLACE function replaces all occurrences of a specified string.
+mysql> SELECT REPLACE('abc abc', 'a', 'B');
+Result: 'Bbc Bbc'
+ 
+mysql> SELECT REPLACE('abc abc', 'A', 'B');
+Result: 'abc abc'
+ 
+mysql> SELECT REPLACE('123 123', 2, 5);
+Result: '153 153'
+ 
+21.Reverse
+REVERSE function returns a string with the characters in reverse order.
+mysql> SELECT REVERSE('abcde');
+Result: 'edcba'
+ 
+mysql> SELECT REVERSE('123');
+Result: '321'
+ 
+mysql> SELECT REVERSE(123);
+Result: '321'
+ 
+22.Right
+RIGHT function allows you to extract a substring from a string, starting from the right-most character.
+mysql> SELECT RIGHT('Hello', 1);
+Result: 'o'
+ 
+mysql> SELECT RIGHT('Hello', 4);
+Result: 'ello'
+ 
+23.Rpad
+RPAD function returns a string that is right-padded with a specified string to a certain length.
+ 
+24.Rtrim
+RTRIM function removes all space characters from the right-hand side of a string.
+ 
+25.Space
+SPACE function returns a string with a specified number of spaces.
+mysql> SELECT SPACE(3);
+Result: '   '
+ 
+mysql> SELECT SPACE(7);
+Result: '       '
+ 
+26.strcmp
+STRCMP function tests whether two strings are the same using the current character set.
+ 
+mysql> SELECT STRCMP('hello','hello');
+Result: 0
+ 
+mysql> SELECT STRCMP('check', 'hello');
+Result: -1
+ 
+mysql> SELECT STRCMP('hello', 'check');
+Result: 1
+ 
+27.Substr
+SUBSTR function allows you to extract a substring from a string.
+mysql> SELECT SUBSTR('Techonthenet.com', 5);
+Result: 'onthenet.com'
+ 
+mysql> SELECT SUBSTR('Techonthenet.com' FROM 5);
+Result: 'onthenet.com'
+ 
+mysql> SELECT SUBSTR('Techonthenet.com', 1, 4);
+Result: 'Tech'
+ 
+mysql> SELECT SUBSTR('Techonthenet.com' FROM 1 FOR 4);
+Result: 'Tech'
+ 
+mysql> SELECT SUBSTR('Techonthenet.com', -3, 3);
+Result: 'com'
+ 
+mysql> SELECT SUBSTR('Techonthenet.com' FROM -3 FOR 3);
+Result: 'com'
+ 
+28.Substring
+SUBSTRING function allows you to extract a substring from a string.
+mysql> SELECT SUBSTRING('Techonthenet.com', 5);
+Result: 'onthenet.com'
+ 
+mysql> SELECT SUBSTRING('Techonthenet.com' FROM 5);
+Result: 'onthenet.com'
+ 
+mysql> SELECT SUBSTRING('Techonthenet.com', 1, 4);
+Result: 'Tech'
+ 
+mysql> SELECT SUBSTRING('Techonthenet.com' FROM 1 FOR 4);
+Result: 'Tech'
+ 
+mysql> SELECT SUBSTRING('Techonthenet.com', -3, 3);
+Result: 'com'
+ 
+mysql> SELECT SUBSTRING('Techonthenet.com' FROM -3 FOR 3);
+Result: 'com'
+ 
+29.Substring_index
+SUBSTRING_INDEX function returns the substring of string before number of occurrences of delimiter.
+ 
+mysql> SELECT SUBSTRING_INDEX('www.techonthenet.com', '.', 1);
+Result: 'www'
+ 
+mysql> SELECT SUBSTRING_INDEX('www.techonthenet.com', '.', 2);
+Result: 'www.techonthenet'
+ 
+mysql> SELECT SUBSTRING_INDEX('www.techonthenet.com', '.', -1);
+Result: 'com'
+ 
+mysql> SELECT SUBSTRING_INDEX('www.techonthenet.com', '.', -2);
+Result: 'techonthenet.com'
+ 
+30. Trim
+TRIM function removes all specified characters either from the beginning or the end of a string.
+mysql> SELECT TRIM(LEADING ' ' FROM '  hello  ');
+Result: 'hello  '
+ 
+mysql> SELECT TRIM(TRAILING ' ' FROM '  hello  ');
+Result: '  hello'
+ 
+mysql> SELECT TRIM(BOTH ' ' FROM '  hello  ');
+Result: 'hello'
+ 
+mysql> SELECT TRIM(' ' FROM '  hello  ');
+Result: 'hello'
+ 
+mysql> SELECT TRIM('   hello   ');
+Result: 'hello'
+ 
+mysql> SELECT TRIM(LEADING '0' FROM '000123');
+Result: '123'
+ 
+mysql> SELECT TRIM(TRAILING '1' FROM 'Tech1');
+Result: 'Tech'
+ 
+mysql> SELECT TRIM(BOTH '123' FROM '123Tech123');
+Result: 'Tech'
+ 
+31.ucase
+UCASE function converts all characters in the specified string to uppercase.
+ 
+32.Upper
+UCASE function converts all characters in the specified string to uppercase.
+ 
+ 
+ 
+Date Functions
+Date/Time function
+ 
+1.ADDDATE
+returns a date after which a certain time/date interval has been added.
+ 
+mysql> SELECT ADDDATE('2014-02-13', 10);
+Result: '2014-02-23'
+ 
+mysql> SELECT ADDDATE('2014-02-13 08:44:21', INTERVAL -20 SECOND);
+Result: '2014-02-13 08:44:01'
+ 
+mysql> SELECT ADDDATE('2014-02-13 08:44:21', INTERVAL 25 MINUTE);
+Result: '2014-02-13 09:09:21'
+ 
+mysql> SELECT ADDDATE('2014-02-13 08:44:21', INTERVAL -2 HOUR);
+Result: '2014-02-13 06:44:21'
+ 
+mysql> SELECT ADDDATE('2014-02-13', INTERVAL 10 DAY);
+Result: '2014-02-23'
+ 
+2.ADDTIME
+returns a time/datetime value after which a certain time interval has been added.
+mysql> SELECT ADDTIME('2014-02-13 08:44:21.000001', '2.000001');
+Result: '2014-02-13 08:44:23.000002'
+ 
+ 
+3.CURDATE
+ returns the current date.
+mysql> SELECT CURDATE();
+Result: '2014-01-28'
+ 
+mysql> SELECT CURDATE() + 0;
+Result: 20140128
+ 
+mysql> SELECT CURDATE() + 1;
+Result: 20140129
+ 
+4.CURRENT_DATE
+returns the current date.
+The CURRENT_DATE function will return the current date as a 'YYYY-MM-DD' format, if used in a string context.
+The CURRENT_DATE function will return the current date as a YYYYMMDD format, if used in a numeric context.
+mysql> SELECT CURRENT_DATE();
+Result: '2014-01-28'
+ 
+mysql> SELECT CURRENT_DATE() + 0;
+Result: 20140128
+ 
+mysql> SELECT CURRENT_DATE() + 1;
+Result: 20140129
+ 
+5. CURRENT_TIME function returns the current time.
+mysql> SELECT CURRENT_TIME();
+Result: '10:37:02'
+ 
+mysql> SELECT CURRENT_TIME() + 0;
+Result: 103702.000000
+ 
+mysql> SELECT CURRENT_TIME() + 1;
+Result: 103703.000000
+ 
+6.CURRENT_TIMESTAMP function returns the current date and time.
+mysql> SELECT CURRENT_TIMESTAMP();
+Result: '2014-01-28 13:48:41'
+ 
+mysql> SELECT CURRENT_TIMESTAMP() + 0;
+Result: 20140128134841.000000
+ 
+mysql> SELECT CURRENT_TIMESTAMP() + 1;
+Result: 20140128134842.000000
+ 
+7.CURTIME function returns the current time.
+mysql> SELECT CURTIME();
+Result: '10:37:02'
+ 
+mysql> SELECT CURTIME() + 0;
+Result: 103702.000000
+ 
+mysql> SELECT CURTIME() + 1;
+Result: 103703.000000
+ 
+8.DATE function extracts the date value from a date or datetime expression.
+mysql> SELECT DATE('2014-02-14');
+Result: '2014-02-14'
+ 
+mysql> SELECT DATE('2014-02-14 18:20:19');
+Result: '2014-02-14'
+ 
+mysql> SELECT DATE('2014-02-15 06:18:01.000001');
+Result: '2014-02-15'
+ 
+mysql> SELECT DATE('The date is 2014-02-14');
+Result: NULL
+ 
+mysql> SELECT DATE(NULL);
+Result: NULL
+ 
+9.DATE_ADD function returns a date after which a certain time/date interval has been added.
+mysql> SELECT DATE_ADD('2014-02-13 08:44:21.000001', INTERVAL 4 MICROSECOND);
+Result: '2014-02-13 08:44:21.000005'
+ 
+mysql> SELECT DATE_ADD('2014-02-13 08:44:21', INTERVAL -20 SECOND);
+Result: '2014-02-13 08:44:01'
+ 
+mysql> SELECT DATE_ADD('2014-02-13 08:44:21', INTERVAL 25 MINUTE);
+Result: '2014-02-13 09:09:21'
+ 
+ 
+10.DATE_FORMAT function formats a date as specified by a format mask.
+mysql> SELECT DATE_FORMAT('2014-02-28', '%Y');
+Result: '2014'
+ 
+mysql> SELECT DATE_FORMAT('2014-02-01', '%M %d, %Y');
+Result: 'February 01, 2014'
+ 
+mysql> SELECT DATE_FORMAT('2014-02-01', '%M %e %Y');
+Result: 'February 1 2014'
+ 
+mysql> SELECT DATE_FORMAT('2014-02-28', '%W, %M %e, %Y');
+Result: 'Friday, February 28, 2014'
+ 
+mysql> SELECT DATE_FORMAT('2014-02-28', '%W');
+Result: 'Friday'
+ 
+11. DATE_SUB function returns a date after which a certain time/date interval has been subtracted.
+mysql> SELECT DATE_SUB('2014-02-13 08:44:21.000001', INTERVAL 4 MICROSECOND);
+Result: '2014-02-13 08:44:20.999997'
+ 
+mysql> SELECT DATE_SUB('2014-02-13 08:44:21', INTERVAL 20 SECOND);
+Result: '2014-02-13 08:44:01'
+ 
+mysql> SELECT DATE_SUB('2014-02-13 08:44:21', INTERVAL 25 MINUTE);
+Result: '2014-02-13 08:19:21'
+ 
+ 
+ 
+12.DATEDIFF function returns the difference in days between two date values.
+mysql> SELECT DATEDIFF('2014-01-28', '2014-01-27');
+Result: 1
+ 
+mysql> SELECT DATEDIFF('2014-01-28 11:41:14', '2014-01-27 12:10:08');
+Result: 1
+ 
+mysql> SELECT DATEDIFF('2014-01-28 11:41:14', '2014-01-27');
+Result: 1
+ 
+mysql> SELECT DATEDIFF('2013-12-31', '2014-01-28');
+Result: -28
+ 
+13. DAY function returns the day portion of a date value.
+mysql> SELECT DAY('2014-01-28');
+Result: 28
+ 
+mysql> SELECT DAY('2014-01-28 15:21:05');
+Result: 28
+ 
+mysql> SELECT DAY('2013-10-15');
+Result: 15
+ 
+14.DAYNAME function returns the weekday name for a date.
+mysql> SELECT DAYNAME('2014-01-27');
+Result: 'Monday'
+ 
+mysql> SELECT DAYNAME('2014-01-28');
+Result: 'Tuesday'
+ 
+mysql> SELECT DAYNAME('2014-01-29 08:35:17');
+Result: 'Wednesday'
+ 
+15. DAYOFMONTH function returns the day portion of a date value.
+mysql> SELECT DAYOFMONTH('2014-01-28');
+Result: 28
+ 
+mysql> SELECT DAYOFMONTH('2014-01-28 15:21:05');
+Result: 28
+ 
+mysql> SELECT DAYOFMONTH('2013-10-15');
+Result: 15
+ 
+16.DAYOFWEEK function returns the weekday index for a date value.
+mysql> SELECT DAYOFWEEK('2014-01-27');
+Result: 2
+ 
+mysql> SELECT DAYOFWEEK('2014-01-28');
+Result: 3
+ 
+mysql> SELECT DAYOFWEEK('2014-01-29');
+Result: 4
+ 
+17.DAYOFYEAR function returns day of the year for a date value.
+mysql> SELECT DAYOFYEAR('2014-01-01');
+Result: 1
+ 
+mysql> SELECT DAYOFYEAR('2014-02-28');
+Result: 59
+ 
+mysql> SELECT DAYOFYEAR('2014-12-31');
+Result: 365
+ 
+18. EXTRACT function extracts parts from a date.
+mysql> SELECT EXTRACT(MICROSECOND FROM '2014-02-13 08:44:21.000001');
+Result: 1
+ 
+mysql> SELECT EXTRACT(SECOND FROM '2014-02-13 08:44:21');
+Result: 21
+ 
+mysql> SELECT EXTRACT(MINUTE FROM '2014-02-13 08:44:21');
+Result: 44
+ 
+mysql> SELECT EXTRACT(HOUR FROM '2014-02-13 08:44:21');
+Result: 8
+ 
+mysql> SELECT EXTRACT(DAY FROM '2014-02-13');
+Result: 13
+ 
+mysql> SELECT EXTRACT(WEEK FROM '2014-02-13');
+Result: 6
+ 
+mysql> SELECT EXTRACT(MONTH FROM '2014-02-13');
+Result: 2
+ 
+mysql> SELECT EXTRACT(QUARTER FROM '2014-02-13');
+Result: 1
+ 
+mysql> SELECT EXTRACT(YEAR FROM '2014-02-13');
+Result: 2014
+ 
+19.FROM_DAYS function takes a numeric representation of the day and returns a date value.
+mysql> SELECT FROM_DAYS(736038);
+Result: 2015-03-16
+ 
+mysql> SELECT FROM_DAYS(736039);
+Result: 2015-03-17
+ 
+mysql> SELECT FROM_DAYS(736040);
+Result: 2015-03-18
+ 
+20.HOUR function returns the hour portion of a date value.
+mysql> SELECT HOUR('2014-01-28 07:47:18.000004');
+Result: 7
+ 
+mysql> SELECT HOUR('2014-01-28 15:21:05');
+Result: 15
+ 
+mysql> SELECT HOUR('12:13:06');
+Result: 12
+ 
+mysql> SELECT HOUR('838:59:59');
+Result: 838
+ 
+21. LAST_DAY function returns the last day of the month for a given date.
+mysql> SELECT LAST_DAY('2014-01-13');
+Result: '2014-01-31'
+ 
+mysql> SELECT LAST_DAY('2014-02-09 08:21:05');
+Result: '2014-02-28'
+ 
+mysql> SELECT LAST_DAY('2016-02-17');
+Result: '2016-02-29'
+ 
+mysql> SELECT LAST_DAY('2014-3-15');
+Result: '2014-03-31'
+ 
+mysql> SELECT LAST_DAY('ABC.com: 2014-2-16');
+Result: NULL
+ 
+22. LOCALTIME function returns the current date and time.
+mysql> SELECT LOCALTIME();
+Result: '2014-02-16 08:56:05'
+ 
+mysql> SELECT LOCALTIME() + 0;
+Result: 20140216085605.000000
+ 
+mysql> SELECT LOCALTIME() + 1;
+Result: 20140216085606.000000
+ 
+23. LOCALTIMESTAMP function returns the current date and time.
+mysql> SELECT LOCALTIMESTAMP();
+Result: '2014-02-16 09:00:35'
+ 
+mysql> SELECT LOCALTIMESTAMP() + 0;
+Result: 20140216090035.000000
+ 
+mysql> SELECT LOCALTIMESTAMP() + 1;
+Result: 20140216090036.000000
+ 
+24.MAKEDATE function returns the date for a certain year and day-of-year value.
+mysql> SELECT MAKEDATE(2014,1);
+        -> '2014-01-01'
+ 
+mysql> SELECT MAKEDATE(2014,31);
+        -> '2014-01-31'
+ 
+mysql> SELECT MAKEDATE(2014,32);
+        -> '2014-02-01'
+ 
+mysql> SELECT MAKEDATE(2014,200);
+        -> '2014-07-19'
+ 
+mysql> SELECT MAKEDATE(2014,365);
+        -> '2014-12-31'
+ 
+mysql> SELECT MAKEDATE(2014,366);
+        -> '2015-01-01'
+ 
+25.MAKETIME function returns the time for a certain hour, minute, second combination.
+mysql> SELECT MAKETIME(11,28,1);
+        -> '11:28:01'
+ 
+mysql> SELECT MAKETIME(14,31,0);
+        -> '14:31:00'
+ 
+mysql> SELECT MAKETIME(23,59,59);
+        -> '23:59:59'
+ 
+mysql> SELECT MAKETIME(838,59,59);
+        -> '838:59:59'
+ 
+mysql> SELECT MAKETIME(-838,59,59);
+        -> '-838:59:59'
+ 
+26. MICROSECOND function returns the microsecond portion of a date value.
+mysql> SELECT MICROSECOND('2014-01-28 15:21:05.000001');
+Result: 1
+ 
+mysql> SELECT MICROSECOND('2014-01-28 15:21:05.999999');
+Result: 999999
+ 
+mysql> SELECT MICROSECOND('2014-02-15');
+Result: 0
+ 
+27.MINUTE function returns the minute portion of a date value.
+mysql> SELECT MINUTE('2014-01-28 07:47:18.000004');
+Result: 47
+ 
+mysql> SELECT MINUTE('2014-01-28 15:21:05');
+Result: 21
+ 
+mysql> SELECT MINUTE('12:13:06');
+Result: 13
+ 
+mysql> SELECT MINUTE('838:11:59');
+Result: 11
+ 
+28.MONTH function returns the month portion of a date value.
+mysql> SELECT MONTH('2014-01-28');
+Result: 1
+ 
+mysql> SELECT MONTH('2014-01-28 15:21:05');
+Result: 1
+ 
+mysql> SELECT MONTH('2013-10-15');
+Result: 10
+ 
+29.MONTHNAME function returns the full name of the month for a date.
+mysql> SELECT MONTHNAME('2014-01-27');
+Result: 'January'
+ 
+mysql> SELECT MONTHNAME('2014-05-08');
+Result: 'May'
+ 
+mysql> SELECT MONTHNAME('2014-12-29');
+Result: 'December'
+ 
+30.NOW function returns the current date and time.
+mysql> SELECT NOW();
+Result: '2014-01-28 13:48:41'
+ 
+mysql> SELECT NOW() + 0;
+Result: 20140118134841.000000
+ 
+mysql> SELECT NOW() + 1;
+Result: 20140118134842.000000
+ 
+31.PERIOD_ADD function takes a period (formatted as YYMM or YYYYMM) and adds a specified number of months to it.
+mysql> SELECT PERIOD_ADD(201402,5);
+Result: 201407
+ 
+mysql> SELECT PERIOD_ADD(201402,6);
+Result: 201408
+ 
+mysql> SELECT PERIOD_ADD(201402,12);
+Result: 201502
+ 
+mysql> SELECT PERIOD_ADD(201402,16);
+Result: 201506
+ 
+mysql> SELECT PERIOD_ADD(201402,-1);
+Result: 201401
+ 
+mysql> SELECT PERIOD_ADD(1402,5);
+Result: 201407
+ 
+mysql> SELECT PERIOD_ADD(1402,6);
+Result: 201408
+ 
+32. PERIOD_DIFF function returns the difference in months between two periods (formatted as YYMM or YYYYMM).
+mysql> SELECT PERIOD_DIFF(201405,201402);
+Result: 3
+ 
+mysql> SELECT PERIOD_DIFF(201508,201408);
+Result: 12
+ 
+mysql> SELECT PERIOD_DIFF(201408,201508);
+Result: -12
+ 
+mysql> SELECT PERIOD_DIFF(1405,1402);
+Result: 3
+ 
+mysql> SELECT PERIOD_DIFF(201411,1409);
+Result: 2
+ 
+33. QUARTER function returns the quarter portion of a date value.
+mysql> SELECT QUARTER('2014-01-28');
+Result: 1
+ 
+mysql> SELECT QUARTER('2014-01-28 15:21:05');
+Result: 1
+ 
+mysql> SELECT QUARTER('2013-04-20');
+Result: 2
+ 
+mysql> SELECT QUARTER('2013-07-16');
+Result: 3
+ 
+mysql> SELECT QUARTER('2013-10-15');
+Result: 4
+ 
+34.SEC_TO_TIME function converts numeric seconds into a time value.
+mysql> SELECT SEC_TO_TIME(1);
+Result: '00:00:01'
+ 
+mysql> SELECT SEC_TO_TIME(2);
+Result: '00:00:02'
+ 
+mysql> SELECT SEC_TO_TIME(8001);
+Result: '02:13:21'
+ 
+mysql> SELECT SEC_TO_TIME(34562);
+Result: '09:36:02'
+ 
+mysql> SELECT SEC_TO_TIME(-7005);
+Result: '-01:56:45'
+ 
+35.SECOND function returns the second portion of a date value.
+mysql> SELECT SECOND('2014-01-28 07:47:18.000004');
+Result: 18
+ 
+mysql> SELECT SECOND('2014-01-28 15:21:05');
+Result: 5
+ 
+mysql> SELECT SECOND('12:13:06');
+Result: 6
+ 
+mysql> SELECT SECOND('838:11:59');
+Result: 59
+ 
+36.STR_TO_DATE function takes a string and returns a date specified by a format mask.
+mysql> SELECT STR_TO_DATE('February 01 2014', '%M %d %Y');
+Result: '2014-02-01'
+ 
+mysql> SELECT STR_TO_DATE('March,8,2014', '%M,%e,%Y');
+Result: '2014-03-08'
+ 
+mysql> SELECT STR_TO_DATE('Friday, February 28, 2014', '%W, %M %e, %Y');
+Result: '2014-02-28'
+ 
+mysql> SELECT STR_TO_DATE('2014,2,28 09', '%Y,%m,%d %h');
+Result: '2014-02-28 09:00:00'
+ 
+mysql> SELECT STR_TO_DATE('2014,2,28 09,30,05', '%Y,%m,%d %h,%i,%s');
+Result: '2014-02-28 09:30:05'
+ 
+mysql> SELECT STR_TO_DATE('10,15,30', '%h,%i,%s');
+Result: '10:15:30'
+ 
+37. SUBDATE function returns a date after which a certain time/date interval has been subtracted.
+mysql> SELECT SUBDATE('2014-02-13 08:44:21.000001', INTERVAL 4 MICROSECOND);
+Result: '2014-02-13 08:44:20.999997'
+ 
+mysql> SELECT SUBDATE('2014-02-13 08:44:21', INTERVAL 20 SECOND);
+Result: '2014-02-13 08:44:01'
+ 
+mysql> SELECT SUBDATE('2014-02-13 08:44:21', INTERVAL 25 MINUTE);
+Result: '2014-02-13 08:19:21'
+ 
+mysql> SELECT SUBDATE('2014-02-13 08:44:21', INTERVAL 2 HOUR);
+Result: '2014-02-13 06:44:21'
+ 
+mysql> SELECT SUBDATE('2014-02-13', INTERVAL 10 DAY);
+Result: '2014-02-03'
+ 
+mysql> SELECT SUBDATE('2014-02-13', 10);
+Result: '2014-02-03'
+ 
+38.SUBTIME function returns a time/datetime value after which a certain time interval has been subtracted.
+mysql> SELECT SUBTIME('2014-02-13 08:44:21.000002', '2.000001');
+Result: '2014-02-13 08:44:19.000001'
+ 
+mysql> SELECT SUBTIME('2014-02-13 08:44:21.000002', '3:2.000001');
+Result: '2014-02-13 05:42:21.000001'
+ 
+mysql> SELECT SUBTIME('2014-02-13 08:44:21.000002', '4:3:2.000001');
+Result: '2014-02-13 04:41:19.000001'
+ 
+mysql> SELECT SUBTIME('2014-02-13 08:44:21.000002', '5 4:3:2.000001');
+Result: '2014-02-08 04:41:19.000001'
+ 
+mysql> SELECT SUBTIME('01:15:23.999998', '0.000001');
+Result: '01:15:23.999997'
+ 
+mysql> SELECT SUBTIME('01:15:23.999998', '5.000001');
+Result: '01:15:18.999997'
+ 
+39. SYSDATE function returns the current date and time.
+mysql> SELECT SYSDATE();
+Result: '2014-02-17 10:27:21'
+ 
+mysql> SELECT SYSDATE() + 0;
+Result: 20140217102721
+ 
+mysql> SELECT SYSDATE() + 1;
+Result: 20140217102722
+ 
+40.TIME function extracts the time value from a time/datetime expression.
+mysql> SELECT TIME('2014-02-14 06:18:01.000001');
+Result: '06:18:01.000001'
+ 
+mysql> SELECT TIME('2014-02-17 18:20:19');
+Result: '18:20:19'
+ 
+mysql> SELECT TIME('10:35:05');
+Result: '10:35:05'
+ 
+mysql> SELECT TIME('The time is 10:35:05');
+Result: '00:00:00'
+ 
+mysql> SELECT TIME(NULL);
+Result: NULL
+ 
+41.TIME_FORMAT function formats a time as specified by a format mask.
+mysql> SELECT TIME_FORMAT('15:02:28', '%H %i %s');
+Result: '15 02 28'
+ 
+mysql> SELECT TIME_FORMAT('15:02:28', '%h:%i:%s %p');
+Result: '03:02:28 PM'
+ 
+mysql> SELECT TIME_FORMAT('15:02:28', '%h:%i%p');
+Result: '03:02PM'
+ 
+mysql> SELECT TIME_FORMAT('17:42:03.000001', '%r');
+Result: '05:42:03 PM'
+ 
+mysql> SELECT TIME_FORMAT('17:42:03.000001', '%T');
+Result: '17:42:03'
+ 
+42. TIME_TO_SEC function converts a time value into numeric seconds.
+mysql> SELECT TIME_TO_SEC('00:00:01');
+Result: 1
+ 
+mysql> SELECT TIME_TO_SEC('00:00:01.999999');
+Result: 1
+ 
+mysql> SELECT TIME_TO_SEC('00:00:02');
+Result: 2
+ 
+mysql> SELECT TIME_TO_SEC('02:13:21');
+Result: 8001
+ 
+mysql> SELECT TIME_TO_SEC('09:36:02');
+Result: 34562
+ 
+43.TIMEDIFF function returns the difference (expressed as a time value) between two time/datetime values.
+mysql> SELECT TIMEDIFF('2014-02-17 12:10:08', '2014-02-17 12:10:07');
+Result: '00:00:01'
+ 
+mysql> SELECT TIMEDIFF('12:10:08', '12:10:07');
+Result: '00:00:01'
+ 
+mysql> SELECT TIMEDIFF('11:41:14', '12:10:08');
+Result: '-00:28:54'
+ 
+ 
+44.TIMESTAMP function converts an expression to a datetime value and if specified adds an optional time interval to the value.
+mysql> SELECT TIMESTAMP('2014-02-18');
+Result: '2014-02-18 00:00:00'
+ 
+mysql> SELECT TIMESTAMP('2014-02-18', '07:32:00');
+Result: '2014-02-18 07:32:00'
+ 
+mysql> SELECT TIMESTAMP('2014-02-18 10:05:00', '02:03:04');
+Result: '2014-02-18 12:08:04'
+ 
+45.TO_DAYS function converts a date into numeric days.\
+mysql> SELECT TO_DAYS('2014-02-17');
+Result: 735646
+ 
+mysql> SELECT TO_DAYS('14-02-17');
+Result: 735646
+ 
+mysql> SELECT TO_DAYS('2014-02-18');
+Result: 735647
+ 
+mysql> SELECT TO_DAYS('2014-02-19 05:30:00');
+Result: 735648
+ 
+mysql> SELECT TO_DAYS('0000-01-01');
+Result: 1
+ 
+mysql> SELECT TO_DAYS('0000-00-00');
+Result: NULL
+ 
+46.WEEK function returns the week portion of a date value.
+mysql> SELECT WEEK('2014-01-01');
+Result: 0
+ 
+mysql> SELECT WEEK('2014-04-20');
+Result: 16
+ 
+mysql> SELECT WEEK('2014-07-16');
+Result: 28
+ 
+mysql> SELECT WEEK('2014-10-15');
+Result: 41
+ 
+47. WEEKDAY function returns the weekday index for a date.
+mysql> SELECT WEEKDAY('2014-01-27');
+Result: 0
+ 
+mysql> SELECT WEEKDAY('2014-01-28');
+Result: 1
+ 
+mysql> SELECT WEEKDAY('2014-01-29 08:35:17');
+Result: 2
+ 
+48.WEEKOFYEAR function returns week of the year for a date value.
+mysql> SELECT WEEKOFYEAR('2014-01-01');
+Result: 1
+ 
+mysql> SELECT WEEKOFYEAR('2014-02-28');
+Result: 9
+ 
+mysql> SELECT WEEKOFYEAR('2014-12-28');
+Result: 52
+ 
+49.YEAR function returns the year portion of a date value.
+mysql> SELECT YEAR('2014-01-28');
+Result: 2014
+ 
+mysql> SELECT YEAR('2014-01-28 15:21:05');
+Result: 2014
+ 
+mysql> SELECT YEAR('2013-10-15');
+Result: 2013
+ 
+50.YEARWEEK function returns the year and week for a date value.
+mysql> SELECT YEARWEEK('2014-01-01');
+Result: 201352
+ 
+mysql> SELECT YEARWEEK('2014-01-05');
+Result: 201401
+ 
+mysql> SELECT YEARWEEK('2014-01-12');
+Result: 201402
+ 
+mysql> SELECT YEARWEEK('2014-07-16');
+Result: 201428
+ 
+mysql> SELECT YEARWEEK('2014-12-31');
+Result: 201452
+ 
+mysql> SELECT YEARWEEK('2015-01-01');
+Result: 201452
+
+
+Numeric function
+ 
+1.       Abs(n)
+>select abs(-9);   9
+>select abs(9);  9
+ 
+2.       Ceil(n) – smallest integer >= n
+>select ceil(9.5); 10
+>select ceil(-9.5); -9
+ 
+3.       Floor(n) – largest integer <= n
+>select floor(9.5); 9
+>select floor(-9.5); -10
+ 
+4.       Mod(m,n) – mod(7,2)
+5.       Power(m,n) – power(3,2)
+6.       Sqrt(n)
+7.       Exp(n)
+8.       Log(n)
+9.       Cos(n)
+10.   Sin(n)
+11.   Tan(n)
+12.   Round(n)
+     Round(125.07) – 125
+     Round(125.67); - 126
+     Round(125.67,1);  125.7
+     Round(125.07,1); 125.1
+     Round(125.67,-1);  130                              120      125           130
+      Round(234.34,-2);   200                                   200         250                300
+     Round(4746.34,-3);    5000                                       4000          4500                     5000
+ 
+13.   Truncate()
+14.        truncate(125.07) – 125
+15.        truncate(125.67); - 125
+16.        truncate(125.67,1);  125.6
+17.        truncate(125.07,1); 125.0
+18.        truncate(125.67,-1);  120                              120      125           130
+19.         truncate(234.34,-2);   200                                   200         250                300
+20.        truncate(4746.34,-3);    4000                                       4000          4500                     5000

@@ -1,0 +1,552 @@
+Hibernate
+
+ 
+
+1. It is persistence framework - mainly used to process anything inside database - To interact java appl with database
+
+2. open source, lightweigt tool
+
+3. uses ORM technique - Object Relational Mapping - we are going to map plain old java object(POJO) to the column of the database table
+
+ 
+
+Advantage
+
+1. open source and lightweight
+
+2. Fast performance - uses cache mechansim
+
+3. database query independent
+
+      SQL query communicate with database, we have to write sql query based on particular database
+
+     HQL - Hibernate query language - database independent query
+
+4. Automatic table creation - no need to touch the database part
+
+5. complex joins
+
+6. get db info and query info
+
+ 
+
+Hibernate architecture
+
+1. Java layer - our java program
+
+2. Hibernate layer - mapping file and congiuration file
+
+3. backhand layer
+
+4. database layer
+
+ 
+
+Hibernate application - 4 programs
+
+1. Hibernate configuration file
+
+         - contains info abt the database and hibernate properties
+
+         - it is saved as hibernate.cfg.xml inside src folder
+
+<hibernate-configuration>
+
+     <session-factory>
+
+            <property name="connection.url">jdbc:mysql://localhost:3306/Hibernate</property> -- defines connection url
+
+         <property name="connection.driver_class">com.mysql.jdbc.Driver</property> --- defines jdbc driver
+
+         <property name="connection.username">root</property> -- define username of db
+
+        <property name="connection.password">root</property> -- defines password of database
+
+         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+      -- we wont write any sql queries,  we use some methods to do processing in database hibernate internally will generate sql queries related to that particular method based on particular database
+
+             <property name="show_sql">true</property> -- used to display generated sql query in console
+
+               <property name="format_sql">true</property> -- used to format the generated sql query
+
+                <property name="use_sql_comments">true</property> -- used to define comments for the generated sql query
+
+                 <property name="hbm2ddl.auto">create/update/create-drop/validate</property>
+
+                -- will automatically create table in database - 4 values
+
+    1. create - each time it will create new table
+
+    2. update - it will create the table first time and next time it will update(append the data) the table
+
+    3. create-drop - it drop the entire database and create a new table
+
+   4. validate - it dosent do any thing but it checks/validate the syntax of existing table
+
+         <mapping resource=""></mapping> -- used to configure the mapping xml file
+
+         <mapping class=""></mapping> -- used to configure the mapping file generated using annotation
+
+    </session-factory>
+
+</hibernate-configuration>
+
+ 
+
+Note:
+
+-- create separate cfg for different database
+
+ 
+
+2. Hibernate mapping file
+
+     -- contains mapping of plain old java object to column of database table
+
+    -- it is saved as persistentclassname.hbm.xml inside src folder
+
+<hibernate-mapping>
+
+<class> - map persistent class with table
+
+<id> -- map primary key
+
+<generator> - used to generate value for primary key automatically
+
+  assigned(we have to give value for PK),increment,identity,sequence,seqhilo,hilo,foreign,native,uuid,guid
+
+<property> - configures normal property
+
+</hibernate-mapping>
+
+    -- this mapping file is configured inside cfg file using <mapping>
+
+ 
+
+3. Entity class/persistent class
+
+         -- class contains getters and setters methods depending on columns of the
+
+ 
+
+ 
+
+4. Main class
+
+       - we are going to interact java appl with database using HIbernate
+
+      -- org.hibernate.* package
+
+4 steps
+
+1. Configuration class
+
+        -- used to read the database info from hibernate.cfg.xml file automatically
+
+        -- You can give any name for configuration file, in that case we have pass the cfg file as argument to configuration class
+
+ 
+
+2. SessionFactory interface - it is immutable and thread safe object used to create Session interface
+
+ 
+
+3. Session interface - is the main interface which acts as a layer between java appl and database
+
+    -- whenever we use session interface it uses first level cache
+
+3 objects
+
+1. transient object - never persisted (ie) not stored inside the database, we have just created an object
+
+2. persistent object - object is associated with db (ie) obejct is stored into database
+
+3. detached object - previously persistent, now we removed from database
+
+ 
+
+Methods
+
+1. Serializable save(Object o) - used to insert into database and return the latest insert primary key value
+
+2. void persist(Object o) - used to insert into database but dosent return anything
+
+3. void saveOrUpdate(Object o)
+
+    -- used for insert into the table if primary key dosent exist or it will perform update if primary key alreasy exist
+
+4. Object get(Class c, Serializable id(pk))
+
+       -- used to return single object each time by hitting the database- internally generate select query
+
+      --if primary key dosent exist it returns null
+
+5. Object load(Class c, Serializable id(pk))
+
+      -- used to return single proxy object -- internally generate select query
+
+      --if primary key dosent exist it throw an exception called EntityNotFoundException
+
+6. void update(Object obj)
+
+        -- used to perform updating - internally generates update query
+
+7. void delete(Object obj)
+
+       -- used to perform delete op -  internally generates delete query
+
+8. void clear() - clear all session object
+
+9. void evict(Object obj) - remove the instance from session cache
+
+10. void merge(Object obj)
+
+10. Transaction beginTransaction()
+
+11. Query createQuery(String query)
+
+12. Criteria createCriteria(Class c)
+
+13. SQLQuery createSQLQuery(String query)
+
+ 
+
+ 
+
+4. Transaction interface
+
+        -- we have create transaction
+
+1. void commit()
+
+2. void rollback()
+
+ 
+
+ 
+
+1. create maven project with jar packaging
+
+2. configure dependency in pom.xml
+
+3. mvn clean install
+
+4. update the project
+
+ 
+
+ 
+
+Hibernate using annotation
+
+1. Hibernate.cfg.cml
+
+2. Persistence class
+
+    -- Instead of mapping file we can use annotation inside persistent class
+
+    -- annotation present javax.persistence.* (JPA)
+
+@Entity - indicate that class is a entity class
+
+@Table(name="stud1001") - optional annotation used to map entity class with table
+
+then it creates table in the name entity class
+
+public class Student{
+
+    @Id -- indicates it is primary key
+
+    @GeneratedValue(strategy=GenerationType.AUTO/IDENTITY/SEQUENCE/TABLE)
+
+    @Column(name="sid",length=20,nullable=true/false,unique="true/false",insertable="true/false",updateable="true/false",scale=7,precision=2) 
+
+    private int studid;
+
+    @Column(name="stu_name")
+
+    private String sname;
+
+    private int sage;
+
+    private int smark;
+
+    @Temporal(TemporalType.DATE/TIME/TIMESTAMP)
+
+    private Date dob;
+
+    @Enumerated(EnumType.STRING/ORDINAL)
+
+    private Gender gender;
+
+    @Lob
+
+    @Column(name="photo",columnDefination="BLOB")
+
+   private byte[] image;
+
+   @Transient - used to ignore this field at time of persisting
+
+    private int flag;
+
+ 
+
+    //getters and setters
+
+}
+
+ 
+
+public enum Gender {MALE,FEMALE,OTHER}
+
+ 
+
+
+HQL - Hibernate Query Language
+
+     - SQL will always queries the table
+ 
+     - HQL will query the entity class
+ 
+     -- with help of Query interface
+    
+-- HQL dosent allow insert query 
+    
+-- Hql will allow only insert select stmt
+   
+Query q=s.createQuery(String query);
+
+ 
+
+
+
+
+HCQL - Hibernate Criteria Query Language
+    
+-- we are going only to fetch data based on some condition
+
+    -- Criteria interface
+
+          Criteria c=s.createCriteria(Student.class);
+
+	c.add(Restrictions.gt("sage",20));
+	
+c.add(Restrictions.lt("sage",20));
+
+	c.add(Restrictions.eq("sage",20));
+
+	c.add(Restrictions.ne("sage",20));
+	
+c.add(Restrictions.like("sname","R%"));
+	
+c.add(Restrictions.ilike("sname","R%"));
+	ignore case
+c.add(Restrictions.between("salary",2000,5000));
+	
+c.add(Restrictions.isNull("sname"));
+
+	c.add(Restrictions.isNotNull("sname"));
+
+
+
+ 
+
+Projection
+
+    -- org.hibernate.criterion.Projections
+ -- used to get average,maximum,minimum,sum of the property value
+
+ 
+
+
+
+Native SQL query
+
+
+    -- we are going to write sql query in Hibernate
+
+    -- SQLQuery interface
+
+       SQLQuery q=s.createSqlQuery(String query);
+ 
+
+
+@NamedQueries
+ 
+       -- identify the hql queries using name
+@NamedNativeQueries
+
+       -- execute sql queries using name
+
+ 
+
+
+
+@Entity
+
+@NamedQueries({
+
+    @NamedQuery(
+
+    name = "findBook",
+
+    query = "from Book b where b.bookid = :bid"
+
+    ),
+       
+    @NamedQuery(
+
+    name = "findPrice",
+
+    query = "select b.price from Book b where b.bookid = :bid"
+
+    ),
+
+})
+
+
+@NamedNativeQueries(value = {
+
+        @NamedNativeQuery(
+
+        name = "findAll",
+        
+        query = "SELECT * FROM Book",
+         
+       	resultClass = Book.class),
+        
+	@NamedNativeQuery(
+                
+	name = "findById",
+                
+	query = "SELECT * from Book WHERE id = :id",
+                
+	resultClass = Book.class)     
+
+})
+
+public class Book{
+      
+	@Id
+       
+	@GeneratedValue(strategy=GenerationType.AUTO)
+      
+	private int bookid;
+      
+	private String name;
+      
+	private double price;
+      
+	//getters and setters
+}
+
+ 
+
+
+
+<mapping class="com.pack.Book"></mapping>
+
+ 
+
+
+
+
+Configuration cfg = new Configuration().configure();
+
+SessionFactory factory = cfg.buildSessionFactory();
+
+Session session = factory.openSession();
+
+Transaction t=session.beginTransaction();
+
+/*Book b1=new Book();
+  
+b1.setName("Java");
+  
+b1.setPrice(200.0);
+ 
+s.save(b1);
+*/
+/*Query q=s.getNamedQuery("findBook");
+
+q.setParameter("bid",1);
+   
+Book b1=(Book) q.uniqueResult();
+
+sysout(b1.getName()+" "+b1.getPrice());
+
+q=s.getNamedQuery("findPrice");
+       
+
+Double d=(Double)q.uniqueResult();
+sop(d);*/
+
+ 
+
+Query q=s.getNamedQuery("findAll");
+    
+Book b=(Book)  q.uniqueResult();
+sop(b.getName()+""+b.getPrice());
+q=s.getNamedQuery("findById");
+    
+q.setParameter("id",1);
+Book b=(Book)  q.uniqueResult();
+sop(b.getName()+""+b.getPrice());
+ t.commit();
+
+ 
+
+
+ 
+<sql-query name="findStudent">
+            select * from stud100  where stud_id= ? 
+     </sql-query> 
+     
+     
+<query name="selectStudent">from Student st where st.studid=:cId</query>
+
+ 
+
+Query q=s.getNamedQuery("selectStudent");
+  
+q.setParameter("cId",102);
+ Student st=(Student)q.uniqueResult();
+sop(st.getSname()+" "+st.getSage());
+
+ 
+
+
+
+
+
+Caching
+      
+1. First level - by default used Session interface 
+      
+2. Second level - SessionFactory, the data will be avialbe for entire appl, we have to enable second level cache
+    
+-- whenever we create multiple session object
+
+1. EH Cache
+
+2. OS Cache
+
+3. JBoss cache
+
+4. Swarm cache
+
+ 
+
+
+1. we enabled EH Cache in dependency
+2. we have to enable seond level cache in cfg file
+
+ 
+
+ 
+<property name="cache.use_second_level_cache">true</property> 
+  
+       <property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+
+ 
